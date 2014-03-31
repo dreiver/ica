@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>       <html class="no-js lt-ie9 lt-ie8 lt-ie7">   <![endif]-->
+<!--[if IE 7]>          <html class="no-js lt-ie9 lt-ie8">          <![endif]-->
+<!--[if IE 8]>          <html class="no-js lt-ie9">                 <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js">                        <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ config['product_l_name'] }}</title>
+        <meta name="description" content="{{ config['product_s_name'] }}:{{ config['product_l_name'] }}">
+        <meta name="viewport" content="width=device-width">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/bootstrap.min.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/bootstrap-responsive.min.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/style.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/prettify.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/validationEngine.jquery.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/calendar.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/DT_bootstrap.css"/>
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/responsive-tables.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/timepicker.css" />
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/datepicker.css" />
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/bootstrap-toggle-buttons.css" />
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/chosen.css"/>
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/uniform.default.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/theme.css">
+        <!--<script type="text/javascript" src="/metis/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
+        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--[if IE 7]>
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/font-awesome-ie7.min.css"/>
+        <![endif]-->
+        <script src="/metis/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    </head>
+    <body>
+        <!-- BEGIN WRAP -->
+        <div id="wrap">
+            <!-- BEGIN TOP BAR -->
+            <div id="top">
+                <!-- .navbar -->
+                <div class="navbar navbar-inverse navbar-static-top">
+                    <div class="navbar-inner">
+                        <div class="container-fluid">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <!--<a class="brand" href="/index">Credicoop</a>-->
+                            <a class="brand" style="padding:0px" href="/index">
+                                <img src="/metis/assets/img/logocredicoop.png" style="height:45px; width:110px;" alt="Banco Credicoop"></a>
+                            <!-- .topnav -->
+                            <div class="btn-toolbar topnav">
+                                <div class="btn-group">
+                                    <a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
+                                        data-original-title="Mostrar / Ocultar Menu" data-placement="bottom">
+                                        <i class="icon-resize-horizontal"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#helpModal" class="btn btn-inverse" rel="tooltip" data-placement="bottom"
+                                        data-original-title="Ayuda" data-toggle="modal">
+                                        <i class="icon-question-sign"></i>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a class="btn btn-danger" data-placement="bottom" data-original-title="Cerrar" rel="tooltip"
+                                       href="/logout"><i class="icon-off"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="nav-collapse collapse topnav">
+                                <!-- .nav -->
+                                <ul class="nav">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                          <i class="icon-user"></i> 
+                                          {{ c.session_name }}
+                                          <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                          <li><a href="/changepasswd/user/{{ c.session_user }}">Cambiar clave</a></li>
+                                          <li><a href="{{ config['issues_url'] }}" target="{{ config['issues_target'] }}" data-toggle="modal">Reportar un problema</a></li>
+                                          <li><a href="#AboutSite" data-toggle="modal">Acerca del sitio</a></li>
+                                          <li class="divider"></li>
+                                          <li><a href="#helpModal" data-toggle="modal">Ayuda</a></li>
+                                        </ul>
+                                  </li>
+                                </ul>
+                                <!-- /.nav -->
+                            </div>
+                            <!-- /.topnav -->
+                            <div class="nav-collapse collapse">
+                                <!-- .nav -->
+                                <ul class="nav">
+                                    <li class="active"><a href="/index">{{ config['product_s_name'] }}</a></li>
+                                </ul>
+                                <!-- /.nav -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.navbar -->
+            </div>
+            <!-- END TOP BAR -->
+            <!-- BEGIN HEADER.head -->
+            <header class="head">
+                <div class="search-bar">
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <div class="search-bar-inner">
+                                <a id="menu-toggle" href="#menu" data-toggle="collapse"
+                                   class="accordion-toggle btn btn-inverse visible-phone"
+                                   rel="tooltip" data-placement="bottom" data-original-title="Show/Hide Menu">
+                                    <i class="icon-sort"></i>
+                                </a>
+
+                                <form class="main-search">
+                                    <input class="input-block-level" type="text" placeholder="Busqueda...">
+                                    <button id="searchBtn" type="submit" class="btn btn-inverse"><i class="icon-search"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ."main-bar -->
+                <div class="main-bar">
+                    <div class="container-fluid">
+                        <div class="row-fluid">
+                            <div class="span12">
+                                <h3><i class="{{ c.title_icon }}"></i> {{ c.title }}</h3>
+                            </div>
+                        </div>
+                        <!-- /.row-fluid -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /.main-bar -->
+            </header>
+            <!-- END HEADER.head -->
+            <!-- BEGIN LEFT  -->
+            <div id="left">
+                <!-- .user-media -->
+                <div class="media user-media hidden-phone">
+                    <div class="media-body hidden-tablet">
+                        <h5 class="media-heading">{{ c.session_name }}</h5>
+                        <ul class="unstyled user-info">
+                            <li><a href="">{{ c.session_role }}</a></li>
+                            <li>&Uacuteltimo acceso : <br/>
+                                <small><i class="icon-calendar"></i> {{ c.session_access }}</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.user-media -->
+                <!-- BEGIN MAIN NAVIGATION -->
+                <!-- #menu -->
+                <ul id="menu" class="unstyled accordion collapse in">
+                    {% for i in c.menu %}
+                        <li class="accordion-group {{ i.status }}">
+                            <a
+                            {% if i.child|count > 0 %} data-toggle='collapse' data-target='#{{ i.title }}'
+                            {% else %} href='{{ i.href }}' data-pjax='#content' data-parent='#menu' {% endif %}
+                            {% if i.status == 'active' %} class='accordion-toggle collapsed' 
+                            {% else %} class='accordion-toggle' {% endif %}
+                            >
+                                <i class='{{ i.icon }} icon-large'></i> {{ i.title }}
+                                {% if i.child|count > 0 %}
+                                    <span class="label label-inverse pull-right">{{ i.child|count }}</span>
+                                {% endif %}
+                            </a>
+                            {% if i.child|count > 0 %}
+                            <ul
+                                {% if i.status == 'active' %} class='collapse in' 
+                                {% else %} class='collapse'{% endif %}
+                                id="{{ i.title }}">
+                                    {% for j in i.child %}
+                                        <li><a href="{{ j.href }}" data-pjax="#content"><i class="{{ j.icon }}"></i> {{ j.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+                <!-- /#menu -->
+                <!-- END MAIN NAVIGATION -->
+            </div>
+            <!-- END LEFT -->
+            <!-- BEGIN MAIN CONTENT -->
+            <div id="content">
+                {% include c.template with context %}
+            </div>
+            <!-- END CONTENT -->
+
+            <!-- #AboutSite -->
+            <div id="AboutSite" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="helpModalLabel"><i class="icon-tag"></i> Acerca del sitio</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        ICA (Icarus | Ivr Cluster Admin) fue desarrollado por Ezequiel Lovelle.
+                    </p>
+                    <p>
+                        En su desarrollo se emple&oacute exclusivamente <b>software libre</b>;
+                        tanto en lo que se refiere a los componentes de la aplicación en s&iacute y los servicios que la conforman, 
+                        como a las herramientas y tecnolog&iacuteas utilizadas en los ambientes de desarrollo. 
+                        A continuaci&oacuten listamos, sin ning&uacuten orden particular, 
+                        algunas de las piezas más importantes de software que se emplearon en el desarrollo:
+                    </p>
+                    <hr>
+                    <div id="div-1" class="accordion-body collapse in body">
+                        <div style="float: left">
+                            <ul>
+                                <li><a href="http://redis.io/" target="_blank">Redis</a></li>
+                                <li><a href="http://python.org/" target="_blank">Python</a></li>
+                                <li><a href="http://jquery.com/" target="_blank">jQuery</a></li>
+                                <li><a href="http://jinja.pocoo.org/" target="_blank">Jinja</a></li>
+                                <li><a href="http://jqueryui.com/" target="_blank">jQuery UI</a></li>
+                                <li><a href="http://gunicorn.org/" target="_blank">Gunicorn</a></li>
+                                <li><a href="http://twitter.github.io/bootstrap" target="_blank">Bootstrap</a></li>
+                            </ul>
+                        </div>
+                        <div style="margin-left: 50%;" >
+                            <ul>
+                                <li><a href="http://github.com/" target="_blank">GIT</a></li>
+                                <li><a href="http://nginx.org/" target="_blank">Nginx</a></li>
+                                <li><a href="http://nodejs.org/" target="_blank">Node.js</a></li>
+                                <li><a href="http://socket.io/" target="_blank">Socket.IO</a></li>
+                                <li><a href="http://modernizr.com/" target="_blank">Modernizr</a></li>
+                                <li><a href="http://github.com/defunkt/jquery-pjax/" target="_blank">JQuery Pjax</a></li>
+                                <li><a href="http://fortawesome.github.io/Font-Awesome/" target="_blank">Font Awesome</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p>Por dudas, consultas o sugerencias respecto de la implementaci&oacuten del software y sus derivados o las tecnolog&iacuteas empleadas,
+                    puede escribirnos un mail <a href="mailto:ezequiellovelle@gmail.com">aqu&iacute</a>.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                </div>
+            </div>
+            <!-- /#AboutSite -->
+            <!-- #helpModal -->
+            <div id="helpModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
+                 aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h3 id="helpModalLabel"><i class="icon-external-link"></i> Ayuda</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Si necesita ayuda acerca de la interfaz de administraci&oacuten, por favor complete el formulario.
+                    </p>
+                    <hr>
+                    <div id="div-1" class="accordion-body collapse in body">
+                        <form class="form-horizontal">
+                            <div class="control-group">
+                                <label for="text1" class="control-label">Titulo</label>
+
+                                <div class="controls with-tooltip">
+                                    <input type="text" id="text1" class="span3 input-tooltip"
+                                           data-original-title="Titulo sobre de su consulta" data-placement="bottom"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Nombre</label>
+
+                                <div class="controls">
+                                    <input class='span3' type='text' value='{{ c.session_name }}' readonly>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="text2" class="control-label">Asunto</label>
+
+                                <div class="controls">
+                                    <input class="span3" type="text" id="text2"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="autosize" class="control-label">Texto</label>
+
+                                <div class="controls">
+                                    <textarea id="autosize" class="span3"></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-metis-5">Enviar</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                </div>
+            </div>
+            <!-- /#helpModal -->
+            <!-- BEGIN FOOTER -->
+            <div id="footer">
+                <p>{{ config['year'] }} © {{ config['company_name'] }} | <a href="#AboutSite" data-toggle="modal">Acerca del sitio</a></p>
+            </div>
+            <!-- END FOOTER -->
+            <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->
+            <script>window.jQuery || document.write('<script src="/metis/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+            <script src="/metis/assets/js/vendor/jquery-migrate-1.1.1.min.js"></script>
+            <!--<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>-->
+            <script>window.jQuery.ui || document.write('<script src="/metis/assets/js/vendor/jquery-ui-1.10.0.custom.min.js"><\/script>')</script>
+            <script src="/metis/assets/js/vendor/jquery.pjax.js"></script>
+
+            <script src="/metis/assets/js/vendor/bootstrap.min.js"></script>
+            <script src="/metis/assets/js/lib/jquery.mousewheel.js"></script>
+            <script src="/metis/assets/js/lib/jquery.sparkline.min.js"></script>
+            <script src="/metis/assets/js/lib/flot/jquery.flot.js"></script>
+            <script src="/metis/assets/js/lib/flot/jquery.flot.pie.js"></script>
+            <script src="/metis/assets/js/lib/flot/jquery.flot.selection.js"></script>
+            <script src="/metis/assets/js/lib/flot/jquery.flot.resize.js"></script>
+            <script src="/metis/assets/js/lib/fullcalendar.min.js"></script>
+            <script src="/metis/assets/js/lib/jquery.autosize-min.js"></script>
+            <script src="/metis/assets/js/lib/jquery.tablesorter.min.js"></script>
+            <script src="/metis/assets/js/lib/prettify.js"></script>
+            <script src="/metis/assets/js/lib/jquery.dataTables.min.js"></script>
+            <script src="/metis/assets/js/lib/DT_bootstrap.js"></script>
+            <script src="/metis/assets/js/lib/responsive-tables.js"></script>
+            <script src="/metis/assets/js/lib/jquery.validate.min.js"></script>
+            <script src="/metis/assets/js/lib/languages/messages_es.js"> </script>
+            <script src="/metis/assets/js/main.js"></script>
+            <script src="http://{{ config['socket_server'] }}:{{ config['socket_port'] }}/socket.io/socket.io.js"></script>
+            
+            <script type="text/javascript">
+                $(function() {
+                    $('a[data-pjax]').pjax()
+
+                    $(document).on('pjax:success', function() {
+                        IndexGraph();
+                        formGeneral();
+                    })
+                    /*$(document).on('click', 'a[data-pjax]', function(event) {
+                        var href = $(this).attr('href')
+                        console.log(href)
+                        if (href == '/index')
+                            IndexGraph();
+                            formGeneral();
+                    })*/
+
+
+                    //Index
+                    IndexHandleSock();
+                    IndexGraph();
+                    formGeneral();
+                    //Panel
+                    UsuariosTable();
+                    AddUsuario();
+                    //Currentcalls
+                    init_calls();
+
+                    /////////////////////////
+                    // CUSTOM CLIENT CABAL //
+                    /////////////////////////
+                    //Bines
+                    Bines();
+                });
+            </script>
+        <!-- END WRAP -->
+        </div>
+    </body>
+</html>

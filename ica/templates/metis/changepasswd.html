@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Acceso</title>
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/bootstrap.min.css"/>
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/login.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/font-awesome.min.css">
+        <!--<link type="text/css" rel="stylesheet" href="/metis/assets/css/bootstrap-responsive.min.css">-->
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span4 offset4">
+                    <div class="signin">
+                        <div id="logo">
+                            <img src="/metis/assets/img/logocredicoop.png" alt="Banco Credicoop">
+                        </div>
+                        <div class="tab-content muted tac">
+                            {% if c.changepasswd_alert %}
+                                <div id="login_change" class='alert alert-alert'>
+                                    <strong>Atenci&oacuten!</strong> Es necesario cambiar su contraseña
+                                </div>
+                            {% endif %}
+                            <div id="login_loader" style="display: none;">
+                                <h4><img src='/metis/assets/img/ajax-loader.gif' /> Cargando...</h4>
+                            </div>
+                            <div id="login_error" class="alert alert-error" style="display: none;">
+                                <i class="icon-remove-sign icon-1x"></i>
+                                <span>
+                                    <strong>Error!</strong> El nombre de usuario o la contraseña son incorrectos.
+                                </span>
+                            </div>
+                            <div id="login_ok" class="alert alert-success" style="display: none;">
+                                <i class="icon-ok-circle icon-1x"></i>
+                                <span>
+                                    <strong>Ok!</strong> Nombre de usuario y contraseña correctos.
+                                </span>
+                            </div>
+                            <div id="signup" class="tab-pane active">
+                                <p>Ingrese su nombre de usuario y clave</p>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-user"></i></span>
+                                            <input type="text" id="username" name="username" autocomplete="off" placeholder="Usuario" value="{{ c.changepasswd_user }}">
+                                        </div>
+                                    </div>
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-lock"></i></span>
+                                            <input type="password" id="password" name="password" autocomplete="off" placeholder="Clave actual">
+                                        </div>
+                                    </div>
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-lock"></i></span>
+                                            <input type="password" id="passwordnew" name="passwordnew" autocomplete="off" placeholder="Clave nueva">
+                                        </div>
+                                    </div>
+                                    <div class="controls">
+                                        <div class="input-prepend">
+                                            <span class="add-on"><i class="icon-lock"></i></span>
+                                            <input type="password" id="passwordconfirm" name="passwordconfirm" autocomplete="off" placeholder="Clave nueva confirmar">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="from" id="from" value="changepasswd" />
+                                <input type="hidden" name="action" id="action" value="changepasswd" />
+                                <input type="hidden" name="sendform" id="sendform" value=1 />
+                                <input type="submit" name="Change" id="Change" value="Cambiar" class="btn btn-inverse btn-block">
+                                <a href="/index"><button class="btn btn-info btn-block">Volver</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>window.jQuery || document.write('<script src="/metis/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+        <script type="text/javascript" src="/metis/assets/js/vendor/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/metis/assets/js/lib/jquery.validate.min.js"></script>
+        <script type="text/javascript" src="/metis/assets/js/lib/languages/messages_es.js"> </script>
+        <script type="text/javascript">
+            $(function() {
+                ChangePasswd();
+            });
+        </script>
+        <script type="text/javascript" src="/metis/assets/js/main.js"></script>
+    </body>
+</html>

@@ -1,0 +1,3 @@
+include ica/config/deployment.ini_tmpl
+recursive-include ica/public *
+recursive-include ica/templates *

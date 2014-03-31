@@ -1,0 +1,14 @@
+*.gem
+*.sw*
+*.pyc
+*.log
+*#*
+build
+dist
+setuptools-*
+.DS_Store
+*.so
+.Python
+ica.egg-info
+Paste*
+nohup.out
