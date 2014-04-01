@@ -54,11 +54,6 @@ def make_map(config):
     #######
     # Api #
     #######
-
-    
-    
-    
-    
     #Conf
     map.connect('/api/v1/conf/basic{.format:json|xml}', controller='api/conf', action='basic', conditions=dict(method=['GET']))
     map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api/conf', action='trunk', conditions=dict(method=['GET']))
@@ -70,11 +65,9 @@ def make_map(config):
     #map.connect('/api/v1/acces/changepasswd{.format:json|xml}', controller='api', action='changepasswd')
     #VOIP
     #map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
-
     #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='api_')
 
-
-
+    
 
     #######################
     # CUSTOM CLIENT CABAL #
