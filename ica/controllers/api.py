@@ -61,6 +61,12 @@ class ApiController(BaseController):
 
 
 	@api
+	def presence(self, format, credentials=False, method='POST'):
+		data = { 'caca': [] }
+		return (data)
+
+
+	@api
 	def login(self, format, credentials=False, method='POST'):	
 		# If post data not exist, return error
 		if (not c.post['username'] or not c.post['password'] or not c.post['action']):
