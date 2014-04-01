@@ -56,7 +56,7 @@ def api(func, *args, **kwargs):
 		response.headers['Content-Type'] = 'application/json; charset=utf-8'
 		resp = json.dumps(data)
 
-	return resp
+	return resp+'\n'
 
 
 def response_error(code, headers=None):
