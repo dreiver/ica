@@ -11,7 +11,7 @@
 
 ## Introduction
 
-All API requests require authentication. You need to pass a `secret` parameter by url or header. If passed as header, the header name must be "SECRET". You can find or reset your private token in your own profile.
+All API requests require authentication. You need to pass a `secret` parameter by url or header. If passed as header, the header name must be "SECRET". You can find or reset your private secret in your own profile.
 
-The API uses JSON or XML to serialize data. By default all api requests will be returned with json format but you can specify custom format in request each request.
+The API uses JSON or XML to serialize data. By default all api requests will be returned in JSON format, but you can specify custom format in each request with `.json` or `.xml` at the end of API URL.
 

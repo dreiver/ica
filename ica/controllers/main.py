@@ -65,18 +65,18 @@ class MainController(BaseController):
 	def index(self):
 
 		c.menu[0]['status'] = 'active'
-		c.title      		= c.menu[0]['title']
-		c.title_icon 		= c.menu[0]['icon']
+		c.title      	    = c.menu[0]['title']
+		c.title_icon 	    = c.menu[0]['icon']
 
 		c.ica_logs_error     = g.redis_ica.llen('ica:logs:error')
 		c.ica_logs_calls     = g.redis_ica.llen('ica:logs:calls')
 		c.ica_logs_warning   = g.redis_ica.llen('ica:logs:warning')
 		c.ica_logs_serv_jpos = g.redis_ica.llen('ica:logs:serv:jpos')#CABAL
 
-		c.day_values  = g.get_day_values(g.redis_ica)
-		c.day_calls   = g.get_day_calls(g.redis_ica)
+		c.day_values = g.get_day_values(g.redis_ica)
+		c.day_calls  = g.get_day_calls(g.redis_ica)
 
-		c.week 		  = g.get_week(g.redis_ica)
+		c.week        = g.get_week(g.redis_ica)
 		c.week_calls  = 0
 		c.week_values = []
 		
@@ -95,20 +95,20 @@ class MainController(BaseController):
 	def panel(self):
 
 		c.menu[4]['status'] = 'active'
-		c.title 			= c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
-		c.title_icon 		= c.menu[4]['icon']
+		c.title             = c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
+		c.title_icon        = c.menu[4]['icon']
 
 		c.ica_logs_error     = g.redis_ica.lrange('ica:logs:error', 0 , 4)
 		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0 , 4)
 		c.ica_logs_serv_jpos = g.redis_ica.lrange('ica:logs:cabal:jpos', 0 , 4)#CABAL
 
-		users 	  = g.redis_ica.lrange('ica:users', 0 , -1)
-		c.users   = []
+		users   = g.redis_ica.lrange('ica:users', 0 , -1)
+		c.users = []
 
 		for i in users:
-			user 		   = g.redis_ica.hgetall('ica:user:'+i)
+			user           = g.redis_ica.hgetall('ica:user:'+i)
 			user['expire'] = g.redis_ica.ttl('ica:user:'+i+':keyexpire')
-			expire 		   = datetime.now() + timedelta( seconds=user['expire'] )
+			expire         = datetime.now() + timedelta( seconds=user['expire'] )
 			user['ttl']    = expire.strftime('%e %b %H:%M')
 			user['access'] = datetime.strptime(user['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
 			user['user']   = i
@@ -120,8 +120,8 @@ class MainController(BaseController):
 	def currentcalls(self):
 
 		c.menu[3]['status'] = 'active'
-		c.title 			= c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
-		c.title_icon 		= c.menu[3]['icon']
+		c.title             = c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
+		c.title_icon        = c.menu[3]['icon']
 
 		return pjax('currentcalls.html')
 
@@ -131,7 +131,8 @@ class MainController(BaseController):
 	#######################
 	def bines(self):
 		c.menu[2]['status'] = 'active'
-		c.title      		= c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
-		c.title_icon 		= c.menu[2]['icon']
+		c.title             = c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
+		c.title_icon        = c.menu[2]['icon']
 
 		return pjax('cabal-bines.html')
+

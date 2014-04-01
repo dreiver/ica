@@ -64,7 +64,6 @@ def make_map(config):
     #Access
     map.connect('/api/v1/acces/login{.format:json|xml}', controller='api', action='login')
     map.connect('/api/v1/acces/changepasswd{.format:json|xml}', controller='api', action='changepasswd')
-
     #VOIP
     map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
 
