@@ -21,31 +21,29 @@ log = logging.getLogger(__name__)
 def api(func, *args, **kwargs):
 	data 		= None
 	format      = args[1]
-	credentials = args[2]
-	method      = args[3]
+	token 		= args[2]
+	secret		= None
 
-	# If is necessary a credentials check   	
-	if credentials:
-		if not session.get('logged_in'):
-			data = response_error( 64 )
-			
-	# Check method especification
-	elif method == 'POST':
-		if request.method != 'POST':
-			data = response_error( 44, headers=[('Allow', 'POST')] )
-		# Set post vars
-		c.post = {}
-		for k, v in request.POST.iteritems():
-			c.post[k] = v
+	if token:
+		if request.method == 'POST':
+			c.post = {}
+			for k, v in request.POST.iteritems():
+				c.post[k] = v
 
-	elif method == 'GET':
-		if request.method != 'GET':
-			data = response_error( 44, headers=[('Allow', 'GET')] )
-		# Set get vars
-		c.get = {}
-		for k, v in request.GET.iteritems():
-			c.get[k] = v
+			if not 'SECRET-TOKEN' in c.post:
+				data = response_error( 64 )
+			else:
+				secret = c.post['SECRET-TOKEN']
 
+		elif request.method == 'GET':
+			c.get = {}
+			for k, v in request.GET.iteritems():
+				c.get[k] = v
+
+			if not 'secret_token' in c.get:
+				data = response_error( 64 )
+			else:
+				secret = c.get['secret_token']
 
 	# If data has not been altered, then is a correct request
 	if data is None:

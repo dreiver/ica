@@ -61,8 +61,8 @@ def make_map(config):
     #map.connect('/api/v1/calls/week_graph{.format:json|xml}', controller='api', action='week_graph')
     #map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
     #Access
-    #map.connect('/api/v1/acces/login{.format:json|xml}', controller='api', action='login')
-    #map.connect('/api/v1/acces/changepasswd{.format:json|xml}', controller='api', action='changepasswd')
+    #map.connect('/api/v1/access/login{.format:json|xml}', controller='api/access', action='login', conditions=dict(method=['GET']))
+    #map.connect('/api/v1/access/changepasswd{.format:json|xml}', controller='api/access', action='changepasswd', conditions=dict(method=['GET']))
     #VOIP
     #map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
     #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='api_')
