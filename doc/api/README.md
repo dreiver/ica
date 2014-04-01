@@ -1,4 +1,4 @@
-# GitLab API
+# ICA API
 
 ## End-points
 
