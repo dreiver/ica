@@ -55,25 +55,33 @@ def make_map(config):
     # Api #
     #######
 
+    
+    
+    
+    
     #Conf
-    map.connect('/api/v1/conf/basic{.format:json|xml}', controller='api', action='conf')
-    map.connect('/api/v1/conf/trunks{.format:json|xml}', controller='api', action='trunks')
+    map.connect('/api/v1/conf/basic{.format:json|xml}', controller='api/conf', action='basic', conditions=dict(method=['GET']))
+    map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api/conf', action='trunk', conditions=dict(method=['GET']))
     #Calls
-    map.connect('/api/v1/calls/week_graph{.format:json|xml}', controller='api', action='week_graph')
-    map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
+    #map.connect('/api/v1/calls/week_graph{.format:json|xml}', controller='api', action='week_graph')
+    #map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
     #Access
-    map.connect('/api/v1/acces/login{.format:json|xml}', controller='api', action='login')
-    map.connect('/api/v1/acces/changepasswd{.format:json|xml}', controller='api', action='changepasswd')
+    #map.connect('/api/v1/acces/login{.format:json|xml}', controller='api', action='login')
+    #map.connect('/api/v1/acces/changepasswd{.format:json|xml}', controller='api', action='changepasswd')
     #VOIP
-    map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
+    #map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
+
+    #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='api_')
+
+
 
 
     #######################
     # CUSTOM CLIENT CABAL #
     #######################
-    map.connect('/cabal/bines', controller='main', action='bines') #CABAL
-    map.connect('/cabal/consultas', controller='main', action='consultas') #CABAL
-    map.connect('/cabal/precargada', controller='main', action='precargada') #CABAL
-    map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones') #CABAL
+    #map.connect('/cabal/bines', controller='main', action='bines') #CABAL
+    #map.connect('/cabal/consultas', controller='main', action='consultas') #CABAL
+    #map.connect('/cabal/precargada', controller='main', action='precargada') #CABAL
+    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones') #CABAL
 
     return map
