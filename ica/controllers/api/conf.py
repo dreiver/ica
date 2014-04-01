@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 class ConfController(BaseController):
 	
 	@api
-	def basic(self, format='json', credentials=True, method='GET'):
+	def index(self, format='json', credentials=True, method='GET'):
 		data = {
 			'socket_server': config['socket_server'],
 			'socket_port': config['socket_port'],

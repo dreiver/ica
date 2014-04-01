@@ -55,7 +55,7 @@ def make_map(config):
     # Api #
     #######
     #Conf
-    map.connect('/api/v1/conf/basic{.format:json|xml}', controller='api/conf', action='basic', conditions=dict(method=['GET']))
+    map.connect('/api/v1/conf/index{.format:json|xml}', controller='api/conf', action='index', conditions=dict(method=['GET']))
     map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api/conf', action='trunk', conditions=dict(method=['GET']))
     #Calls
     #map.connect('/api/v1/calls/week_graph{.format:json|xml}', controller='api', action='week_graph')
