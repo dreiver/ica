@@ -47,7 +47,7 @@ def api(func, *args, **kwargs):
 					data = response_error( 32 )
 		# No Authentication
 		else:
-			data = response_error( 64 )
+			data = response_error( 33 )
 	except:
 		data = response_error( 32 )
 
@@ -61,7 +61,7 @@ def api(func, *args, **kwargs):
 
 	# If user not exist return forbidden
 	if not user:
-		data = response_error( 64 )
+		data = response_error( 33 )
 	else:
 		# Create custom variables for current method
 		if request.method == 'POST':
