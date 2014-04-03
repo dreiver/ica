@@ -10,6 +10,7 @@ from ica.lib.api.util import api, response_error
 
 from datetime import datetime, timedelta
 import hashlib
+import base64
 
 log = logging.getLogger(__name__)
 
@@ -19,7 +20,7 @@ class AccessController(BaseController):
 	@api
 	def login(self, format='json', token=True):
 		# If post data not exist, return error
-		if (not c.post['username'] or not c.post['password'] or not c.post['action']):
+		if (not 'username' in c.post or not 'password' in c.post or not 'action' in c.post):
 			return (response_error( 32 ))
 
 		# If session exist, not need login
@@ -50,9 +51,10 @@ class AccessController(BaseController):
 	@api
 	def changepasswd(self, format='json', token=True):
 		# If post data not exist, return error
-		if (not c.post['username'] or not c.post['password'] or not c.post['action'] or not c.post['passwordnew'] or not c.post['passwordconfirm']):
+		if (not 'username' in c.post or not 'password' in c.post or not 'action' in c.post\
+			or not 'passwordnew' in c.post or not 'passwordconfirm' in c.post):
 			return (response_error( 32 ))
-
+			
 		if g.redis_ica.hget('ica:user:'+c.post['username'], 'password') == hashlib.sha1( c.post['password'] ).hexdigest():
 			# Set the pipeline method
 			pipe = g.redis_ica.pipeline()
