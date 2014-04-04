@@ -18,8 +18,12 @@ Tweak the config file as appropriate and then setup the application::
 
 Then you are ready to go.
 
-Install:
+Installation:
 
+    cd /home
+    virtualenv env
+    source env/bin/activate
+    cd ica/
     python setup.py develop
 
 Run:
