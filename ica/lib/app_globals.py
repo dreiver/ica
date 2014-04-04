@@ -51,17 +51,17 @@ class Globals(object):
 
 
     def get_day_calls(self, redis):
-        return int(redis.llen("ica:reports:calls:day:"+datetime.now().strftime('%d%m%Y')))
+        return int(redis.llen('ica:reports:calls:day:'+datetime.now().strftime('%d%m%Y')))
 
 
     def get_day_values(self, redis):
         values     = []
         day_hours  = {}
-        day_values = redis.lrange("ica:reports:calls:day:"+datetime.now().strftime('%d%m%Y'), 0, -1)
+        day_values = redis.lrange('ica:reports:calls:day:'+datetime.now().strftime('%d%m%Y'), 0, -1)
 
         for i in day_values:
-            uid  = json.loads(i)['uid'].split(".")[0]
-            hour = time.strftime("%H", time.gmtime(int(uid)))
+            uid  = json.loads(i)['uid'].split('.')[0]
+            hour = time.strftime('%H', time.gmtime(int(uid)))
             day_hours[hour] = day_hours.get(hour, 0) + 1
 
         for i in range(3,24):
@@ -77,7 +77,7 @@ class Globals(object):
 
         for i in range(0, 7):
             day  = datetime.now() - timedelta(days=i)
-            llen = redis.llen("ica:reports:calls:day:"+day.strftime('%d%m%Y'))
+            llen = redis.llen('ica:reports:calls:day:'+day.strftime('%d%m%Y'))
             week.append( { 'calls': llen, 'days': day } )
 
         return week
