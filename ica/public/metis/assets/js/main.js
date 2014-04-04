@@ -237,6 +237,7 @@ function formGeneral() {
  /*--------------------------------------------------------
  BEGIN login SCRIPTS
  ---------------------------------------------------------*/
+ /*
  $(document).ready(function () {
 
          $( "#username, #password" ).keyup(function( e ){
@@ -262,15 +263,16 @@ function formGeneral() {
         });
 
     });
+*/
  /*--------------------------------------------------------
  END login SCRIPTS
  ---------------------------------------------------------*/
 
-
+/*
  function changepasswd(username, password, passwordnew, passwordconfirm) {
     $.ajax({
         type: "POST",
-        url: "/api/v1/acces/changepasswd",
+        url: "/users/change_password",
         data: "username="+username+"&password="+password+"&passwordnew="+passwordnew+"&passwordconfirm="+passwordconfirm+"&action=changepasswd",
         success: function(resp)
         {
@@ -306,7 +308,7 @@ function formGeneral() {
  function authenticate(username, password) {
     $.ajax({
         type: "POST",
-        url: "/api/v1/acces/login",
+        url: "/users/sign_in",
         data: "username="+username+"&password="+password+"&action=login",
         success: function(resp)
         {
@@ -342,6 +344,7 @@ function formGeneral() {
     });
     return false;
 }
+*/
 
 /*--------------------------------------------------------
  BEGIN FORM-VALIDATION.HTML SCRIPTS

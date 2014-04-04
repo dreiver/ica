@@ -14,7 +14,7 @@ log = logging.getLogger(__name__)
 class ConfController(BaseController):
 	
 	@api
-	def index(self, format='json', token=True):
+	def index(self, format='json'):
 		data = {
 			'socket_server': config['socket_server'],
 			'socket_port': config['socket_port'],
@@ -24,7 +24,7 @@ class ConfController(BaseController):
 		return (data)
 
 	@api
-	def trunk(self, format='json', token=True):
+	def trunk(self, format='json'):
 		data = { 'trunks': 0, 'servers': 0 }
 
 		for i in g.redis_ica.keys('ica:trunks:*'):

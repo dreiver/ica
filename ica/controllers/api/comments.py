@@ -16,7 +16,7 @@ class CommentsController(BaseController):
     #         path_prefix='/api', name_prefix='api_')
 
     @api
-    def index(self, format='json', token=True):
+    def index(self, format='json'):
         """GET /api/comments: All items in the collection"""
         data = { 'label': '', 'data': [] }
         return data
@@ -26,7 +26,7 @@ class CommentsController(BaseController):
         # url('api_comments')
 
     @api
-    def new(self, format='json', token=True):
+    def new(self, format='json'):
         """GET /api/comments/new: Form to create a new item"""
         # url('api_new_comment')
 
@@ -49,11 +49,11 @@ class CommentsController(BaseController):
         # url('api_comment', id=ID)
 
     @api
-    def show(self, id, format='json', token=True):
+    def show(self, id, format='json'):
         """GET /api/comments/id: Show a specific item"""
         # url('api_comment', id=ID)
 
     @api
-    def edit(self, id, format='json', token=True):
+    def edit(self, id, format='json'):
         """GET /api/comments/id/edit: Form to edit an existing item"""
         # url('api_edit_comment', id=ID)

@@ -30,23 +30,27 @@ def make_map(config):
     # Index
     map.connect('/', controller='main', action='index')
     map.connect('/index', controller='main', action='index')
+    
     # Voip
     map.connect('/voip/sip', controller='main', action='sip')
     map.connect('/voip/iax', controller='main', action='iax')
+    
     # Reports
     map.connect('/reports/currentcalls', controller='main', action='currentcalls')
     map.connect('/reports/general', controller='main', action='general')
     map.connect('/reports/graphs', controller='main', action='graphs')
     map.connect('/reports/calls', controller='main', action='calls')
+    
     # System
     map.connect('/system/panel', controller='main', action='panel')
     map.connect('/system/settings', controller='main', action='settings')
-
 
     # Login / Logout
     map.connect('/login', controller='access', action='login')
     map.connect('/logout', controller='access', action='logout')
     map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd')
+    map.connect('/users/sign_in', controller='access', action='sign_in', conditions=dict(method=['POST']))
+    map.connect('/users/change_password', controller='access', action='change_password', conditions=dict(method=['POST']))
 
     # Static
     map.connect('/offline', controller='static',  action='static')
@@ -60,9 +64,6 @@ def make_map(config):
     #Calls
     #map.connect('/api/v1/calls/week_graph{.format:json|xml}', controller='api', action='week_graph')
     #map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
-    #Access
-    #map.connect('/api/v1/access/login{.format:json|xml}', controller='api/access', action='login', conditions=dict(method=['GET']))
-    #map.connect('/api/v1/access/changepasswd{.format:json|xml}', controller='api/access', action='changepasswd', conditions=dict(method=['GET']))
     #VOIP
     #map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
     #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='api_')
