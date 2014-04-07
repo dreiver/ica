@@ -23,18 +23,10 @@ class AccessController(BaseController):
 				c.post[k] = v
 
 
-	def login(self):
-		# If session exist, not need login
-		if session.get('logged_in'):
-			redirect('/')
-		#log.debug("Login session request")
-		return render('metis/login.html')
-
-
 	def logout(self):
 		session.clear()
 		session.save()
-		log.debug("Session destroy request")
+		log.debug('Session destroy request')
 		redirect('/login')
 
 
@@ -44,36 +36,39 @@ class AccessController(BaseController):
 		return render('metis/changepasswd.html')
 
 
-	def sign_in(self):
-		# If post data not exist, return error
-		if (not 'username' in c.post or not 'password' in c.post or not 'action' in c.post):
-			return (response_error( 32 ))
-
+	def login(self):
 		# If session exist, not need login
 		if session.get('logged_in'):
 			redirect('/')
-			#return ({ 'succes': { 'type':'login', 'message':'redirect', 'destination': '/', 'code':0 } })
 
-		if g.redis_ica.hget('ica:user:'+c.post['username'], 'password') == hashlib.sha1( c.post['password'] ).hexdigest():
-			# Get user current data
-			login = g.redis_ica.hgetall('ica:user:'+c.post['username'])
+		if request.method == 'GET':
+			return render('metis/login.html')
 
-			# If is the first login or has expired, is time for create a new password
-			if (login['access'] == '' or not g.redis_ica.exists('ica:user:'+c.post['username']+':keyexpire') ):
-				redirect('/changepasswd/user/'+c.post['username'])
-				#return ({ 'succes': { 'type':'login', 'message':'redirect', 'destination': '/changepasswd/user/'+c.post['username'], 'code':0 } })
-
-			session['user']      = c.post['username']
-			session['role']      = login['role']
-			session['name']      = login['name']
-			session['access']    = login['access']
-			session['logged_in'] = True
-			session.save()
-
-			return ({ 'succes': { 'type':'login', 'message':'successfull', 'code':1 } })
+		# If post data not exist, return error
+		if (not 'username' in c.post or not 'password' in c.post or not 'action' in c.post):
+			c.login_error = True
 		else:
-			log.warning("Login attempt failed from '%s' user '%s' action 'login'", request.environ['REMOTE_ADDR'], c.post['username'])
-			return ({ 'succes': { 'type':'login', 'message':'invalid credentials', 'code':0 } })
+			if g.redis_ica.hget('ica:user:'+c.post['username'], 'password') == hashlib.sha1( c.post['password'] ).hexdigest():
+				# Get user current data
+				login = g.redis_ica.hgetall('ica:user:'+c.post['username'])
+
+				# If is the first login or has expired, is time for create a new password
+				if (login['access'] == '' or not g.redis_ica.exists('ica:user:'+c.post['username']+':keyexpire') ):
+					redirect('/changepasswd/user/'+c.post['username'])
+
+				session['user']      = c.post['username']
+				session['role']      = login['role']
+				session['name']      = login['name']
+				session['access']    = login['access']
+				session['logged_in'] = True
+				session.save()
+
+				redirect('/')
+			else:
+				log.warning("Login attempt failed from '%s' user '%s' action 'login'", request.environ['REMOTE_ADDR'], c.post['username'])
+				c.login_error = True
+
+		return render('metis/login.html')
 
 
 	def change_password(self):
