@@ -11,7 +11,20 @@
 
 ## Introduction
 
-All API requests require authentication. You need to pass a `secret` parameter by url or header. If passed as header, the header name must be "SECRET". You can find or reset your private secret in your own profile.
+All API requests require authentication. You need to pass a `access_token` parameter by url or header. If passed as header, the header name must be "token".
 
 The API uses JSON or XML to serialize data. By default all api requests will be returned in JSON format, but you can specify custom format in each request with `.json` or `.xml` at the end of API URL.
 
+## Authentication
+
+If future we have plans to add OAUTH tokens.
+
+### Basic Authentication (sent in header)
+
+	$ curl -u "username" https://example.com/api/v1/conf/index
+	# or calculating token by your ownn
+	$ curl -H "Authorization: Basic BASIC-TOKEN" https://example.com/api/v1/conf/index
+
+### Basic Authentication (sent a parameter)
+
+	$ curl https://example.com/api/v1/conf/index?access_token=BASIC-TOKEN
