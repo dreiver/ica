@@ -20,6 +20,7 @@ Then you are ready to go.
 
 Installation:
 
+    aptitude install virtualenv # In Debian/Ubuntu
     cd /home
     virtualenv env
     source env/bin/activate

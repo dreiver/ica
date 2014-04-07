@@ -50,8 +50,7 @@ def make_map(config):
     map.connect('/logout', controller='access', action='logout')
     map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd')
     #map.connect('/users/change_password/{user}', controller='access', action='change_password')
-    map.connect('/users/sign_in', controller='access', action='sign_in')
-    map.connect('/users/change_password', controller='access', action='change_password', conditions=dict(method=['POST']))
+    #map.connect('/users/sign_in', controller='access', action='sign_in')
 
     # Static
     map.connect('/offline', controller='static',  action='static')
