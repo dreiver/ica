@@ -26,37 +26,39 @@ def api(func, *args, **kwargs):
 	format = args[1]
 
 	# Authentication
-	try:
-		# Credentials via header
-		if request.authorization:
-			method = request.authorization[0]
-			if (method != 'Basic' and method != 'token'):
-				data = response_error( 32 )
-			else:
-				token = request.authorization[1]
-				if not token:
+	if session.get('logged_in'):
+		user = session['user']
+	else:
+		try:
+			# Credentials via header
+			if request.authorization:
+				method = request.authorization[0]
+				if (method != 'Basic' and method != 'token'):
 					data = response_error( 32 )
-		# Credentials via parameter
-		elif len(request.params) == 1:
-			method = 'parameter'
-			if not 'access_token' in request.params:
-				data = response_error( 32 )
-			else:
-				token = request.params.getall('access_token')[0]
-				if not token:
+				else:
+					token = request.authorization[1]
+					if not token:
+						data = response_error( 32 )
+			# Credentials via parameter
+			elif len(request.params) == 1:
+				method = 'parameter'
+				if not 'access_token' in request.params:
 					data = response_error( 32 )
-		# No Authentication
-		else:
-			data = response_error( 33 )
-	except:
-		data = response_error( 32 )
+				else:
+					token = request.params.getall('access_token')[0]
+					if not token:
+						data = response_error( 32 )
+			# No Authentication
+			else:
+				data = response_error( 33 )
+		except:
+			data = response_error( 32 )
 
-
-	# Get user with given token
-	if (method == 'token' or method == 'parameter'):
-		user = g.redis_ica.hget('ica:users:token:oauth', token)
-	elif method == 'Basic':
-		user = g.redis_ica.hget('ica:users:token:basic', token)
+		# Get user with given token
+		if (method == 'token' or method == 'parameter'):
+			user = g.redis_ica.hget('ica:users:token:oauth', token)
+		elif method == 'Basic':
+			user = g.redis_ica.hget('ica:users:token:basic', token)
 
 
 	# If user not exist return forbidden

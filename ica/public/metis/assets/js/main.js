@@ -1414,7 +1414,7 @@ function set_percentarray ()
     jQuery.ajaxSetup( { async: false } );
     $.ajax({
         type: 'GET',
-        url: '/api/v1/conf/trunks',
+        url: '/api/v1/conf/trunk',
         dataType:'json',
         success: function (data) {
             pstn["trunks"]  = data["trunks"];
@@ -1524,7 +1524,7 @@ function get_conf ()
     jQuery.ajaxSetup( { async: false } );
     $.ajax({
         type: 'GET',
-        url: '/api/v1/conf/basic',
+        url: '/api/v1/conf/index',
         dataType:'json',
         success: function (mainconf) {
             conf["socket_server"]   = mainconf["socket_server"];
