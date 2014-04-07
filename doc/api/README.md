@@ -4,10 +4,8 @@
 
 + [Users](users.md)
 + [Config](config.md)
-+ [Voip SIP](voip_sip.md)
-+ [Voip IAX](voip_iax.md)
++ [Voip](voip.md)
 + [System](system.md)
-+ [System Panel](system_panel.md)
 
 ## Introduction
 
