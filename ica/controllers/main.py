@@ -102,7 +102,7 @@ class MainController(BaseController):
 		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0 , 4)
 		c.ica_logs_serv_jpos = g.redis_ica.lrange('ica:logs:cabal:jpos', 0 , 4)#CABAL
 
-		users   = g.redis_ica.lrange('ica:users', 0 , -1)
+		users   = g.redis_ica.smembers('ica:users')
 		c.users = []
 
 		for i in users:
