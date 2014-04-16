@@ -6,35 +6,35 @@ Installation and Setup
 
 Install ``ica`` using easy_install::
 
-    easy_install ica
+    $ easy_install ica
 
 Make a config file as follows::
 
-    paster make-config ica config.ini
+    $ paster make-config ica config.ini
 
 Tweak the config file as appropriate and then setup the application::
 
-    paster setup-app config.ini
+    $ paster setup-app config.ini
 
 Then you are ready to go.
 
 Installation:
 
-    aptitude install virtualenv # In Debian/Ubuntu
-    cd /home
-    virtualenv env
-    source env/bin/activate
-    cd ica/
-    python setup.py develop
+    $ aptitude install virtualenv # In Debian/Ubuntu
+    $ cd /home
+    $ virtualenv env
+    $ source env/bin/activate
+    $ cd ica/
+    $ python setup.py develop
 
 Run:
 
-    paster serve --reload development.ini
+    $ paster serve --reload development.ini
 
 Run gunicorn:
 
-    gunicorn --paste development.ini -c ica/config/gunicorn.conf.py
+    $ gunicorn --paste development.ini -c ica/config/gunicorn.conf.py
 
 Run gunicorn with external event lib
 
-    gunicorn --paste development.ini -k gevent -c ica/config/gunicorn.conf.py
+    $ gunicorn --paste development.ini -k gevent -c ica/config/gunicorn.conf.py
