@@ -64,9 +64,9 @@ class MainController(BaseController):
 
 	def index(self):
 
-		c.menu[0]['status'] = 'active'
-		c.title      	    = c.menu[0]['title']
-		c.title_icon 	    = c.menu[0]['icon']
+		#c.menu[0]['status'] = 'active'
+		#c.title      	    = c.menu[0]['title']
+		#c.title_icon 	    = c.menu[0]['icon']
 
 		c.ica_logs_error     = g.redis_ica.llen('ica:logs:error')
 		c.ica_logs_calls     = g.redis_ica.llen('ica:logs:calls')
@@ -94,9 +94,9 @@ class MainController(BaseController):
 
 	def panel(self):
 
-		c.menu[4]['status'] = 'active'
-		c.title             = c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
-		c.title_icon        = c.menu[4]['icon']
+		#c.menu[4]['status'] = 'active'
+		#c.title             = c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
+		#c.title_icon        = c.menu[4]['icon']
 
 		c.ica_logs_error     = g.redis_ica.lrange('ica:logs:error', 0 , 4)
 		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0 , 4)
@@ -119,9 +119,9 @@ class MainController(BaseController):
 
 	def currentcalls(self):
 
-		c.menu[3]['status'] = 'active'
-		c.title             = c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
-		c.title_icon        = c.menu[3]['icon']
+		#c.menu[3]['status'] = 'active'
+		#c.title             = c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
+		#c.title_icon        = c.menu[3]['icon']
 
 		return pjax('currentcalls.html')
 
@@ -130,9 +130,9 @@ class MainController(BaseController):
 	# CUSTOM CLIENT CABAL #
 	#######################
 	def bines(self):
-		c.menu[2]['status'] = 'active'
-		c.title             = c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
-		c.title_icon        = c.menu[2]['icon']
+		#c.menu[2]['status'] = 'active'
+		#c.title             = c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
+		#c.title_icon        = c.menu[2]['icon']
 
 		return pjax('cabal-bines.html')
 

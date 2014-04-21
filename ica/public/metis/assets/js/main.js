@@ -162,7 +162,7 @@ function IndexGraph() {
     }
 
     $.ajax({
-        url: "/api/v1/calls/week_graph",
+        url: "/api/v1/graph/last_week",
         type: "GET",
         dataType: "json",
         success: onDataReceived
@@ -1005,16 +1005,18 @@ function AddUsuario() {
     });
 
     //Boton editar usuario
-    $(".edit-usuario").live("click", function() {
+    $('.edit-usuario').on('click', function() {
+    //$(".edit-usuario").live("click", function() {
         var id  = $(this).attr("id");
-        var rol = $("#rol-" + id).text();
+        var role = $("#role-" + id).text();
+        alert("caca")
 
         //Remove all inside edit
         $("#edit-usuario-clave").empty();
 
         $("#edit-usuario").find("#usuario").val( id );
-        $("#edit-usuario").find("#nombre").val( $("#nombre-" + id).text() );
-        $("#edit-usuario").find("#"+rol).attr('selected', 'true');        
+        $("#edit-usuario").find("#nombre").val( $("#name-" + id).text() );
+        $("#edit-usuario").find("#"+role).attr('selected', 'true');        
     });
 
     //Boton editar clave
@@ -1295,7 +1297,7 @@ function IndexHandleSock ()
             }
 
             $.ajax({
-                url: "/api/v1/calls/week_graph",
+                url: "/api/v1/graph/last_week",
                 type: "GET",
                 dataType: "json",
                 success: UpdateGraph

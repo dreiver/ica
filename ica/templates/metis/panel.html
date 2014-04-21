@@ -43,8 +43,8 @@
                                                     {% for i in c.users %}
                                                     <tr>
                                                         <td>{{ i.user }}</td>
-                                                        <td>{{ i.name }}</td>
-                                                        <td>{{ i.role }}</td>
+                                                        <td id="name-{{ i.user }}">{{ i.name }}</td>
+                                                        <td id="role-{{ i.user }}">{{ i.role }}</td>
                                                         <td>{{ i.access }}</td>
                                                         <td>{{ i.ttl }}</td>
                                                         <td>

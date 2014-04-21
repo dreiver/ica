@@ -61,8 +61,9 @@ def make_map(config):
     #Conf
     map.connect('/api/v1/conf/index{.format:json|xml}', controller='api/conf', action='index', conditions=dict(method=['GET']))
     map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api/conf', action='trunk', conditions=dict(method=['GET']))
+    #Graph
+    map.connect('/api/v1/graph/last_week{.format:json|xml}', controller='api/graph', action='last_week', conditions=dict(method=['GET']))
     #Calls
-    #map.connect('/api/v1/calls/week_graph{.format:json|xml}', controller='api', action='week_graph')
     #map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
     #VOIP
     #map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
