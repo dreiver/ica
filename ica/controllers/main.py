@@ -16,7 +16,6 @@ class MainController(BaseController):
 	def __before__(self):
 
 		if not session.get('logged_in'):
-			log.debug('Request received without a valid session')
 			redirect('/login')
 
 		if g.test_redis(g.redis_ica):
