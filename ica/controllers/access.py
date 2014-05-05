@@ -22,6 +22,9 @@ class AccessController(BaseController):
 			for k, v in request.POST.iteritems():
 				c.post[k] = v
 
+			if g.test_redis(g.redis_ica):
+				redirect('/offline')
+
 
 	def logout(self):
 		session.clear()
