@@ -24,6 +24,7 @@
         <link type="text/css" rel="stylesheet" href="/metis/assets/css/chosen.css"/>
         <link type="text/css" rel="stylesheet" href="/metis/assets/css/uniform.default.css">
         <link type="text/css" rel="stylesheet" href="/metis/assets/css/theme.css">
+        <link type="text/css" rel="stylesheet" href="/metis/assets/css/nprogress.css">
         <!--<script type="text/javascript" src="/metis/assets/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
         <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -325,6 +326,7 @@
             <script src="/metis/assets/js/lib/responsive-tables.js"></script>
             <script src="/metis/assets/js/lib/jquery.validate.min.js"></script>
             <script src="/metis/assets/js/lib/languages/messages_es.js"> </script>
+            <script src="/metis/assets/js/nprogress.js"> </script>
             <script src="/metis/assets/js/main.js"></script>
             <script src="http://{{ config['socket_server'] }}:{{ config['socket_port'] }}/socket.io/socket.io.js"></script>
             
@@ -338,14 +340,14 @@
                             formGeneral();
                         }
                         console.log($(location).attr('pathname'))
+                        NProgress.done();
                     })
-                    /*$(document).on('click', 'a[data-pjax]', function(event) {
-                        var href = $(this).attr('href')
-                        console.log(href)
-                        if (href == '/index')
-                            IndexGraph();
-                            formGeneral();
-                    })*/
+                    $(document).on('pjax:beforeSend', function() {
+                        NProgress.start();
+                    })
+                    $(document).on('pjax:complete', function() {
+                        NProgress.done();
+                    })
 
                     console.log($(location).attr('pathname'))
                     
