@@ -71,7 +71,7 @@
                                                             class='delete-usuario' id='{{ i.user }}' 
                                                             href='#delete-usuario' data-toggle='modal'>
                                                                 <button class='btn btn-mini btn-danger'>
-                                                                    <i class='icon-remove'></i>
+                                                                    <i class='icon-trash'></i>
                                                                 </button>
                                                             </a>
                                                         </td>
@@ -118,7 +118,10 @@
                                                         </small> <br />
                                                     {% elif c.ica_logs_warning|count >= 5 %}
                                                         <small class='text-warning'>...</small><br />
-                                                        <small><a href='alert?warning'>Mostrar todos ({{ c.ica_logs_warning|count }})</a></small>
+                                                        <small>
+                                                            <a href='/system/panel/warning' data-pjax="#content">Mostrar 
+                                                                todos ({{ c.ica_logs_error|count }})</a>
+                                                        </small>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -153,7 +156,10 @@
                                                         </small> <br />
                                                     {% elif c.ica_logs_error|count >= 5 %}
                                                         <small class='text-error'>...</small><br />
-                                                        <small><a href='alert?error'>Mostrar todos ({{ c.ica_logs_error|count }})</a></small>
+                                                        <small>
+                                                            <a href='/system/panel/error' data-pjax="#content">Mostrar 
+                                                                todos ({{ c.ica_logs_error|count }})</a>
+                                                        </small>
                                                     {% endif %}
                                                 </div>
                                             </div>
@@ -188,7 +194,10 @@
                                                         </small> <br />
                                                     {% elif c.ica_logs_serv_jpos|count >= 5 %}
                                                         <small class='text-error'>...</small><br />
-                                                        <small><a href='alert?jpos'>Mostrar todos ({{ c.ica_logs_serv_jpos|count }})</a></small>
+                                                        <small>
+                                                            <a href='/system/panel/jpos' data-pjax="#content">Mostrar 
+                                                                todos ({{ c.ica_logs_serv_jpos|count }})</a>
+                                                        </small>
                                                     {% endif %}
                                                 </div>
                                             </div>

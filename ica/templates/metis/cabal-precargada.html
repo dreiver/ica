@@ -1,0 +1,434 @@
+
+                <!-- .outer -->
+                <div class="container-fluid outer">
+                    <div class="row-fluid">
+                        <!-- .inner -->
+                        <div class="span12 inner">
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                        <header>
+                                            <div class="toolbar">
+                                                <span class="label label-success">IVR - precargadas</span>
+                                            </div>
+                                        </header>
+                                        <div class="body">
+                                            <h4 class="text-info">Precargadas</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Begin Datatables-->
+                            <hr>
+                            <!--Prod-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                        <header>
+                                            <div class="icons"><i class="icon-eye-open"></i></div>
+                                            <h5>Producci&oacuten</h5>
+                                        </header>
+                                        <div id="collapse4" class="body">
+                                            <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Piloto</th>
+                                                        <th>Precargada</th>
+                                                        <th>Audios</th>
+                                                        <th>Fecha de carga</th>
+                                                        <th>Voz</th>
+                                                        <th>Eliminar</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    {% for i in c.prod %}
+                                                        <tr>
+                                                            <td>{{ i.piloto }}</td>
+                                                            <td>{{ i.nombre }}</td>
+                                                            <td><a>{{ i.audiopre }}</a></td>
+                                                            <td>
+                                                                {% if i.fechacarga|length == 0 %} -
+                                                                {% else %} {{ i.fechacarga }}
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>{{ i.voz }}</td>
+                                                            <td>
+                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='del-prod-{{ i.piloto }}' href='#' data-toggle='modal'>
+                                                                    <button class='btn btn-mini btn-danger'>
+                                                                        <i class='icon-trash'></i>
+                                                                    </button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Prod-->
+                            <br />
+                            <!--Pre Prod-->
+                            <div class="row-fluid">
+                                <div class="span12">
+                                    <div class="box">
+                                        <header>
+                                            <div class="icons"><i class="icon-edit"></i></div>
+                                            <h5>Pre producci&oacuten</h5>
+                                        </header>
+                                        <div id="collapse4" class="body">
+                                            <table id="dataTable2" class="table table-bordered table-condensed table-hover table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Piloto</th>
+                                                        <th>Precargada</th>
+                                                        <th>Audios</th>
+                                                        <th>Fecha de carga</th>
+                                                        <th>Voz</th>
+                                                        <th>Editar</th>
+                                                        <th>Acci&oacuten</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for i in c.preprod %}
+                                                        <tr class='error'>
+                                                            <td>{{ i.piloto }}</td>
+                                                            <td id='nombre-{{ i.piloto }}'>{{ i.nombre }}</td>
+                                                            <td><a>{{ i.audiopre }}</a></td>
+                                                            <td id='fechacarga-{{ i.piloto }}'>
+                                                                {% if i.fechacarga|length == 0 %} -
+                                                                {% else %} {{ i.fechacarga }}
+                                                                {% endif %}
+                                                            </td>
+                                                            <td id='voz-{{ i.piloto }}'>{{ i.voz }}</td>
+                                                            <td>
+                                                                <a href='#actionTable' id='$piloto[$i]' data-toggle='collapse' class='accordion-toggle minimize-box edit-precargada'>
+                                                                    <button class='btn btn-mini edit'>
+                                                                        <i class='icon-edit'></i>
+                                                                    </button>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a rel='tooltip' data-original-title='Enviar a producción' class='confirm' id='$piloto[$i]' href='#confirmprod' data-toggle='modal'>
+                                                                    <button class='btn btn-mini btn-success'>
+                                                                        <i class='icon-ok-sign'></i>
+                                                                    </button>
+                                                                </a>
+                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='$piloto[$i]' href='#delpreprod' data-toggle='modal'>
+                                                                    <button class='btn btn-mini btn-danger'>
+                                                                        <i class='icon-remove'></i>
+                                                                    </button>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <div style='display:none;' id='bin_prod-{{ i.piloto }}'>{{ i.bin_prod }}</div>
+                                                        <div style='display:none;' id='cardlock-{{ i.piloto }}'>{{ i.cardlock }}</div>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                            <hr>
+                                            {% if c.session_role_i == '1' %}
+                                                <a href='#addTable' data-toggle='collapse' class='accordion-toggle minimize-box'>
+                                                    <button id='agregar-prec' class='btn btn-small btn-metis-5 pull-right' type='button'>Agregar precargada
+                                                    </button>
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Pre Prod-->
+                            <hr>
+
+                            <div class="row-fluid">
+                                <!-- .span12 -->
+                                <div class="span12">
+                                    <div class="box">
+                                        <div id="actionTable" class="body collapse">
+                                            <header>
+                                                <div class="icons"><i class="icon-edit"></i></div>
+                                                <h5>Editar precargada <span id="precargada-title-update"></span></h5>
+                                                <div class="toolbar">
+                                                <a href="#actionTable" data-toggle="collapse">
+                                                    <i class="icon-chevron-up"></i>
+                                                </a>
+                                            </div>
+                                            </header>
+                                            <form action="<? echo $post ?>" class="form-horizontal" id="inline-validate-update" method="post" enctype="multipart/form-data">
+                                                <div class="control-group">
+                                                    <label class="control-label">Piloto</label>
+                                                    <div class="controls">
+                                                        <input type="number" id="piloto" name="piloto" class="span2" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Nombre</label>
+                                                    <div class="controls">
+                                                        <input type="text" id="nombre" name="nombre" class="span4">
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label" for="dp3">Fecha de carga</label>
+                                                    <div class="controls">
+                                                        <div class="input-append date" id="fechacarga-dp-update" data-date="" data-date-format="dd-mm-yyyy">
+                                                            <input class="span7" size="16" type="text" value="" readonly id="fechacarga" name="fechacarga">
+                                                            <span class="add-on"><i class="icon-calendar"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='control-group'>
+                                                    <label class="control-label">Bloqueo de tarjeta</label>
+                                                    <div class='controls'>
+                                                        <a>
+                                                            <div id='div-cardlock-update'>
+                                                                <input type="checkbox" id="cardlock" name="cardlock"/>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group">
+                                                    <label class="control-label">Voz</label>
+                                                    <div class="controls">
+                                                        <select name="voz" id="voz" class="validate[required]">
+                                                            <option value="">Elige una voz</option>
+                                                            <?
+                                                                if ($_SESSION['usuario'])
+                                                                {
+                                                                    $voz  = $redis->lrange("ivr:precargada:voz", 0, -1);
+                                                                    for ($i = 0; $i < count($voz); $i++)
+                                                                        echo "<option id='$voz[$i]'>".$voz[$i]."</option>";
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="control-group" style='display:none;'>
+                                                    <label class="control-label">Seleccione Bin</label>
+                                                    <div class="controls">
+                                                        <select name="bin" id="bin" data-placeholder="Buscar bin..." class="chzn-select" class="validate[required] span2" tabindex="2">
+                                                            <option value="">Elige un bin</option>
+                                                            <?
+                                                                if ($_SESSION['usuario'])
+                                                                {
+                                                                    $bines  = $redis->lrange("ivr:precargada:bines", 0, -1);
+                                                                    for ($i = 0; $i < count($bines); $i++)
+                                                                        echo "<option id='$bines[$i]'>".$bines[$i]."</option>";
+                                                                }
+                                                            ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <!--<div id="main-productos-update">
+                                                    <div class='control-group'>
+                                                        <label class="control-label">Productos</label>
+                                                        <div class='controls'>
+                                                            <input style='float: left' type='number' id='producto' name='producto' class='span1'>
+
+                                                            <div style='float: left;padding-left: 20px;'>
+                                                                <a rel='tooltip' data-original-title='Asesor'>
+                                                                    <div id='div-asesor-update'>
+                                                                        <input type='checkbox' id='asesor' name='asesor'/>
+                                                                    </div>
+                                                                </a>
+                                                                <a rel='tooltip' data-original-title='Pin'>
+                                                                    <div id='div-conpin-update'>
+                                                                        <input type='checkbox' id='conpin' name='conpin'/>
+                                                                    </div>
+                                                                </a>
+                                                                <a rel='tooltip' data-original-title='Bloqueo de tarjeta'>
+                                                                    <div id='div-bloqueo-update'>
+                                                                        <input type="checkbox" id="bloqueo" name="bloqueo"/>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>-->
+                                                <input type="hidden" name="numproductosupdate_0" id="numproductosupdate_0" value="0" />
+                                                <!--<div class="control-group">
+                                                    <div class="controls">
+                                                        <button id="agregar-producto-update" class="btn btn-mini btn-metis-5" type="button">+ Agregar mas productos</button>
+                                                    </div>
+                                                </div>-->
+                                                <input type='hidden' name='numbines_update' id='numbines_update' value='0' />
+                                                <div id="main-bin-update"></div>
+                                                <input type="hidden" name="from" id="from" value="precargada" />
+                                                <input type="hidden" name="action" id="action" value="U" />
+                                                <div class="form-actions">
+                                                    <input type="submit" value="Actualizar" name="sendform" class="btn btn-metis-5 btn-primary">
+                                                    <button id="agregar-bin-update" class="btn btn-primary btn-metis-4" type="button">+ Agregar bin</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.span12 -->
+                            </div>
+                            <!-- /.row-fluid -->
+                            <hr>
+                            <div class="row-fluid">
+                                <!-- .span12 -->
+                                <div class="span12">
+                                    <div class="box">
+                                        <div id="addTable" class="body collapse">
+                                            <div class="row-fluid">
+                                                <div class="span12">
+                                                    <div class="box">
+                                                        <header>
+                                                            <div class="icons"><i class="icon-ok"></i></div>
+                                                            <h5>Agregar nueva precargada</h5>
+                                                            <div class="toolbar">
+                                                                <ul class="nav">
+                                                                    <li>
+                                                                        <div class="btn-group">
+                                                                            <a class="accordion-toggle btn btn-mini minimize-box" data-toggle="collapse"
+                                                                               href="#collapse3">
+                                                                                <i class="icon-chevron-up"></i>
+                                                                            </a>
+                                                                        </div>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </header>
+                                                        <div id="collapse3" class="accordion-body collapse in body">
+                                                            <form action="<? echo $post ?>" class="form-horizontal" id="inline-validate" method="post" enctype="multipart/form-data">
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Piloto</label>
+
+                                                                    <div class="controls">
+                                                                        <input type="number" id="piloto" name="piloto" class="span2">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Nombre</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" id="nombre" name="nombre" class="span4">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Audio saludo</label>
+                                                                    <div class="controls">
+                                                                        <input type="file" id="audiopre" name="audiopre" class="span5">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label" for="dp3">Fecha de carga</label>
+                                                                    <div class="controls">
+                                                                        <div class="input-append date" id="fechacarga-dp" data-date="" data-date-format="dd-mm-yyyy">
+                                                                            <input class="span7" size="16" type="text" value="" readonly id="fechacarga" name="fechacarga">
+                                                                            <span class="add-on"><i class="icon-calendar"></i></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='control-group'>
+                                                                    <label class="control-label">Bloqueo de tarjeta</label>
+                                                                    <div class='controls'>
+                                                                        <a>
+                                                                            <div id='div-cardlock'>
+                                                                                <input type="checkbox" id="cardlock" name="cardlock"/>
+                                                                            </div>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Audio institucional</label>
+                                                                    <div class="controls">
+                                                                        <input type="file" id="audiopost" name="audiopost" class="span5">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Audio despedida</label>
+                                                                    <div class="controls">
+                                                                        <input type="file" id="audiodesp" name="audiodesp" class="span5">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Voz</label>
+                                                                    <div class="controls">
+                                                                        <select name="voz" id="voz" class="validate[required]">
+                                                                            <option value="">Elige una voz</option>
+                                                                            <?
+                                                                                if ($_SESSION['usuario'])
+                                                                                {
+                                                                                    $voz = $redis->lrange("ivr:precargada:voz", 0, -1);
+                                                                                    for ($i = 0; $i < count($voz); $i++)
+                                                                                        echo "<option>".$voz[$i]."</option>";
+                                                                                }
+                                                                            ?>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="control-group">
+                                                                    <label class="control-label">Seleccione Bin</label>
+                                                                    <div class="controls">
+                                                                        <select name="bin_0" id="bin_0" data-placeholder="Buscar bin..." class="chzn-select" class="validate[required] span2" tabindex="2">
+                                                                            <option value="">Elige un bin</option>
+                                                                            <?
+                                                                                if ($_SESSION['usuario'])
+                                                                                {
+                                                                                    $bines = $redis->lrange("ivr:precargada:bines", 0, -1);
+                                                                                    for ($i = 0; $i < count($bines); $i++)
+                                                                                        echo "<option>".$bines[$i]."</option>";
+                                                                                }
+                                                                            ?>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="main-productos">
+                                                                    <div class='control-group'>
+                                                                        <label class="control-label">Productos</label>
+                                                                        <div class='controls'>
+                                                                            <input style='float: left' type='number' id='producto_0_0' name='producto_0_0' class='span1'>
+
+                                                                            <div style='float: left;padding-left: 20px;'>
+                                                                                <a rel='tooltip' data-original-title='Asesor'>
+                                                                                    <div id='div-asesor'>
+                                                                                        <input type='checkbox' id='asesor_0_0' name='asesor_0_0' />
+                                                                                    </div>
+                                                                                </a>
+                                                                                <a rel='tooltip' data-original-title='Pin'>
+                                                                                    <div id='div-conpin'>
+                                                                                        <input type="checkbox" id="conpin_0_0" name="conpin_0_0"/>
+                                                                                    </div>
+                                                                                </a>
+                                                                                <a rel='tooltip' data-original-title='Audio sucursal' style='margin-bottom: 20px;'>
+                                                                                    <input type="file" id="sucursal_0_0" name="sucursal_0_0"/>
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="hidden" name="numproductos_0" id="numproductos_0" value="0" />
+                                                                <div class="control-group">
+                                                                    <div class="controls">
+                                                                        <button id="agregar-producto" class="btn btn-mini btn-metis-5" type="button">+ Agregar mas productos</button>
+                                                                    </div>
+                                                                </div>
+                                                                <input type='hidden' name='numbines' id='numbines' value='0' />
+                                                                <div id="main-bin"></div>
+                                                                <input type="hidden" name="from" id="from" value="precargada" />
+                                                                <input type="hidden" name="action" id="action" value="I" />
+                                                                <div class="form-actions">
+                                                                    <input type="submit" value="Cargar" name="sendform" class="btn btn-metis-5 btn-primary">
+                                                                    <button id="agregar-bin" class="btn btn-primary btn-metis-4" type="button">+ Agregar bin</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.span12 -->
+                            </div>
+                            <!-- /.row-fluid -->
+                        </div>
+                        <!-- /.inner -->
+                    </div>
+                    <!-- /.row-fluid -->
+                </div>
+                <!-- /.outer -->

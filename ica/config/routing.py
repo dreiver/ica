@@ -43,6 +43,7 @@ def make_map(config):
     
     # System
     map.connect('/system/panel', controller='main', action='panel')
+    map.connect('/system/panel/{alert}', controller='main', action='alert')
     map.connect('/system/settings', controller='main', action='settings')
 
     # Login / Logout
@@ -74,9 +75,9 @@ def make_map(config):
     #######################
     # CUSTOM CLIENT CABAL #
     #######################
-    #map.connect('/cabal/bines', controller='main', action='bines') #CABAL
-    #map.connect('/cabal/consultas', controller='main', action='consultas') #CABAL
-    #map.connect('/cabal/precargada', controller='main', action='precargada') #CABAL
-    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones') #CABAL
+    map.connect('/cabal/bines', controller='main', action='bines')#CABAL
+    #map.connect('/cabal/consultas', controller='main', action='consultas')#CABAL
+    map.connect('/cabal/precargada', controller='main', action='precargada')#CABAL
+    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones')#CABAL
 
     return map

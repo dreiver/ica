@@ -24,6 +24,7 @@ class MainController(BaseController):
 
 		c.session_name   = session['name']
 		c.session_user   = session['user']
+		c.session_role_i = session['role']
 		c.session_role   = g.role_name(session['role'])
 		c.session_access = datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
 
@@ -39,7 +40,7 @@ class MainController(BaseController):
 			{ 'title': 'Cabal', 'icon': 'icon-sitemap', 'child': 
 				[
 					{'title': 'ABM bines', 'href': '/cabal/bines', 'icon': 'icon-list-ol' },
-					{'title': 'Precargada', 'href': '/constructing', 'icon': 'icon-angle-right' },
+					{'title': 'Precargada', 'href': '/cabal/precargada', 'icon': 'icon-angle-right' },
 					{'title': 'Autorizaciones', 'href': '/constructing', 'icon': 'icon-angle-right' },
 					{'title': 'Consultas', 'href': '/constructing', 'icon': 'icon-angle-right' },
 				]
@@ -63,10 +64,9 @@ class MainController(BaseController):
 		c.menu = conf_menu
 
 	def index(self):
-
-		c.menu[0]['status'] = 'active'
-		c.title      	    = c.menu[0]['title']
-		c.title_icon 	    = c.menu[0]['icon']
+		#c.menu[0]['status'] = 'active'
+		#c.title      	    = c.menu[0]['title']
+		#c.title_icon 	    = c.menu[0]['icon']
 
 		c.ica_logs_error     = g.redis_ica.llen('ica:logs:error')
 		c.ica_logs_calls     = g.redis_ica.llen('ica:logs:calls')
@@ -93,14 +93,13 @@ class MainController(BaseController):
 
 
 	def panel(self):
+		#c.menu[4]['status'] = 'active'
+		#c.title             = c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
+		#c.title_icon        = c.menu[4]['icon']
 
-		c.menu[4]['status'] = 'active'
-		c.title             = c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
-		c.title_icon        = c.menu[4]['icon']
-
-		c.ica_logs_error     = g.redis_ica.lrange('ica:logs:error', 0 , 4)
-		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0 , 4)
-		c.ica_logs_serv_jpos = g.redis_ica.lrange('ica:logs:cabal:jpos', 0 , 4)#CABAL
+		c.ica_logs_error     = g.redis_ica.lrange('ica:logs:error', 0, 4)
+		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0, 4)
+		c.ica_logs_serv_jpos = g.redis_ica.lrange('ica:logs:cabal:jpos', 0, 4)#CABAL
 
 		users   = g.redis_ica.smembers('ica:users')
 		c.users = []
@@ -117,12 +116,32 @@ class MainController(BaseController):
 
 		return pjax('system-panel.html')
 
+	def alert(self, alert):
+
+		if alert == 'error':
+			key 	 = 'ica:logs:error'
+			c.type   = 'important'
+			c.action = 'error'
+
+		elif alert == 'warning':
+			key 	 = 'ica:logs:warning'
+			c.type   = 'warning'
+			c.action = 'warning'
+
+		elif alert == 'jpos':#CABAL
+			key 	 = 'ica:logs:jpos'
+			c.type   = 'important'
+			c.action = 'error'
+
+		c.alert  = g.redis_ica.lrange(key, 0, -1)
+
+		return pjax('system-panel-alert.html')
+
 
 	def currentcalls(self):
-
-		c.menu[3]['status'] = 'active'
-		c.title             = c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
-		c.title_icon        = c.menu[3]['icon']
+		#c.menu[3]['status'] = 'active'
+		#c.title             = c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
+		#c.title_icon        = c.menu[3]['icon']
 
 		return pjax('currentcalls.html')
 
@@ -131,9 +150,28 @@ class MainController(BaseController):
 	# CUSTOM CLIENT CABAL #
 	#######################
 	def bines(self):
-		c.menu[2]['status'] = 'active'
-		c.title             = c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
-		c.title_icon        = c.menu[2]['icon']
+		#c.menu[2]['status'] = 'active'
+		#c.title             = c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
+		#c.title_icon        = c.menu[2]['icon']
 
 		return pjax('cabal-bines.html')
+
+	def precargada(self):
+
+		c.prod    = []
+		c.preprod = []
+
+		prod    = g.redis_voip.lrange('ivr:prod:precargada:pilotos', 0, -1)
+		preprod = g.redis_voip.lrange('ivr:preprod:precargada:pilotos', 0, -1)
+
+		for i in prod:
+			this = g.redis_voip.hgetall('ivr:prod:precargada:'+i)
+			this['piloto'] = i
+			c.prod.append(this)
+
+		for i in preprod:
+			this = g.redis_voip.hgetall('ivr:preprod:precargada:'+i)
+			this['piloto'] = i
+			c.preprod.append(this)
 		
+		return pjax('cabal-precargada.html')
