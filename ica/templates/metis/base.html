@@ -329,12 +329,15 @@
             <script src="http://{{ config['socket_server'] }}:{{ config['socket_port'] }}/socket.io/socket.io.js"></script>
             
             <script type="text/javascript">
-                $(function() {
+                $( document ).ready(function() {
                     $('a[data-pjax]').pjax()
 
                     $(document).on('pjax:success', function() {
-                        IndexGraph();
-                        formGeneral();
+                        if  ( $(location).attr('pathname') == "/index" ){
+                            IndexGraph();
+                            formGeneral();
+                        }
+                        console.log($(location).attr('pathname'))
                     })
                     /*$(document).on('click', 'a[data-pjax]', function(event) {
                         var href = $(this).attr('href')
@@ -344,21 +347,29 @@
                             formGeneral();
                     })*/
 
+                    console.log($(location).attr('pathname'))
+                    
+                    if  ( $(location).attr('pathname') == "/index" || $(location).attr('pathname') == "/" ){
+                        //Index
+                        IndexHandleSock();
+                        IndexGraph();
+                        formGeneral();
+                    }
 
-                    //Index
-                    IndexHandleSock();
-                    IndexGraph();
-                    formGeneral();
-                    //Panel
-                    UsuariosTable();
-                    AddUsuario();
-                    //Currentcalls
-                    init_calls();
+                    if ( $(location).attr('pathname') == "/system/panel" ){
+                        //Panel
+                        UsuariosTable();
+                        AddUsuario();
+                    }
+
+                    if ( $(location).attr('pathname') == "/reports/currentcalls" ){
+                        //Currentcalls
+                        init_calls();
+                    }
 
                     /////////////////////////
                     // CUSTOM CLIENT CABAL //
                     /////////////////////////
-                    //Bines
                     Bines();
                 });
             </script>

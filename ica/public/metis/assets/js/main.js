@@ -147,7 +147,6 @@ function IndexGraph() {
 
 
     /*----------- BEGIN index-graph CODE -------------------------*/
-
     plot = $.plot("#trigo", data, options);
     function onDataReceived(series) {
 
@@ -1005,11 +1004,10 @@ function AddUsuario() {
     });
 
     //Boton editar usuario
-    $('.edit-usuario').on('click', function() {
-    //$(".edit-usuario").live("click", function() {
-        var id  = $(this).attr("id");
-        var role = $("#role-" + id).text();
-        alert("caca")
+    //$('.edit-usuario').on('click', function() {
+    $(".edit-usuario").live("click", function() {
+        var id   = $(this).attr("id");
+        var role = $("#role-eslovelle").attr("value");
 
         //Remove all inside edit
         $("#edit-usuario-clave").empty();
@@ -1055,7 +1053,7 @@ function AddUsuario() {
  function UsuariosTable() {
 
     /*----------- BEGIN datatable CODE -------------------------*/
-    $('#dataTable').dataTable({
+    /*$('#dataTable').dataTable({
         "sDom": "<'pull-right'l>t<'row-fluid'<'span6'f><'span6'p>>",
         "sPaginationType": "bootstrap",
         "oLanguage": {
@@ -1067,7 +1065,7 @@ function AddUsuario() {
                 "sNext": "Siguiente"
             }
         }
-    });
+    });*/
     /*----------- END datatable CODE -------------------------*/
 
     /*----------- BEGIN action table CODE -------------------------*/

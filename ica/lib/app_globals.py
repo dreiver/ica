@@ -81,3 +81,11 @@ class Globals(object):
             week.append( { 'calls': llen, 'days': day } )
 
         return week
+
+    def role_name(self, role):
+        if int(role) == 1:
+            return 'Administrador'
+        elif int(role) == 2:
+            return 'Moderador'
+        else:
+            return 'Usuario'
