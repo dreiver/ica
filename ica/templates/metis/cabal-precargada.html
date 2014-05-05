@@ -40,7 +40,6 @@
                                                         <th>Eliminar</th>
                                                     </tr>
                                                 </thead>
-
                                                 <tbody>
                                                     {% for i in c.prod %}
                                                         <tr>
@@ -142,7 +141,6 @@
                             </div>
                             <!--Pre Prod-->
                             <hr>
-
                             <div class="row-fluid">
                                 <!-- .span12 -->
                                 <div class="span12">
@@ -157,7 +155,7 @@
                                                 </a>
                                             </div>
                                             </header>
-                                            <form action="<? echo $post ?>" class="form-horizontal" id="inline-validate-update" method="post" enctype="multipart/form-data">
+                                            <form action="" class="form-horizontal" id="inline-validate-update" method="post" enctype="multipart/form-data">
                                                 <div class="control-group">
                                                     <label class="control-label">Piloto</label>
                                                     <div class="controls">
@@ -194,14 +192,10 @@
                                                     <div class="controls">
                                                         <select name="voz" id="voz" class="validate[required]">
                                                             <option value="">Elige una voz</option>
-                                                            <?
-                                                                if ($_SESSION['usuario'])
-                                                                {
-                                                                    $voz  = $redis->lrange("ivr:precargada:voz", 0, -1);
-                                                                    for ($i = 0; $i < count($voz); $i++)
-                                                                        echo "<option id='$voz[$i]'>".$voz[$i]."</option>";
-                                                                }
-                                                            ?>
+                                                            {% for i in c.voice %}
+                                                                <option>{{ i }}</option>
+                                                                <option id='{{ i }}'>{{ i }}</option>
+                                                            {% endfor %}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -210,14 +204,10 @@
                                                     <div class="controls">
                                                         <select name="bin" id="bin" data-placeholder="Buscar bin..." class="chzn-select" class="validate[required] span2" tabindex="2">
                                                             <option value="">Elige un bin</option>
-                                                            <?
-                                                                if ($_SESSION['usuario'])
-                                                                {
-                                                                    $bines  = $redis->lrange("ivr:precargada:bines", 0, -1);
-                                                                    for ($i = 0; $i < count($bines); $i++)
-                                                                        echo "<option id='$bines[$i]'>".$bines[$i]."</option>";
-                                                                }
-                                                            ?>
+                                                            {% for i in c.bines %}
+                                                                <option>{{ i }}</option>
+                                                                <option id='{{ i }}'>{{ i }}</option>
+                                                            {% endfor %}
                                                         </select>
                                                     </div>
                                                 </div>
@@ -226,7 +216,6 @@
                                                         <label class="control-label">Productos</label>
                                                         <div class='controls'>
                                                             <input style='float: left' type='number' id='producto' name='producto' class='span1'>
-
                                                             <div style='float: left;padding-left: 20px;'>
                                                                 <a rel='tooltip' data-original-title='Asesor'>
                                                                     <div id='div-asesor-update'>
@@ -294,10 +283,9 @@
                                                             </div>
                                                         </header>
                                                         <div id="collapse3" class="accordion-body collapse in body">
-                                                            <form action="<? echo $post ?>" class="form-horizontal" id="inline-validate" method="post" enctype="multipart/form-data">
+                                                            <form action="" class="form-horizontal" id="inline-validate" method="post" enctype="multipart/form-data">
                                                                 <div class="control-group">
                                                                     <label class="control-label">Piloto</label>
-
                                                                     <div class="controls">
                                                                         <input type="number" id="piloto" name="piloto" class="span2">
                                                                     </div>
@@ -350,14 +338,9 @@
                                                                     <div class="controls">
                                                                         <select name="voz" id="voz" class="validate[required]">
                                                                             <option value="">Elige una voz</option>
-                                                                            <?
-                                                                                if ($_SESSION['usuario'])
-                                                                                {
-                                                                                    $voz = $redis->lrange("ivr:precargada:voz", 0, -1);
-                                                                                    for ($i = 0; $i < count($voz); $i++)
-                                                                                        echo "<option>".$voz[$i]."</option>";
-                                                                                }
-                                                                            ?>
+                                                                            {% for i in c.voice %}
+                                                                                <option>{{ i }}</option>
+                                                                            {% endfor %}
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -366,14 +349,9 @@
                                                                     <div class="controls">
                                                                         <select name="bin_0" id="bin_0" data-placeholder="Buscar bin..." class="chzn-select" class="validate[required] span2" tabindex="2">
                                                                             <option value="">Elige un bin</option>
-                                                                            <?
-                                                                                if ($_SESSION['usuario'])
-                                                                                {
-                                                                                    $bines = $redis->lrange("ivr:precargada:bines", 0, -1);
-                                                                                    for ($i = 0; $i < count($bines); $i++)
-                                                                                        echo "<option>".$bines[$i]."</option>";
-                                                                                }
-                                                                            ?>
+                                                                            {% for i in c.bines %}
+                                                                                <option>{{ i }}</option>
+                                                                            {% endfor %}
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -382,7 +360,6 @@
                                                                         <label class="control-label">Productos</label>
                                                                         <div class='controls'>
                                                                             <input style='float: left' type='number' id='producto_0_0' name='producto_0_0' class='span1'>
-
                                                                             <div style='float: left;padding-left: 20px;'>
                                                                                 <a rel='tooltip' data-original-title='Asesor'>
                                                                                     <div id='div-asesor'>

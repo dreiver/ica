@@ -159,6 +159,8 @@ class MainController(BaseController):
 
 		c.prod    = []
 		c.preprod = []
+		c.voice   = g.redis_voip.lrange('ivr:precargada:voz', 0, -1)
+		c.bines   = g.redis_voip.lrange('ivr:precargada:bines', 0, -1)
 
 		prod    = g.redis_voip.lrange('ivr:prod:precargada:pilotos', 0, -1)
 		preprod = g.redis_voip.lrange('ivr:preprod:precargada:pilotos', 0, -1)
