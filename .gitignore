@@ -1,15 +1,22 @@
-data/
-*.gem
-*.sw*
+# generic
 *.pyc
+*.sw*
+*~
+.DS_Store
+Paste*
+.Python
+nohup.out
+
+# ica/pylons
+data/*
 *.log
-*#*
+sstore/*
+pylons_data/*
+ica.egg-info
+tmp/*
 build
 dist
 setuptools-*
-.DS_Store
-*.so
-.Python
-ica.egg-info
-Paste*
-nohup.out
+
+# node.js
+node_modules/
