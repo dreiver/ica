@@ -5,7 +5,7 @@ from pylons.controllers.util import abort, redirect
 from pylons import app_globals as g
 
 from ica.lib.base import BaseController, render
-from ica.lib.api.util import api, response_error
+from ica.lib.api import api, response_error
 
 from datetime import datetime, timedelta
 import hashlib
