@@ -104,19 +104,19 @@
                                                             </td>
                                                             <td id='voz-{{ i.piloto }}'>{{ i.voz }}</td>
                                                             <td>
-                                                                <a href='#actionTable' id='$piloto[$i]' data-toggle='collapse' class='accordion-toggle minimize-box edit-precargada'>
+                                                                <a href='#actionTable' id='{{ i.piloto }}' data-toggle='collapse' class='accordion-toggle minimize-box edit-precargada'>
                                                                     <button class='btn btn-mini edit'>
                                                                         <i class='icon-edit'></i>
                                                                     </button>
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <a rel='tooltip' data-original-title='Enviar a producción' class='confirm' id='$piloto[$i]' href='#confirmprod' data-toggle='modal'>
+                                                                <a rel='tooltip' data-original-title='Enviar a producción' class='confirm' id='{{ i.piloto }}' href='#confirmprod' data-toggle='modal'>
                                                                     <button class='btn btn-mini btn-success'>
                                                                         <i class='icon-ok-sign'></i>
                                                                     </button>
                                                                 </a>
-                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='$piloto[$i]' href='#delpreprod' data-toggle='modal'>
+                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='{{ i.piloto }}' href='#delpreprod' data-toggle='modal'>
                                                                     <button class='btn btn-mini btn-danger'>
                                                                         <i class='icon-remove'></i>
                                                                     </button>
@@ -193,7 +193,6 @@
                                                         <select name="voz" id="voz" class="validate[required]">
                                                             <option value="">Elige una voz</option>
                                                             {% for i in c.voice %}
-                                                                <option>{{ i }}</option>
                                                                 <option id='{{ i }}'>{{ i }}</option>
                                                             {% endfor %}
                                                         </select>
@@ -205,7 +204,6 @@
                                                         <select name="bin" id="bin" data-placeholder="Buscar bin..." class="chzn-select" class="validate[required] span2" tabindex="2">
                                                             <option value="">Elige un bin</option>
                                                             {% for i in c.bines %}
-                                                                <option>{{ i }}</option>
                                                                 <option id='{{ i }}'>{{ i }}</option>
                                                             {% endfor %}
                                                         </select>
