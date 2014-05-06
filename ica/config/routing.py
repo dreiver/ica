@@ -8,6 +8,19 @@ from routes import Mapper
 
 def make_map(config):
     """Create, configure and return the routes Mapper"""
+    # import controllers here rather than at root level because
+    # pylons config is initialised by this point.
+
+    # Helpers to reduce code clutter
+    GET = dict(method=['GET'])
+    PUT = dict(method=['PUT'])
+    POST = dict(method=['POST'])
+    DELETE = dict(method=['DELETE'])
+    GET_POST = dict(method=['GET', 'POST'])
+    PUT_POST = dict(method=['PUT', 'POST'])
+    PUT_POST_DELETE = dict(method=['PUT', 'POST', 'DELETE'])
+    OPTIONS = dict(method=['OPTIONS'])
+
     map = Mapper(directory=config['pylons.paths']['controllers'],
                  always_scan=config['debug'])
     map.minimization = False
@@ -28,40 +41,40 @@ def make_map(config):
     ########
 
     # Index
-    map.connect('/', controller='main', action='index', conditions=dict(method=['GET']))
-    map.connect('/index', controller='main', action='index', conditions=dict(method=['GET']))
+    map.connect('index', '/', controller='main', action='index')
+    map.connect('index', '/index', controller='main', action='index')
     
     # Voip
-    map.connect('/voip/sip', controller='main', action='sip', conditions=dict(method=['GET']))
-    map.connect('/voip/iax', controller='main', action='iax', conditions=dict(method=['GET']))
+    map.connect('/voip/sip', controller='main', action='sip')
+    map.connect('/voip/iax', controller='main', action='iax')
     
     # Reports
-    map.connect('/reports/currentcalls', controller='main', action='currentcalls', conditions=dict(method=['GET']))
-    map.connect('/reports/general', controller='main', action='general', conditions=dict(method=['GET']))
-    map.connect('/reports/graphs', controller='main', action='graphs', conditions=dict(method=['GET']))
-    map.connect('/reports/calls', controller='main', action='calls', conditions=dict(method=['GET']))
+    map.connect('/reports/currentcalls', controller='main', action='currentcalls')
+    map.connect('/reports/general', controller='main', action='general')
+    map.connect('/reports/graphs', controller='main', action='graphs')
+    map.connect('/reports/calls', controller='main', action='calls')
     
     # System
-    map.connect('/system/panel', controller='main', action='panel', conditions=dict(method=['GET']))
-    map.connect('/system/panel/{alert}', controller='main', action='alert', conditions=dict(method=['GET']))
-    map.connect('/system/settings', controller='main', action='settings', conditions=dict(method=['GET']))
+    map.connect('/system/panel', controller='main', action='panel')
+    map.connect('/system/panel/{alert}', controller='main', action='alert')
+    map.connect('/system/settings', controller='main', action='settings')
 
     # Login / Logout
-    map.connect('/login', controller='access', action='login', conditions=dict(method=['GET', 'POST']))
-    map.connect('/logout', controller='access', action='logout', conditions=dict(method=['GET']))
-    map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd', conditions=dict(method=['GET', 'POST']))
+    map.connect('/login', controller='access', action='login')
+    map.connect('/logout', controller='access', action='logout')
+    map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd')
     
     # Static
-    map.connect('/offline', controller='static',  action='static', conditions=dict(method=['GET']))
+    map.connect('/offline', controller='static',  action='static')
 
     #######
     # Api #
     #######
     #Conf
-    map.connect('/api/v1/conf/index{.format:json|xml}', controller='api/conf', action='index', conditions=dict(method=['GET']))
-    map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api/conf', action='trunk', conditions=dict(method=['GET']))
+    map.connect('/api/v1/conf/index{.format:json|xml}', controller='api/conf')
+    map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api/conf')
     #Graph
-    map.connect('/api/v1/graph/last_week{.format:json|xml}', controller='api/graph', action='last_week', conditions=dict(method=['GET']))
+    map.connect('/api/v1/graph/last_week{.format:json|xml}', controller='api/graph', action='last_week')
     #Calls
     #map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
     #VOIP
@@ -73,9 +86,9 @@ def make_map(config):
     #######################
     # CUSTOM CLIENT CABAL #
     #######################
-    map.connect('/cabal/bines', controller='main', action='bines', conditions=dict(method=['GET']))#CABAL
-    #map.connect('/cabal/consultas', controller='main', action='consultas', conditions=dict(method=['GET']))#CABAL
-    map.connect('/cabal/precargada', controller='main', action='precargada', conditions=dict(method=['GET']))#CABAL
-    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones', conditions=dict(method=['GET']))#CABAL
+    map.connect('/cabal/bines', controller='main', action='bines')#CABAL
+    #map.connect('/cabal/consultas', controller='main', action='consultas')#CABAL
+    map.connect('/cabal/precargada', controller='main', action='precargada')#CABAL
+    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones')#CABAL
 
     return map
