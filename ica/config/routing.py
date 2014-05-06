@@ -28,33 +28,31 @@ def make_map(config):
     ########
 
     # Index
-    map.connect('/', controller='main', action='index')
-    map.connect('/index', controller='main', action='index')
+    map.connect('/', controller='main', action='index', conditions=dict(method=['GET']))
+    map.connect('/index', controller='main', action='index', conditions=dict(method=['GET']))
     
     # Voip
-    map.connect('/voip/sip', controller='main', action='sip')
-    map.connect('/voip/iax', controller='main', action='iax')
+    map.connect('/voip/sip', controller='main', action='sip', conditions=dict(method=['GET']))
+    map.connect('/voip/iax', controller='main', action='iax', conditions=dict(method=['GET']))
     
     # Reports
-    map.connect('/reports/currentcalls', controller='main', action='currentcalls')
-    map.connect('/reports/general', controller='main', action='general')
-    map.connect('/reports/graphs', controller='main', action='graphs')
-    map.connect('/reports/calls', controller='main', action='calls')
+    map.connect('/reports/currentcalls', controller='main', action='currentcalls', conditions=dict(method=['GET']))
+    map.connect('/reports/general', controller='main', action='general', conditions=dict(method=['GET']))
+    map.connect('/reports/graphs', controller='main', action='graphs', conditions=dict(method=['GET']))
+    map.connect('/reports/calls', controller='main', action='calls', conditions=dict(method=['GET']))
     
     # System
-    map.connect('/system/panel', controller='main', action='panel')
-    map.connect('/system/panel/{alert}', controller='main', action='alert')
-    map.connect('/system/settings', controller='main', action='settings')
+    map.connect('/system/panel', controller='main', action='panel', conditions=dict(method=['GET']))
+    map.connect('/system/panel/{alert}', controller='main', action='alert', conditions=dict(method=['GET']))
+    map.connect('/system/settings', controller='main', action='settings', conditions=dict(method=['GET']))
 
     # Login / Logout
-    map.connect('/login', controller='access', action='login')
-    map.connect('/logout', controller='access', action='logout')
-    map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd')
-    #map.connect('/users/change_password/{user}', controller='access', action='change_password')
-    #map.connect('/users/sign_in', controller='access', action='sign_in')
-
+    map.connect('/login', controller='access', action='login', conditions=dict(method=['GET', 'POST']))
+    map.connect('/logout', controller='access', action='logout', conditions=dict(method=['GET']))
+    map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd', conditions=dict(method=['GET', 'POST']))
+    
     # Static
-    map.connect('/offline', controller='static',  action='static')
+    map.connect('/offline', controller='static',  action='static', conditions=dict(method=['GET']))
 
     #######
     # Api #
@@ -75,9 +73,9 @@ def make_map(config):
     #######################
     # CUSTOM CLIENT CABAL #
     #######################
-    map.connect('/cabal/bines', controller='main', action='bines')#CABAL
-    #map.connect('/cabal/consultas', controller='main', action='consultas')#CABAL
-    map.connect('/cabal/precargada', controller='main', action='precargada')#CABAL
-    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones')#CABAL
+    map.connect('/cabal/bines', controller='main', action='bines', conditions=dict(method=['GET']))#CABAL
+    #map.connect('/cabal/consultas', controller='main', action='consultas', conditions=dict(method=['GET']))#CABAL
+    map.connect('/cabal/precargada', controller='main', action='precargada', conditions=dict(method=['GET']))#CABAL
+    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones', conditions=dict(method=['GET']))#CABAL
 
     return map
