@@ -80,7 +80,6 @@ def make_map(config):
     # Admin
     with map.submapper(path_prefix='/admin', controller='admin', conditions=GET) as m:
         m.connect('admin', '/users', action='users')
-        m.connect('admin', '/databases', action='databases')
 
     # Login / Logout
     with map.submapper(controller='access', conditions=GET) as m:
