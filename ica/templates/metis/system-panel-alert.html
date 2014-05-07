@@ -11,11 +11,12 @@
                                             <div class="toolbar">
                                                 <span class="label label-{{ c.type }}">
                                                     <i class="icon-exclamation-sign"></i>
-                                                    Alertas</span>
+                                                    {{ _('Alerts') }}</span>
                                             </div>
                                         </header>
                                         <div class="body">
-                                            <h4 class="text-{{ c.action }}"><i class="icon-exclamation-sign"></i> Mensajes de Alertas</h4>
+                                            <h4 class="text-{{ c.action }}"><i class="icon-exclamation-sign"></i> 
+                                                {{ _('Alerts messages') }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +40,7 @@
                                                 </header>-->
                                                 <div class="body">
                                                     <p class="muted"><i>
-                                                        Los siguientes mensajes son <b>alertas</b> informativas del sistema
+                                                        {{ _('The following messages are') }} <b>{{ _('alerts') }}</b> {{_('of the information system')}}
                                                     </i></p>
                                                     {% for i in c.alert %}
                                                         <span class='badge badge-{{ c.type }}'><small>{{ i }}</small>
@@ -48,12 +49,12 @@
                                                     {% endfor %}
 
                                                     {% if c.alert|count == 0 %}
-                                                        <small class='text-{{ c.action }}'>No hay mensajes para mostrar <i class='icon-smile'></i>
+                                                        <small class='text-{{ c.action }}'>{{ _('No messages to display') }} <i class='icon-smile'></i>
                                                         </small><br />
                                                     {% else %}
                                                         <br />
                                                         <small>
-                                                            <a href='#'>{{ c.alert|count }} Mensajes totales</a>
+                                                            <a href='#'>{{ c.alert|count }} {{ _('Total messages') }}</a>
                                                         </small>
                                                     {% endif %}
                                                 </div>

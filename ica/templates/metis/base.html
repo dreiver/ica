@@ -55,18 +55,18 @@
                             <div class="btn-toolbar topnav">
                                 <div class="btn-group">
                                     <a id="changeSidebarPos" class="btn btn-success" rel="tooltip"
-                                        data-original-title="Mostrar / Ocultar Menu" data-placement="bottom">
+                                        data-original-title="{{ _('Show / Hide Sidebar') }}" data-placement="bottom">
                                         <i class="icon-resize-horizontal"></i>
                                     </a>
                                 </div>
                                 <div class="btn-group">
                                     <a href="#helpModal" class="btn btn-inverse" rel="tooltip" data-placement="bottom"
-                                        data-original-title="Ayuda" data-toggle="modal">
+                                        data-original-title="{{ _('Help') }}" data-toggle="modal">
                                         <i class="icon-question-sign"></i>
                                     </a>
                                 </div>
                                 <div class="btn-group">
-                                    <a class="btn btn-danger" data-placement="bottom" data-original-title="Cerrar" rel="tooltip"
+                                    <a class="btn btn-danger" data-placement="bottom" data-original-title="{{ _('Logout') }}" rel="tooltip"
                                        href="/logout"><i class="icon-off"></i>
                                     </a>
                                 </div>
@@ -81,11 +81,11 @@
                                           <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                          <li><a href="/changepasswd/user/{{ c.session_user }}">Cambiar clave</a></li>
-                                          <li><a href="{{ config['issues_url'] }}" target="{{ config['issues_target'] }}" data-toggle="modal">Reportar un problema</a></li>
-                                          <li><a href="#AboutSite" data-toggle="modal">Acerca del sitio</a></li>
+                                          <li><a href="/changepasswd/user/{{ c.session_user }}"> {{ _('Change password') }} </a></li>
+                                          <li><a href="{{ config['issues_url'] }}" target="{{ config['issues_target'] }}" data-toggle="modal"> {{ _('Report a bug') }} </a></li>
+                                          <li><a href="#AboutSite" data-toggle="modal">{{ _('About the site') }}</a></li>
                                           <li class="divider"></li>
-                                          <li><a href="#helpModal" data-toggle="modal">Ayuda</a></li>
+                                          <li><a href="#helpModal" data-toggle="modal"> {{ _('Help') }} </a></li>
                                         </ul>
                                   </li>
                                 </ul>
@@ -118,7 +118,7 @@
                                 </a>
 
                                 <form class="main-search">
-                                    <input class="input-block-level" type="text" placeholder="Busqueda...">
+                                    <input class="input-block-level" type="text" placeholder="{{ _('Live search...') }}">
                                     <button id="searchBtn" type="submit" class="btn btn-inverse"><i class="icon-search"></i>
                                     </button>
                                 </form>
@@ -149,7 +149,7 @@
                         <h5 class="media-heading">{{ c.session_name }}</h5>
                         <ul class="unstyled user-info">
                             <li><a href="">{{ c.session_role }}</a></li>
-                            <li>&Uacuteltimo acceso : <br/>
+                            <li> {{ _('Last access') }} : <br/>
                                 <small><i class="icon-calendar"></i> {{ c.session_access }}</small>
                             </li>
                         </ul>
@@ -200,18 +200,16 @@
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="helpModalLabel"><i class="icon-tag"></i> Acerca del sitio</h3>
+                    <h3 id="helpModalLabel"><i class="icon-tag"></i> {{ _('About the site') }}</h3>
                 </div>
                 <div class="modal-body">
                     <p>
-                        ICA (Icarus | Ivr Cluster Admin) fue desarrollado por Ezequiel Lovelle.
+                        {{ config['product_s_name'] }} (Icarus | {{ config['product_l_name'] }}) {{ _('was developed by Ezequiel Lovelle.') }}
                     </p>
                     <p>
-                        En su desarrollo se emple&oacute exclusivamente <b>software libre</b>;
-                        tanto en lo que se refiere a los componentes de la aplicación en s&iacute y los servicios que la conforman, 
-                        como a las herramientas y tecnolog&iacuteas utilizadas en los ambientes de desarrollo. 
-                        A continuaci&oacuten listamos, sin ning&uacuten orden particular, 
-                        algunas de las piezas más importantes de software que se emplearon en el desarrollo:
+                        {{ _('In the development process was used exclusively') }} <b>{{ _('free software') }}</b>;
+                        {{ _('both in regard to the components of the application itself and the services that form, as to the tools and technologies used in development environments') }}.
+                        {{ _('Below we list, in no particular order, some of the most important pieces of software that were used in development:') }}
                     </p>
                     <hr>
                     <div id="div-1" class="accordion-body collapse in body">
@@ -238,11 +236,10 @@
                             </ul>
                         </div>
                     </div>
-                    <p>Por dudas, consultas o sugerencias respecto de la implementaci&oacuten del software y sus derivados o las tecnolog&iacuteas empleadas,
-                    puede escribirnos un mail <a href="mailto:ezequiellovelle@gmail.com">aqu&iacute</a>.</p>
+                    <p>{{ _('For questions, queries or suggestions regarding the implementation of the software and its derivatives or technologies employed, you can write an email') }} <a href="mailto:ezequiellovelle@gmail.com">{{ _('here') }}</a>.</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                 </div>
             </div>
             <!-- /#AboutSite -->
@@ -251,17 +248,15 @@
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="helpModalLabel"><i class="icon-external-link"></i> Ayuda</h3>
+                    <h3 id="helpModalLabel"><i class="icon-external-link"></i> {{ _('Help') }}</h3>
                 </div>
                 <div class="modal-body">
-                    <p>
-                        Si necesita ayuda acerca de la interfaz de administraci&oacuten, por favor complete el formulario.
-                    </p>
+                    <p>{{ _('If you need help about the interface or administration, please complete the form.') }}</p>
                     <hr>
                     <div id="div-1" class="accordion-body collapse in body">
                         <form class="form-horizontal">
                             <div class="control-group">
-                                <label for="text1" class="control-label">Titulo</label>
+                                <label for="text1" class="control-label">{{ _('Title') }}</label>
 
                                 <div class="controls with-tooltip">
                                     <input type="text" id="text1" class="span3 input-tooltip"
@@ -269,21 +264,21 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Nombre</label>
+                                <label class="control-label">{{ _('Name') }}</label>
 
                                 <div class="controls">
                                     <input class='span3' type='text' value='{{ c.session_name }}' readonly>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label for="text2" class="control-label">Asunto</label>
+                                <label for="text2" class="control-label">{{ _('Subject') }}</label>
 
                                 <div class="controls">
                                     <input class="span3" type="text" id="text2"/>
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label for="autosize" class="control-label">Texto</label>
+                                <label for="autosize" class="control-label">{{ _('Text') }}</label>
 
                                 <div class="controls">
                                     <textarea id="autosize" class="span3"></textarea>
@@ -293,14 +288,14 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-metis-5">Enviar</button>
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                    <button type="button" class="btn btn-metis-5">{{ _('Send') }}</button>
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                 </div>
             </div>
             <!-- /#helpModal -->
             <!-- BEGIN FOOTER -->
             <div id="footer">
-                <p>{{ config['year'] }} © {{ config['company_name'] }} | <a href="#AboutSite" data-toggle="modal">Acerca del sitio</a></p>
+                <p>{{ config['year'] }} © {{ config['company_name'] }} | <a href="#AboutSite" data-toggle="modal">{{ _('About the site') }}</a></p>
             </div>
             <!-- END FOOTER -->
             <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>-->

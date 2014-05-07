@@ -9,21 +9,21 @@
                                     <li>
                                         <div class="sparkline line_day" values="{{ c.day_values }}"></div>
                                         <div class="stat_text">
-                                            <strong>{{ c.day_calls }}</strong>Llam. diarias
+                                            <strong>{{ c.day_calls }}</strong>{{ _('Daily calls') }}
                                             <span class="percent up"> <i class="icon-caret-up"></i> +0%</span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="sparkline bar_week" values="{{ c.week_values }}"></div>
                                         <div class="stat_text">
-                                            <strong>{{ c.week_calls }}</strong>Llam. semanal
+                                            <strong>{{ c.week_calls }}</strong>{{ _('Weekly calls') }}
                                             <span class="percent down"> <i class="icon-caret-down"></i> -0%</span>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="sparkline stacked_month" values="{{ c.month_values }}"></div>
                                         <div class="stat_text">
-                                            <strong>{{ c.month_calls }}</strong>Llam. mensual
+                                            <strong>{{ c.month_calls }}</strong>{{ _('Monthly calls') }}
                                             <span class="percent down"> <i class="icon-caret-down"></i> -0%</span>
                                         </div>
                                     </li>
@@ -33,17 +33,17 @@
                             <div class="tac">
                                 <a class="quick-btn" href="/system/panel#error" data-pjax="#content">
                                     <i class="icon-remove-sign icon-2x"></i>
-                                    <span>Errores</span>
+                                    <span>{{ _('Errors') }}</span>
                                     <span id="ica-logs-error" class="label label-important">{{ c.ica_logs_error }}</span>
                                 </a>
                                 <a class="quick-btn" href="/system/panel#warning" data-pjax="#content">
                                     <i class="icon-warning-sign icon-2x"></i>
-                                    <span>Alertas</span>
+                                    <span>{{ _('Alerts') }}</span>
                                     <span id="ica-logs-warning" class="label label-warning">{{ c.ica_logs_warning }}</span>
                                 </a>
                                 <a class="quick-btn" href="/reports/currentcalls" data-pjax="#content">
                                     <i class="icon-phone-sign icon-2x"></i>
-                                    <span>Llamadas</span>
+                                    <span>{{ _('Calls') }}</span>
                                     <span id="ica-logs-calls" class="label label-success">{{ c.ica_logs_calls }}</span>
                                 </a>
                                 <a class="quick-btn" href="/system/panel#jpos" data-pjax="#content">
@@ -57,7 +57,7 @@
                                 <div class="span8">
                                     <div class="box">
                                         <header>
-                                            <h5>Gr&aacutefico -> Llamadas recibidas</h5>
+                                            <h5>{{ _('Graph') }} -> {{ _('Received calls') }}</h5>
                                         </header>
                                         <div class="body" id="trigo" style="height: 250px;"></div>
                                     </div>
@@ -66,17 +66,17 @@
                                     <div class="box">
                                         <header>
                                             <div class="icons"><i class="icon-phone"></i></div>
-                                            <h5>Tabla -> Llamadas recibidas</h5>
+                                            <h5>{{ _('Received calls') }}</h5>
                                         </header>
                                         <div class="body">
                                             <table class="table table-bordered table-condensed table-hovered sortableTable">
                                                 <thead>
                                                     <tr>
-                                                        <th>Fecha <i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Date') }} <i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
-                                                        <th>Llamadas <i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Calls') }} <i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
-                                                        <th>Porcentaje <i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Percentage') }} <i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
                                                     </tr>
                                                 </thead>

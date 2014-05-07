@@ -21,51 +21,50 @@
                                 <div class="alert alert-error">
                                     <i class="icon-remove-sign icon-1x"></i>
                                     <span>
-                                        <strong>Error!</strong> El nombre de usuario o la contraseña son incorrectos.
+                                        <strong>{{ _('Error') }}!</strong> {{ _('The username or password are incorrect.') }}
                                     </span>
                                 </div>
                             {% else %}
                                 {% if c.changepasswd_alert %}
                                     <div id="login_change" class='alert alert-alert'>
-                                        <strong>Atenci&oacuten!</strong> Es necesario cambiar su contraseña
+                                        <strong>{{ _('Alert') }}!</strong> {{ _('You need to change your password') }}
                                     </div>
                                 {% endif %}
                             {% endif %}
                             <div id="signup" class="tab-pane active">
                                 <form action="/changepasswd/user/{{ c.changepasswd_user }}" accept-charset="utf-8" method="post">
-                                    <p>Ingrese su nombre de usuario y clave</p>
+                                    <p>{{ _('Enter your username and password') }}</p>
                                     <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-user"></i></span>
-                                                <input type="text" id="username" name="username" autocomplete="off" placeholder="Usuario" value="{{ c.changepasswd_user }}">
+                                                <input type="text" id="username" name="username" autocomplete="off" placeholder="{{ _('User') }}" value="{{ c.changepasswd_user }}">
                                             </div>
                                         </div>
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-lock"></i></span>
-                                                <input type="password" id="password" name="password" autocomplete="off" placeholder="Clave actual">
+                                                <input type="password" id="password" name="password" autocomplete="off" placeholder="{{ _('Current password') }}">
                                             </div>
                                         </div>
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-lock"></i></span>
-                                                <input type="password" id="passwordnew" name="passwordnew" autocomplete="off" placeholder="Clave nueva">
+                                                <input type="password" id="passwordnew" name="passwordnew" autocomplete="off" placeholder="{{ _('New password') }}">
                                             </div>
                                         </div>
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-lock"></i></span>
-                                                <input type="password" id="passwordconfirm" name="passwordconfirm" autocomplete="off" placeholder="Clave nueva confirmar">
+                                                <input type="password" id="passwordconfirm" name="passwordconfirm" autocomplete="off" placeholder="{{ _('Confirm new password') }}">
                                             </div>
                                         </div>
                                     </div>
-
                                     <input type="hidden" name="from" id="from" value="changepasswd" />
                                     <input type="hidden" name="action" id="action" value="changepasswd" />
                                     <input type="hidden" name="sendform" id="sendform" value=1 />
-                                    <input type="submit" name="Change" id="Change" value="Cambiar" class="btn btn-inverse btn-block">
-                                    <a href="/index"><button class="btn btn-info btn-block">Volver</button></a>
+                                    <input type="submit" name="Change" id="Change" value="{{ _('Change') }}" class="btn btn-inverse btn-block">
+                                    <a href="/index"><button class="btn btn-info btn-block">{{ _('Return') }}</button></a>
                                 </form>
                             </div>
                         </div>

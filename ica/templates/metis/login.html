@@ -21,34 +21,34 @@
                                 <div id="login_error" class="alert alert-error">
                                     <i class="icon-remove-sign icon-1x"></i>
                                     <span>
-                                        <strong>Error!</strong> El nombre de usuario o la contraseña son incorrectos.
+                                        <strong>{{ _('Error') }}!</strong> {{ _('The username or password are incorrect.') }}
                                     </span>
                                 </div>
                             {% endif %}
                             <div id="login" class="tab-pane active">
                                 <form action="/login" accept-charset="utf-8" method="post">
-                                    <p>Ingrese su nombre de usuario y clave</p>
+                                    <p>{{ _('Enter your username and password') }}</p>
                                     <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-user"></i></span>
-                                                <input type="text" id="username" name="username" autocomplete="off" placeholder="Usuario" 
+                                                <input type="text" id="username" name="username" autocomplete="off" placeholder="{{ _('User') }}" 
                                                 {% if c.post is defined %}value="{{ c.post['username'] }}"{% endif %}>
                                             </div>
                                         </div>
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-lock"></i></span>
-                                                <input type="password" id="password" name="password" autocomplete="off" placeholder="Clave">
+                                                <input type="password" id="password" name="password" autocomplete="off" placeholder="{{ _('Password') }}">
                                             </div>
                                         </div>
                                     </div>
                                     <input type="hidden" name="action" id="action" value="login" />
-                                    <input type="submit" name="Auth" id="Auth" value="Ingresar" class="btn btn-inverse btn-block">
+                                    <input type="submit" name="Auth" id="Auth" value="{{ _('Login') }}" class="btn btn-inverse btn-block">
                                 </form>
                             </div>
                             <div id="forgot" class="tab-pane">
-                                <p class="muted tac">Ingrese su e-mail</p>
+                                <p class="muted tac">{{ _('Entre your e-mail') }}</p>
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="input-prepend">
@@ -57,7 +57,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-inverse btn-block" type="submit">Recuperar clave</button>
+                                <button class="btn btn-inverse btn-block" type="submit">{{ _('Restore password') }}</button>
                             </div>
                             <div id="signup" class="tab-pane">
                                 <div class="control-group">
@@ -80,13 +80,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button class="btn btn-inverse btn-block" type="submit">Registrar</button>
+                                <button class="btn btn-inverse btn-block" type="submit">{{ _('Register') }}</button>
                             </div>
                         </div>
                         <ul class="inline">
-                            <li><a class="muted" href="#login" data-toggle="tab">Acceder</a></li>
-                            <li><a class="muted" href="#forgot" data-toggle="tab">Olvid&eacute la clave</a></li>
-                            <li><a class="muted" href="#signup" data-toggle="tab">Registrarse</a></li>
+                            <li><a class="muted" href="#login" data-toggle="tab">{{ _('Login') }}</a></li>
+                            <li><a class="muted" href="#forgot" data-toggle="tab">{{ _('I forgot my password') }}</a></li>
+                            <li><a class="muted" href="#signup" data-toggle="tab">{{ _('Register') }}</a></li>
                         </ul>
                     </div>
                 </div>

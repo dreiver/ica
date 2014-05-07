@@ -9,11 +9,11 @@
                                     <div class="box">
                                         <header>
                                             <div class="toolbar">
-                                                <span class="label label-success">Panel de administraci&oacuten</span>
+                                                <span class="label label-success">{{ _('Admin panel') }}</span>
                                             </div>
                                         </header>
                                         <div class="body">
-                                            <h4 class="text-info"><i class="icon-wrench"></i> Herramientas</h4>
+                                            <h4 class="text-info"><i class="icon-wrench"></i> {{ _('Tools') }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -25,18 +25,18 @@
                                     <div id="users" class="box">
                                         <header>
                                             <div class="icons"><i class="icon-group"></i></div>
-                                            <h5 class="text-success">Usuarios</h5>
+                                            <h5 class="text-success">{{ _('Users') }}</h5>
                                         </header>
                                         <div id="collapse4" class="body">
                                             <table id="dataTable" class="table table-bordered table-condensed table-hover table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th>Usuario</th>
-                                                        <th>Nombre</th>
-                                                        <th>Rol</th>
-                                                        <th>&Uacuteltimo acceso</th>
-                                                        <th>Clave expira</th>
-                                                        <th>Acciones</th>
+                                                        <th>{{ _('User') }}</th>
+                                                        <th>{{ _('Name') }}</th>
+                                                        <th>{{ _('Role') }}</th>
+                                                        <th>{{ _('Last access') }}</th>
+                                                        <th>{{ _('Password expire') }}</th>
+                                                        <th>{{ _('Actions') }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -50,7 +50,7 @@
                                                         <td>
                                                             {% if i.expire > 0 %}
                                                             <a rel='tooltip' 
-                                                            data-original-title='Hacer expirar la clave' 
+                                                            data-original-title='{{ _('Make the password expiry') }}' 
                                                             class='expire-usuario' id='{{ i.user }}' 
                                                             href='#expire-usuario' data-toggle='modal'>
                                                                 <button class='btn btn-mini btn-success'>
@@ -59,7 +59,7 @@
                                                             </a>
                                                             {% endif %}
                                                             <a rel='tooltip' 
-                                                            data-original-title='Modificar datos del usuario' 
+                                                            data-original-title='{{ _('Edit user data') }}' 
                                                             class='edit-usuario' id='{{ i.user }}' 
                                                             href='#edit-usuario' data-toggle='modal'>
                                                                 <button class='btn btn-mini btn-info'>
@@ -67,7 +67,7 @@
                                                                 </button>
                                                             </a>
                                                             <a rel='tooltip' 
-                                                            data-original-title='Eliminar usuario' 
+                                                            data-original-title='{{ _('Delete user') }}' 
                                                             class='delete-usuario' id='{{ i.user }}' 
                                                             href='#delete-usuario' data-toggle='modal'>
                                                                 <button class='btn btn-mini btn-danger'>
@@ -81,7 +81,7 @@
                                             </table>
                                             <hr>
                                             <a href="#add-usuario" rel="tooltip" data-toggle="modal">
-                                                <button id='agregar-usuario' class='btn btn-small btn-metis-5 pull-right' type='button'>Agregar usuario</button>
+                                                <button id='agregar-usuario' class='btn btn-small btn-metis-5 pull-right' type='button'>{{ _('Add user') }}</button>
                                             </a>
                                         </div>
                                     </div>
@@ -95,32 +95,31 @@
                                         <div class="span12">
                                             <div id="warning" class="box">
                                                 <header>
-                                                    <h5 class="text-warning"><i class="icon-exclamation-sign"></i> Mensajes de Alertas</h5>
+                                                    <h5 class="text-warning"><i class="icon-exclamation-sign"></i> {{ _('Alerts messages') }}</h5>
                                                     <div class="toolbar">
                                                         <a rel='tooltip' data-original-title='Borrar alertas' href='#delete-warning' data-toggle='modal'><button class='btn btn-mini btn-warning'><i class='icon-trash'></i></button></a>
                                                         <span class="label label-warning">
                                                             <i class="icon-exclamation-sign"></i>
-                                                            Alertas
+                                                            {{ _('Alerts') }}
                                                         </span>
                                                     </div>
                                                 </header>
                                                 <div class="body">
                                                     <p class="muted"><i>
-                                                        Los siguientes mensajes son <b>alertas</b> informativas del sistema
+                                                        {{ _('The following messages are') }} <b>{{ _('alerts') }}</b> {{_('of the information system')}}
                                                     </i></p>
                                                     {% for i in c.ica_logs_warning %}
                                                         <span class='badge badge-warning'><small>{{ i }}</small></span><br />
                                                     {% endfor %}
 
                                                     {% if c.ica_logs_warning|count == 0 %}
-                                                        <small class='text-warning'>No hay mensajes para mostrar
+                                                        <small class='text-warning'>{{ _('No messages to display') }}
                                                             <i class='icon-smile'></i>
                                                         </small> <br />
                                                     {% elif c.ica_logs_warning|count >= 5 %}
                                                         <small class='text-warning'>...</small><br />
                                                         <small>
-                                                            <a href='/system/panel/warning' data-pjax="#content">Mostrar 
-                                                                todos ({{ c.ica_logs_error|count }})</a>
+                                                            <a href='/system/panel/warning' data-pjax="#content">{{ _('Show all') }} ({{ c.ica_logs_error|count }})</a>
                                                         </small>
                                                     {% endif %}
                                                 </div>
@@ -132,18 +131,18 @@
                                         <div class="span12">
                                             <div id="error" class="box">
                                                 <header>
-                                                    <h5 class="text-error"><i class="icon-warning-sign"></i> Mensajes de errores </h5>
+                                                    <h5 class="text-error"><i class="icon-warning-sign"></i> {{ _('Error messages') }} </h5>
                                                     <div class="toolbar">
                                                         <a rel='tooltip' data-original-title='Borrar errores' href='#delete-error' data-toggle='modal'><button class='btn btn-mini btn-danger'><i class='icon-trash'></i></button></a>
                                                         <span class="label label-important">
                                                             <i class="icon-warning-sign"></i>
-                                                            Errores
+                                                            {{ _('Errors') }}
                                                         </span>
                                                     </div>
                                                 </header>
                                                 <div class="body">
                                                     <p class="muted"><i>
-                                                        Los siguientes mensajes son <b>errores</b> importantes del sistema
+                                                        {{ _('The following messages are') }} <b>{{ _('errors') }}</b> {{ _('importants of the system') }}
                                                     </i></p>
                                                     {% for i in c.ica_logs_error %}
                                                         <span class='badge badge-important'><small>{{ i }}</small>
@@ -151,14 +150,13 @@
                                                     {% endfor %}
 
                                                     {% if c.ica_logs_error|count == 0 %}
-                                                        <small class='text-error'>No hay mensajes para mostrar
+                                                        <small class='text-error'>{{ _('No messages to display') }}
                                                             <i class='icon-smile'></i>
                                                         </small> <br />
                                                     {% elif c.ica_logs_error|count >= 5 %}
                                                         <small class='text-error'>...</small><br />
                                                         <small>
-                                                            <a href='/system/panel/error' data-pjax="#content">Mostrar 
-                                                                todos ({{ c.ica_logs_error|count }})</a>
+                                                            <a href='/system/panel/error' data-pjax="#content">{{ _('Show all') }} ({{ c.ica_logs_error|count }})</a>
                                                         </small>
                                                     {% endif %}
                                                 </div>
@@ -170,7 +168,7 @@
                                         <div class="span12">
                                             <div id="jpos" class="box">
                                                 <header>
-                                                    <h5 class="text-error"><i class="icon-warning-sign"></i> Errores de JPOS </h5>
+                                                    <h5 class="text-error"><i class="icon-warning-sign"></i> {{ _('Errors of') }} JPOS </h5>
                                                     <div class="toolbar">
                                                         <!--<a rel='tooltip' data-original-title='Borrar errores' href='#delete-error' data-toggle='modal'><button class='btn btn-mini btn-danger'><i class='icon-trash'></i></button></a>-->
                                                         <span class="label label-important">
@@ -189,14 +187,13 @@
                                                     {% endfor %}
 
                                                     {% if c.ica_logs_serv_jpos|count == 0 %}
-                                                        <small class='text-error'>No hay mensajes para mostrar
+                                                        <small class='text-error'>{{ _('No messages to display') }}
                                                             <i class='icon-smile'></i>
                                                         </small> <br />
                                                     {% elif c.ica_logs_serv_jpos|count >= 5 %}
                                                         <small class='text-error'>...</small><br />
                                                         <small>
-                                                            <a href='/system/panel/jpos' data-pjax="#content">Mostrar 
-                                                                todos ({{ c.ica_logs_serv_jpos|count }})</a>
+                                                            <a href='/system/panel/jpos' data-pjax="#content">{{ _('Show all') }} ({{ c.ica_logs_serv_jpos|count }})</a>
                                                         </small>
                                                     {% endif %}
                                                 </div>

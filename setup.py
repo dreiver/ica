@@ -11,7 +11,10 @@ setup(
     description='',
     author='',
     author_email='',
+    license='',
     url='',
+    keywords='',
+    long_description='',
     install_requires=[
         "Pylons>=1.0.1rc1",
         "Jinja2",
@@ -26,9 +29,11 @@ setup(
     include_package_data=True,
     test_suite='nose.collector',
     package_data={'ica': ['i18n/*/LC_MESSAGES/*.mo']},
-    #message_extractors={'ica': [
-    #        ('**.py', 'python', None),
-    #        ('public/**', 'ignore', None)]},
+    message_extractors={'ica': [
+            ('**.py', 'python', None),
+            #('**.js', 'javascript', None),
+            ('templates/**.html', 'jinja2', None),
+            ('public/**', 'ignore', None)]},
     zip_safe=False,
     paster_plugins=['PasteScript', 'Pylons'],
     entry_points="""

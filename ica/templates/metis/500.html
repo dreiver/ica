@@ -10,7 +10,6 @@
     <link type="text/css" rel="stylesheet" href="/metis/assets/css/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="/metis/assets/css/font-awesome.min.css" />
     <link type="text/css" rel="stylesheet" href="/metis/assets/css/error.css" />
-
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -36,7 +35,7 @@
         <div class="row-fluid">
           <!-- .span6 -->
           <div class="span6 offset3">
-            <p class="lead">Error interno en el servidor, disculpe las molestias.</p>
+            <p class="lead">{{ _('Oops, an error has occurred. Internal server error!') }}</p>
           </div>
           <!-- /.span6 -->
         </div>
@@ -44,8 +43,8 @@
         <div class="row-fluid">
           <div class="span6 offset3">
             <div class="row-fluid">
-              <a href="/index" class="btn btn-info span6">Volver</a>
-              <a href="/index" class="btn btn-warning span6">Home</a>
+              <a href="/index" class="btn btn-info span6">{{ _('Return') }}</a>
+              <a href="/index" class="btn btn-warning span6">{{ _('Home') }}</a>
             </div>
           </div>
         </div>
