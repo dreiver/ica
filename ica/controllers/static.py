@@ -9,5 +9,8 @@ log = logging.getLogger(__name__)
 
 class StaticController(BaseController):
 
-    def static(self):
+    def offline(self):
     	return render('metis/offline.html')
+    	
+    def constructing(self):
+    	return render('metis/constructing.html')

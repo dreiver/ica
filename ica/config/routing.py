@@ -40,11 +40,11 @@ def make_map(config):
     # API #
     #######
 
-    with map.submapper(path_prefix='/api{ver:/v1|}', controller='api') as m:
-        m.connect('api', '/conf/index{.format:json|xml}', action='conf', conditions=GET)
-        m.connect('api', '/conf/trunk{.format:json|xml}', action='trunk', conditions=GET)
-        m.connect('api', '/graph/last_week{.format:json|xml}', action='last_week', conditions=GET)
-        m.connect('api', '/calls/currentcalls{.format:json|xml}', action='currentcalls', conditions=GET)
+    with map.submapper(path_prefix='/api{ver:/v1|}', controller='api', conditions=GET) as m:
+        m.connect('api', '/conf/index{.format:json|xml}', action='conf')
+        m.connect('api', '/conf/trunk{.format:json|xml}', action='trunk')
+        m.connect('api', '/graph/last_week{.format:json|xml}', action='last_week')
+        m.connect('api', '/calls/currentcalls{.format:json|xml}', action='currentcalls')
     #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='CACA_')
 
     ############
@@ -56,31 +56,42 @@ def make_map(config):
     ########
 
     # Index
-    map.connect('index', '/', controller='main', action='index')
-    map.connect('index', '/index', controller='main', action='index')
+    map.connect('index', '/', controller='main', action='index', conditions=GET)
+    map.connect('index', '/index', controller='main', action='index', conditions=GET)
     
     # Voip
-    map.connect('/voip/sip', controller='main', action='sip')
-    map.connect('/voip/iax', controller='main', action='iax')
+    with map.submapper(path_prefix='/voip', controller='main', conditions=GET) as m:
+        m.connect('voip', '/sip', action='sip')
+        m.connect('voip', '/iax', action='iax')
     
     # Reports
-    map.connect('/reports/currentcalls', controller='main', action='currentcalls')
-    map.connect('/reports/general', controller='main', action='general')
-    map.connect('/reports/graphs', controller='main', action='graphs')
-    map.connect('/reports/calls', controller='main', action='calls')
+    with map.submapper(path_prefix='/reports', controller='main', conditions=GET) as m:
+        m.connect('reports', '/currentcalls', action='currentcalls')
+        m.connect('reports', '/general', action='general')
+        m.connect('reports', '/graphs', action='graphs')
+        m.connect('reports', '/calls', action='calls')
     
     # System
-    map.connect('/system/panel', controller='main', action='panel')
-    map.connect('/system/panel/{alert}', controller='main', action='alert')
-    map.connect('/system/settings', controller='main', action='settings')
+    with map.submapper(path_prefix='/system', controller='main', conditions=GET) as m:
+        m.connect('system', '/panel', action='panel')
+        m.connect('system', '/panel/{alert}', action='alert', requirements={"alert": "error|warning|jpos"})
+        m.connect('system', '/settings', action='settings')
+
+    # Admin
+    with map.submapper(path_prefix='/admin', controller='admin', conditions=GET) as m:
+        m.connect('admin', '/users', action='users')
+        m.connect('admin', '/databases', action='databases')
 
     # Login / Logout
-    map.connect('/login', controller='access', action='login')
-    map.connect('/logout', controller='access', action='logout')
-    map.connect('/changepasswd/user/{user}', controller='access', action='changepasswd')
+    with map.submapper(controller='access', conditions=GET) as m:
+        m.connect('access', '/login', action='login', conditions=GET_POST)
+        m.connect('access', '/logout', action='logout')
+        m.connect('access', '/changepasswd/user/{user}', action='changepasswd', conditions=GET_POST)
     
     # Static
-    map.connect('/offline', controller='static',  action='static')
+    with map.submapper(controller='static', conditions=GET) as m:
+        m.connect('static', '/offline', action='offline')
+        m.connect('static', '/constructing', action='constructing')
 
     #############
     # /END MAIN #
@@ -89,10 +100,12 @@ def make_map(config):
     #######################
     # CUSTOM CLIENT CABAL #
     #######################
-    map.connect('/cabal/bines', controller='main', action='bines')#CABAL
-    #map.connect('/cabal/consultas', controller='main', action='consultas')#CABAL
-    map.connect('/cabal/precargada', controller='main', action='precargada')#CABAL
-    #map.connect('/cabal/autorizaciones', controller='main', action='autorizaciones')#CABAL
+
+    with map.submapper(controller='main', conditions=GET) as m:
+        m.connect('cabal', '/cabal/bines', action='bines')
+        m.connect('cabal', '/cabal/consultas', action='consultas')
+        m.connect('cabal', '/cabal/precargada', action='precargada')
+        m.connect('cabal', '/cabal/autorizaciones', action='autorizaciones')
 
     ############################
     # /END CUSTOM CLIENT CABAL #

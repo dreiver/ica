@@ -43,7 +43,7 @@
                                                 <tbody>
                                                     {% for i in c.prod %}
                                                         <tr>
-                                                            <td>{{ i.piloto }}</td>
+                                                            <td>{{ i.extension }}</td>
                                                             <td>{{ i.nombre }}</td>
                                                             <td><a>{{ i.audiopre }}</a></td>
                                                             <td>
@@ -53,7 +53,7 @@
                                                             </td>
                                                             <td>{{ i.voz }}</td>
                                                             <td>
-                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='del-prod-{{ i.piloto }}' href='#' data-toggle='modal'>
+                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='del-prod-{{ i.extension }}' href='#' data-toggle='modal'>
                                                                     <button class='btn btn-mini btn-danger'>
                                                                         <i class='icon-trash'></i>
                                                                     </button>
@@ -94,37 +94,37 @@
                                                 <tbody>
                                                     {% for i in c.preprod %}
                                                         <tr class='error'>
-                                                            <td>{{ i.piloto }}</td>
-                                                            <td id='nombre-{{ i.piloto }}'>{{ i.nombre }}</td>
+                                                            <td>{{ i.extension }}</td>
+                                                            <td id='nombre-{{ i.extension }}'>{{ i.nombre }}</td>
                                                             <td><a>{{ i.audiopre }}</a></td>
-                                                            <td id='fechacarga-{{ i.piloto }}'>
+                                                            <td id='fechacarga-{{ i.extension }}'>
                                                                 {% if i.fechacarga|length == 0 %} -
                                                                 {% else %} {{ i.fechacarga }}
                                                                 {% endif %}
                                                             </td>
-                                                            <td id='voz-{{ i.piloto }}'>{{ i.voz }}</td>
+                                                            <td id='voz-{{ i.extension }}'>{{ i.voz }}</td>
                                                             <td>
-                                                                <a href='#actionTable' id='{{ i.piloto }}' data-toggle='collapse' class='accordion-toggle minimize-box edit-precargada'>
+                                                                <a href='#actionTable' id='{{ i.extension }}' data-toggle='collapse' class='accordion-toggle minimize-box edit-precargada'>
                                                                     <button class='btn btn-mini edit'>
                                                                         <i class='icon-edit'></i>
                                                                     </button>
                                                                 </a>
                                                             </td>
                                                             <td>
-                                                                <a rel='tooltip' data-original-title='Enviar a producción' class='confirm' id='{{ i.piloto }}' href='#confirmprod' data-toggle='modal'>
+                                                                <a rel='tooltip' data-original-title='Enviar a producción' class='confirm' id='{{ i.extension }}' href='#confirmprod' data-toggle='modal'>
                                                                     <button class='btn btn-mini btn-success'>
                                                                         <i class='icon-ok-sign'></i>
                                                                     </button>
                                                                 </a>
-                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='{{ i.piloto }}' href='#delpreprod' data-toggle='modal'>
+                                                                <a rel='tooltip' data-original-title='Eliminar precargada' class='delete-preprod' id='{{ i.extension }}' href='#delpreprod' data-toggle='modal'>
                                                                     <button class='btn btn-mini btn-danger'>
                                                                         <i class='icon-remove'></i>
                                                                     </button>
                                                                 </a>
                                                             </td>
                                                         </tr>
-                                                        <div style='display:none;' id='bin_prod-{{ i.piloto }}'>{{ i.bin_prod }}</div>
-                                                        <div style='display:none;' id='cardlock-{{ i.piloto }}'>{{ i.cardlock }}</div>
+                                                        <div style='display:none;' id='bin_prod-{{ i.extension }}'>{{ i.bin_prod }}</div>
+                                                        <div style='display:none;' id='cardlock-{{ i.extension }}'>{{ i.cardlock }}</div>
                                                     {% endfor %}
                                                 </tbody>
                                             </table>

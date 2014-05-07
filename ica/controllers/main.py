@@ -159,20 +159,20 @@ class MainController(BaseController):
 
 		c.prod    = []
 		c.preprod = []
-		c.voice   = g.redis_voip.lrange('ivr:precargada:voz', 0, -1)
-		c.bines   = g.redis_voip.lrange('ivr:precargada:bines', 0, -1)
+		c.voice   = g.redis_voip.lrange('ivr:cabal:precargada:voice', 0, -1)
+		c.bines   = g.redis_voip.lrange('ivr:cabal:precargada:bines', 0, -1)
 
-		prod    = g.redis_voip.lrange('ivr:prod:precargada:pilotos', 0, -1)
-		preprod = g.redis_voip.lrange('ivr:preprod:precargada:pilotos', 0, -1)
+		prod    = g.redis_voip.lrange('ivr:cabal:prod:precargada:extension', 0, -1)
+		preprod = g.redis_voip.lrange('ivr:cabal:preprod:precargada:extension', 0, -1)
 
 		for i in prod:
-			this = g.redis_voip.hgetall('ivr:prod:precargada:'+i)
-			this['piloto'] = i
+			this = g.redis_voip.hgetall('ivr:cabal:prod:precargada:'+i)
+			this['extension'] = i
 			c.prod.append(this)
 
 		for i in preprod:
-			this = g.redis_voip.hgetall('ivr:preprod:precargada:'+i)
-			this['piloto'] = i
+			this = g.redis_voip.hgetall('ivr:cabal:preprod:precargada:'+i)
+			this['extension'] = i
 			c.preprod.append(this)
 		
 		return pjax('cabal-precargada.html')
