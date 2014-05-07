@@ -215,19 +215,18 @@
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3><i class="icon-key"></i> Expirar Clave</h3>
+                    <h3><i class="icon-key"></i> {{ _('Expiry password') }}</h3>
                 </div>
 
                 <form action="" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <div id="div-1" class="accordion-body collapse in body">
                             <div class="alert alert-info">
-                                <h4><i class="icon-info-sign"></i> Atenci&oacuten!</h4><br />
+                                <h4><i class="icon-info-sign"></i> {{ _('Alert') }}!</h4><br />
                                 <div id="collapse1" class="body">
-                                    <span>Esta por hacer <b>expirar</b> la clave del usuario 
-                                        <b><span id="nameusuario"></span></b>, esto implica que la proxima vez que ingrese al sistema.
-                                        este le pedir&aacute cambiar la clave. <br />
-                                        Presione confirmar para proceder</span>
+                                    <span>{{ _('You are going to') }} <b>{{ _('expiry') }}</b> {{ _('the users password') }} 
+                                        <b><span id="nameusuario"></span></b>, {{ _('this implies that the next time you enter the system. This will ask change password') }}.<br />
+                                        {{ _('Press confirm to proceed') }}</span>
                                 </div>
                                 <input type="hidden" name="from" id="from" value="panel" />
                                 <input type="hidden" name="usuario" id="usuario">
@@ -236,8 +235,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" value="Confirmar" name="sendform" class="btn btn-metis-5 btn-primary">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                        <input type="submit" value="{{ _('Confirm') }}" name="sendform" class="btn btn-metis-5 btn-primary">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                     </div>
                 </form>
             </div>
@@ -248,18 +247,18 @@
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3><i class="icon-trash"></i> Eliminar usuario</h3>
+                    <h3><i class="icon-trash"></i> {{ _('Delete user') }}</h3>
                 </div>
 
                 <form action="" method="post" class="form-horizontal">
                     <div class="modal-body">
                         <div id="div-1" class="accordion-body collapse in body">
                             <div class="alert alert-error">
-                                <h4><i class="icon-warning-sign"></i> Alerta!</h4><br />
+                                <h4><i class="icon-warning-sign"></i> {{ _('Alert') }}!</h4><br />
                                 <div id="collapse1" class="body">
-                                    <span>Esta por <b>eliminar</b> el usuario 
-                                        <b><span id="nameusuario"></span></b>, 
-                                        presione confirmar para proceder</span>
+                                    <span>{{ _('You are going to') }} <b>{{ _('delete') }}</b> {{ _('the user') }} 
+                                        <b><span id="nameusuario"></span></b>.
+                                        {{ _('Press confirm to proceed') }}</span>
                                 </div>
                                 <input type="hidden" name="from" id="from" value="panel" />
                                 <input type="hidden" name="usuario" id="usuario">
@@ -268,8 +267,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" value="Confirmar" name="sendform" class="btn btn-metis-5 btn-primary">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                        <input type="submit" value="{{ _('Confirm') }}" name="sendform" class="btn btn-metis-5 btn-primary">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                     </div>
                 </form>
             </div>
@@ -279,18 +278,17 @@
             <div id="add-usuario" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="add-usuarioLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="add-usuarioLabel"><i class="icon-user"></i> Agregar usuario</h3>
+                    <h3 id="add-usuarioLabel"><i class="icon-user"></i> {{ _('Add user') }}</h3>
                 </div>
                 <div class="modal-body">
                     <p>
-                        Para registrar un nuevo usuario en el sistema, por favor complete el formulario.
+                        {{ _('To register a new user on the system, please complete the form') }}.
                     </p>
                     <hr>
                     <div id="div-1" class="accordion-body collapse in body">
                         <form action="" id="add-usuario-form" class="form-horizontal" accept-charset="utf-8" method="post">
-
                             <div class="control-group">
-                                <label class="control-label">Usuario</label>
+                                <label class="control-label">{{ _('User') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-user"></i></span>
@@ -299,7 +297,7 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Nombre</label>
+                                <label class="control-label">{{ _('Name') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-text-width"></i></span>
@@ -307,48 +305,44 @@
                                     <input style="margin-left: -4px;" type="text" id="nombre" name="nombre" placeholder="ej: Juan Morales">
                                 </div>
                             </div>
-
                             <div class="control-group">
-                                <label class="control-label">Rol</label>
+                                <label class="control-label">{{ _('Role') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-wrench"></i></span>
                                     </div>
                                     <select style="margin-left: -4px;" name="rol" id="rol" class="validate[required]">
-                                        <option value="">Elige un rol</option>
-                                            <option value='1'>Administador</option>
-                                            <option value='2'>Moderador</option>
-                                            <option value='3'>Usuario</option>
+                                        <option value="">{{ _('Choose a role') }}</option>
+                                            <option value='1'>{{ _('Administrator') }}</option>
+                                            <option value='2'>{{ _('Moderator') }}</option>
+                                            <option value='3'>{{ _('User') }}</option>
                                     </select>
                                 </div>
                             </div>
-
                             <div class="control-group">
-                                <label class="control-label">Clave</label>
+                                <label class="control-label">{{ _('Password') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-lock"></i></span>
                                     </div>
-                                    <input style="margin-left: -4px;" type="password" id="clave" name="clave" placeholder="Clave nueva">
+                                    <input style="margin-left: -4px;" type="password" id="clave" name="clave" placeholder="{{ _('New password') }}">
                                 </div>
                             </div>
-
                             <div class="control-group">
-                                <label class="control-label">Confirmar clave</label>
+                                <label class="control-label">{{ _('Confirm password') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-lock"></i></span>
                                     </div>
-                                    <input style="margin-left: -4px;" type="password" id="claveconfirm" name="claveconfirm" placeholder="Confirmar clave nueva">
+                                    <input style="margin-left: -4px;" type="password" id="claveconfirm" name="claveconfirm" placeholder="{{ _('Confirm new password') }}">
                                 </div>
                             </div>
-
                             <div class="modal-footer">
                                 <input type="hidden" name="from" id="from" value="panel" />
                                 <input type="hidden" name="action" id="action" value="I" />
                                 <input type="hidden" name="sendform" id="sendform" value=1 />
-                                <button type="submit" class="btn btn-metis-5">Agregar</button>
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                <button type="submit" class="btn btn-metis-5">{{ _('Send') }}</button>
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                             </div>
                         </form>
                     </div>
@@ -356,23 +350,21 @@
             </div>
             <!-- /#add-usuario -->
 
-
             <!-- #edit-usuario -->
             <div id="edit-usuario" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="edit-usuarioLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="edit-usuarioLabel"><i class="icon-user"></i> Modificar usuario</h3>
+                    <h3 id="edit-usuarioLabel"><i class="icon-user"></i> {{ _('Modify user') }}</h3>
                 </div>
                 <div class="modal-body">
                     <p>
-                        Este es el formulario para modificar datos de un usuario ya registrado en el sistema previamente.
+                        {{ _('This is the form to edit data from a user already registered in the system') }}.
                     </p>
                     <hr>
                     <div id="div-1" class="accordion-body collapse in body">
                         <form action="" id="edit-usuario-form" class="form-horizontal" accept-charset="utf-8" method="post">
-
                             <div class="control-group">
-                                <label class="control-label">Usuario</label>
+                                <label class="control-label">{{ _('User') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-user"></i></span>
@@ -381,7 +373,7 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Nombre</label>
+                                <label class="control-label">{{ _('Name') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-text-width"></i></span>
@@ -389,38 +381,34 @@
                                     <input style="margin-left: -4px;" type="text" id="nombre" name="nombre" placeholder="ej: Juan Morales">
                                 </div>
                             </div>
-
                             <div class="control-group">
-                                <label class="control-label">Rol</label>
+                                <label class="control-label">{{ _('Role') }}</label>
                                 <div class="controls">
                                     <div class="input-prepend">
                                         <span class="add-on"><i class="icon-wrench"></i></span>
                                     </div>
                                     <select style="margin-left: -4px;" name="rol" id="rol" class="validate[required]">
-                                        <option value="">Elige un rol</option>
-                                            <option id="1" value='1'>Administador</option>
-                                            <option id="2" value='2'>Moderador</option>
-                                            <option id="3" value='3'>Usuario</option>
+                                        <option value="">{{ _('Choose a role') }}</option>
+                                            <option id="1" value='1'>{{ _('Administrator') }}</option>
+                                            <option id="2" value='2'>{{ _('Moderator') }}</option>
+                                            <option id="3" value='3'>{ _('User') }}</option>
                                     </select>
                                 </div>
                             </div>
-
                             <div id="main-usuario-clave">
                                 <div id="edit-usuario-clave"></div>
                             </div>
-
                             <div class="control-group">
                                 <div class="controls">
-                                    <button id="edit-usuario-clave-button" class="btn btn-mini btn-metis-5" type="button">Editar clave</button>
+                                    <button id="edit-usuario-clave-button" class="btn btn-mini btn-metis-5" type="button">{{ _('Edit password') }}</button>
                                 </div>
                             </div>
-
                             <div class="modal-footer">
                                 <input type="hidden" name="from" id="from" value="panel" />
                                 <input type="hidden" name="action" id="action" value="U" />
                                 <input type="hidden" name="sendform" id="sendform" value=1 />
-                                <button type="submit" class="btn btn-metis-5">Actualizar</button>
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                                <button type="submit" class="btn btn-metis-5">{{ _('Update') }}</button>
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                             </div>
                         </form>
                     </div>
@@ -428,13 +416,12 @@
             </div>
             <!-- /#edit-usuario -->
 
-
             <!-- #delete-error -->
             <div id="delete-error" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel"
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3><i class="icon-trash"></i> Eliminar errores</h3>
+                    <h3><i class="icon-trash"></i> {{ _('Delete errors') }}</h3>
                 </div>
 
                 <form action="" method="post" class="form-horizontal">
@@ -443,7 +430,8 @@
                             <div class="alert alert-error">
                                 <h4><i class="icon-warning-sign"></i> Alerta!</h4><br />
                                 <div id="collapse1" class="body">
-                                    <span>Esta por <b>eliminar</b> todos los mensajes de logs de errores, presione confirmar para proceder</span>
+                                    <span>{{ _('You are going to') }} <b>{{ _('delete') }}</b> {{ _('all error logs  messages') }}.
+                                    {{ _('Press confirm to proceed') }}</span>
                                 </div>
                                 <input type="hidden" name="from" id="from" value="panel" />
                                 <input type="hidden" name="logs" id="logs" value="error">
@@ -452,8 +440,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" value="Confirmar" name="sendform" class="btn btn-metis-5 btn-primary">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                        <input type="submit" value="{{ _('Confirm') }}" name="sendform" class="btn btn-metis-5 btn-primary">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                     </div>
                 </form>
             </div>
@@ -464,7 +452,7 @@
                  aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3><i class="icon-trash"></i> Eliminar alertas</h3>
+                    <h3><i class="icon-trash"></i> {{ _('Delete alerts') }}</h3>
                 </div>
 
                 <form action="" method="post" class="form-horizontal">
@@ -473,7 +461,8 @@
                             <div class="alert alert-warning">
                                 <h4><i class="icon-warning-sign"></i> Alerta!</h4><br />
                                 <div id="collapse1" class="body">
-                                    <span>Esta por <b>eliminar</b> todos los mensajes de logs de alertas, presione confirmar para proceder</span>
+                                    <span>{{ _('You are going to') }} <b>{{ _('delete') }}</b> {{ _('all alert logs  messages') }}.
+                                    {{ _('Press confirm to proceed') }}</span>
                                 </div>
                                 <input type="hidden" name="from" id="from" value="panel" />
                                 <input type="hidden" name="logs" id="logs" value="warning">
@@ -482,8 +471,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <input type="submit" value="Confirmar" name="sendform" class="btn btn-metis-5 btn-primary">
-                        <button class="btn" data-dismiss="modal" aria-hidden="true">Cerrar</button>
+                        <input type="submit" value="{{ _('Confirm') }}" name="sendform" class="btn btn-metis-5 btn-primary">
+                        <button class="btn" data-dismiss="modal" aria-hidden="true">{{ _('Close') }}</button>
                     </div>
                 </form>
             </div>

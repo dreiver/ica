@@ -9,11 +9,11 @@
                                     <div class="box">
                                         <header>
                                             <div class="toolbar">
-                                                <span class="label label-success">Listado de llamadas concurrentes</span>
+                                                <span class="label label-success">{{ _('List of concurrent calls') }}</span>
                                             </div>
                                         </header>
                                         <div class="body">
-                                            <h4 class="text-info"><i class="icon-phone-sign"></i> Llamadas en curso</h4>
+                                            <h4 class="text-info"><i class="icon-phone-sign"></i> {{ _('Calls in progress') }}</h4>
                                         </div>
                                     </div>
                                 </div>
@@ -24,12 +24,12 @@
                                     <div class="box">
                                         <header>
                                             <div class="icons"><i class="icon-phone"></i></div>
-                                            <h5>Llamadas concurrentes actuales</h5>
+                                            <h5>{{ _('Concurrent calls') }}</h5>
                                         </header>
                                         <div class="body">
                                             <div class='controls'>
                                                 <h6>
-                                                    <span id='numcalls'>12</span> Llamadas
+                                                    <span id='numcalls'>12</span> {{ _('Calls') }}
                                                 </h6>
                                                 <div id='percenttype' class='progress progress-striped active'>
                                                     <div id='percentcalls' class='bar' style='width: 12%'><span id='percentcallstxt'>12</span>%</div>
@@ -38,13 +38,13 @@
                                             <table id="calls" class="table table-bordered table-condensed table-hovered sortableTable">
                                                 <thead>
                                                     <tr>
-                                                        <th>Caller id<i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Caller id') }}<i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
-                                                        <th>Caller Name<i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Caller name') }}<i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
-                                                        <th>Servicio<i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Service') }}<i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
-                                                        <th>Tiempo<i class="icon-sort"></i><i class="icon-sort-down"></i><i
+                                                        <th>{{ _('Time') }}<i class="icon-sort"></i><i class="icon-sort-down"></i><i
                                                             class="icon-sort-up"></i></th>
                                                     </tr>
                                                 </thead>
@@ -56,7 +56,7 @@
                                                         <td id='counter' unix='232'>caca</td>
                                                     </tr>
                                                     <tr id='nocalls'>
-                                                        <td colspan='4'>No hay llamadas en este momento</td>
+                                                        <td colspan='4'>{{ _('No calls at this time') }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
