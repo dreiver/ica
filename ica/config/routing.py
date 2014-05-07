@@ -32,23 +32,19 @@ def make_map(config):
     map.connect('/error/{action}/{id}', controller='error')
 
     # CUSTOM ROUTES HERE
-
     map.connect('/{controller}/{action}')
     map.connect('/{controller}/{action}/{id}')
 
     #######
     # API #
     #######
-    #Conf
-    map.connect('/api/v1/conf/index{.format:json|xml}', controller='api', action='conf')
-    map.connect('/api/v1/conf/trunk{.format:json|xml}', controller='api', action='trunk')
-    #Graph
-    map.connect('/api/v1/graph/last_week{.format:json|xml}', controller='api', action='last_week')
-    #Calls
-    #map.connect('/api/v1/calls/currentcalls{.format:json|xml}', controller='api', action='currentcalls')
-    #VOIP
-    #map.connect('/api/v1/voip/presence{.format:json|xml}', controller='api/presence', action='presence', conditions=dict(method=["POST"]))
-    #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='api_')
+
+    with map.submapper(path_prefix='/api{ver:/v1|}', controller='api') as m:
+        m.connect('api', '/conf/index{.format:json|xml}', action='conf', conditions=GET)
+        m.connect('api', '/conf/trunk{.format:json|xml}', action='trunk', conditions=GET)
+        m.connect('api', '/graph/last_week{.format:json|xml}', action='last_week', conditions=GET)
+        m.connect('api', '/calls/currentcalls{.format:json|xml}', action='currentcalls', conditions=GET)
+    #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='CACA_')
 
     ############
     # /END API #
