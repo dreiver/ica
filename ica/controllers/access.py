@@ -5,7 +5,7 @@ from pylons.controllers.util import abort, redirect
 from pylons import app_globals as g
 
 from ica.lib.base import BaseController, render
-from ica.lib.api import api, response_error
+from ica.lib.util import test_redis
 
 from datetime import datetime, timedelta
 import hashlib
@@ -22,7 +22,7 @@ class AccessController(BaseController):
 			for k, v in request.POST.iteritems():
 				c.post[k] = v
 
-			if g.test_redis(g.redis_ica):
+			if test_redis(g.redis_ica):
 				redirect('/offline')
 
 
@@ -42,7 +42,7 @@ class AccessController(BaseController):
 			return render('metis/login.html')
 
 		# If post data not exist, return error
-		if (not 'username' in c.post or not 'password' in c.post or not 'action' in c.post):
+		if not ('username' in c.post and 'password' in c.post and 'action' in c.post):
 			c.login_error = True
 		else:
 			if g.redis_ica.hget('ica:user:'+c.post['username'], 'password') == hashlib.sha1( c.post['password'] ).hexdigest():
@@ -76,8 +76,7 @@ class AccessController(BaseController):
 			return render('metis/changepasswd.html')
 
 		# If post data not exist, return error
-		if (not 'username' in c.post or not 'password' in c.post or not 'action' in c.post\
-			or not 'passwordnew' in c.post or not 'passwordconfirm' in c.post):
+		if not ('username' in c.post and 'password' in c.post and 'action' in c.post and 'passwordnew' in c.post and 'passwordconfirm' in c.post):
 			c.changepasswd_error = True
 		else:
 			if g.redis_ica.hget('ica:user:'+c.post['username'], 'password') == hashlib.sha1( c.post['password'] ).hexdigest():
