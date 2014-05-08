@@ -5,7 +5,7 @@ from pylons import app_globals as g
 from pylons.controllers.util import abort, redirect
 
 from ica.lib.base import BaseController
-from ica.lib.util import pjax
+from ica.lib.util import *
 from datetime import datetime, timedelta
 
 log = logging.getLogger(__name__)
@@ -19,13 +19,13 @@ class MainController(BaseController):
 		if not session.get('logged_in'):
 			redirect('/login')
 
-		if g.test_redis(g.redis_ica):
+		if test_redis(g.redis_ica):
 			redirect('/offline')
 
 		c.session_name   = session['name']
 		c.session_user   = session['user']
 		c.session_role_i = session['role']
-		c.session_role   = g.role_name(session['role'])
+		c.session_role   = role_name(session['role'])
 		c.session_access = datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
 
 		conf_menu = [
@@ -73,10 +73,10 @@ class MainController(BaseController):
 		c.ica_logs_warning   = g.redis_ica.llen('ica:logs:warning')
 		c.ica_logs_serv_jpos = g.redis_ica.llen('ica:logs:serv:jpos')#CABAL
 
-		c.day_values = g.get_day_values(g.redis_ica)
-		c.day_calls  = g.get_day_calls(g.redis_ica)
+		c.day_values = get_day_values(g.redis_ica)
+		c.day_calls  = get_day_calls(g.redis_ica)
 
-		c.week        = g.get_week(g.redis_ica)
+		c.week        = get_week(g.redis_ica)
 		c.week_calls  = 0
 		c.week_values = []
 		
@@ -110,7 +110,7 @@ class MainController(BaseController):
 			expire         = datetime.now() + timedelta( seconds=user['expire'] )
 			user['ttl']    = expire.strftime('%e %b %H:%M')
 			user['access'] = datetime.strptime(user['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
-			user['role_n'] = g.role_name(user['role'])
+			user['role_n'] = role_name(user['role'])
 			user['user']   = i
 			c.users.append(user)
 

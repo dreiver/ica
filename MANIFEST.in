@@ -1,3 +1,4 @@
 include ica/config/deployment.ini_tmpl
 recursive-include ica/public *
+recursive-include ica/i18n *
 recursive-include ica/templates *

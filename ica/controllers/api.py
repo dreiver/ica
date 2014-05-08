@@ -1,11 +1,12 @@
 import logging
 
-from pylons import request, response, session, tmpl_context as c, url
 from pylons import app_globals as g
 from pylons import config
 
 from ica.lib.base import BaseController
+from ica.lib.util import get_week
 from ica.lib.api import api
+import json
 
 log = logging.getLogger(__name__)
 
@@ -15,9 +16,9 @@ class ApiController(BaseController):
 	@api
 	def conf(self, format='json'):
 		data = {
-			'socket_server': config['socket_server'],
-			'socket_port': config['socket_port'],
-			'domain': config['domain'],
+			'socket_server': config['ica.socket_server'],
+			'socket_port': config['ica.socket_port'],
+			'domain': config['ica.domain'],
 			'debug': config['debug'] }
 
 		return (data)
@@ -37,7 +38,7 @@ class ApiController(BaseController):
 	@api
 	def last_week(self, format='json'):
 		data = { 'label': '', 'data': [] }
-		week = g.get_week(g.redis_ica)
+		week = get_week(g.redis_ica)
 
 		for i in week:
 			day = int(i['days'].strftime('%s')) * 1000
@@ -51,6 +52,6 @@ class ApiController(BaseController):
 		data = { 'data': [] }
 
 		for i in g.redis_ica.lrange('ica:logs:calls', 0 , -1):
-			data['data'].append( g.json.loads(i) )
+			data['data'].append( json.loads(i) )
 
 		return (data)
