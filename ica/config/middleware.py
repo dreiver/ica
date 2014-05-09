@@ -7,7 +7,7 @@ from paste.deploy.converters import asbool
 from pylons.middleware import ErrorHandler, StatusCodeRedirect
 from pylons.wsgiapp import PylonsApp
 from routes.middleware import RoutesMiddleware
-from repoze.who.config import make_middleware_with_config
+from repoze.who.config import make_middleware_with_config as make_who_with_config
 
 from ica.config.environment import load_environment
 
@@ -59,7 +59,7 @@ def make_app(global_conf, full_stack=True, static_files=True, **app_conf):
             app = StatusCodeRedirect(app, [404, 500])
 
     # Initialize repoze.who
-    app = make_middleware_with_config(app, global_conf, app_conf['who.config_file'], app_conf['who.log_file'], app_conf['who.log_level'])
+    app = make_who_with_config(app, global_conf, app_conf['who.config_file'], app_conf['who.log_file'], app_conf['who.log_level'])
 
     # Establish the Registry for this application
     app = RegistryManager(app)
