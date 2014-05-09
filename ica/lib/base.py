@@ -25,7 +25,7 @@ class BaseController(WSGIController):
         return WSGIController.__call__(self, environ, start_response)
 
 
-    def __after__(self):
+    def __after__(self, environ):
     	end_timer = time.time() - c.timer
-    	url = request.environ['PATH_INFO']
+    	url = environ['PATH_INFO']
     	log.debug("'%s' render time %.3f seconds" % (url, end_timer))
