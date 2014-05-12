@@ -8,7 +8,7 @@ Paste*
 nohup.out
 
 # ica/pylons
-data/*
+#data/*
 *.log
 sstore/*
 pylons_data/*
