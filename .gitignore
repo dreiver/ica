@@ -9,6 +9,7 @@ nohup.out
 
 # ica/pylons
 data/*
+*.db
 *.log
 sstore/*
 pylons_data/*
