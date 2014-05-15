@@ -82,10 +82,11 @@ def make_map(config):
         m.connect('admin', '/users', action='users')
 
     # Login / Logout
-    with map.submapper(controller='access', conditions=GET) as m:
-        m.connect('access', '/login', action='login', conditions=GET_POST)
-        m.connect('access', '/logout', action='logout')
-        m.connect('access', '/changepasswd/user/{user}', action='changepasswd', conditions=GET_POST)
+    #with map.submapper(controller='access', conditions=GET) as m:
+    with map.submapper(controller='access') as m:
+        m.connect('access', '/login', action='login')
+        m.connect('access', '/user/logged_in', action='logged_in')
+        m.connect('access', '/user/logged_out', action='logged_out')
     
     # Static
     with map.submapper(controller='static', conditions=GET) as m:

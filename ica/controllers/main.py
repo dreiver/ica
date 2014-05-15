@@ -4,6 +4,9 @@ from pylons import request, response, session, tmpl_context as c, url
 from pylons import app_globals as g
 from pylons.controllers.util import abort, redirect
 
+from repoze.what.predicates import not_anonymous, has_permission, is_user, in_group
+from repoze.what.plugins.pylonshq import ControllerProtector
+
 from ica.lib.base import BaseController
 from ica.lib.util import *
 from datetime import datetime, timedelta
@@ -16,17 +19,17 @@ class MainController(BaseController):
 
 	def __before__(self):
 
-		if not session.get('logged_in'):
+		if not request.environ.get('repoze.who.identity'):
 			redirect('/login')
 
 		if test_redis(g.redis_ica):
 			redirect('/offline')
 
-		c.session_name   = session['name']
-		c.session_user   = session['user']
-		c.session_role_i = session['role']
-		c.session_role   = role_name(session['role'])
-		c.session_access = datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
+		#c.session_name   = session['name']
+		#c.session_user   = session['user']
+		#c.session_role_i = session['role']
+		#c.session_role   = role_name(session['role'])
+		#c.session_access = datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
 
 		conf_menu = [
 			{ 'title': 'Home', 'icon': 'icon-home', 'href': '/index' },

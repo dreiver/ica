@@ -26,14 +26,14 @@
                                 </div>
                             {% endif %}
                             <div id="login" class="tab-pane active">
-                                <form action="/login" accept-charset="utf-8" method="post">
+                                <form action="/login_generic?came_from={{ c.came_from }}&amp;__logins={{ c.login_counter }}" method="POST">
                                     <p>{{ _('Enter your username and password') }}</p>
                                     <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend">
                                                 <span class="add-on"><i class="icon-user"></i></span>
-                                                <input type="text" id="username" name="username" autocomplete="off" placeholder="{{ _('User') }}" 
-                                                {% if c.post is defined %}value="{{ c.post['username'] }}"{% endif %}>
+                                                <input type="text" id="login" name="login" autocomplete="off" placeholder="{{ _('User') }}" 
+                                                {% if c.user is defined %}value="{{ c.user }}"{% endif %}>
                                             </div>
                                         </div>
                                         <div class="controls">

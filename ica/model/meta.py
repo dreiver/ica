@@ -9,3 +9,7 @@ Session = scoped_session(sessionmaker())
 
 # The declarative Base
 Base = declarative_base()
+
+# Global metadata.
+# The default metadata is the one from the declarative base.
+metadata = Base.metadata

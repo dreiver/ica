@@ -30,7 +30,7 @@ def test_redis(redis):
     error = 0
     try:
         redis.ping()
-    except self.redis.ConnectionError, error:
+    except redis.ConnectionError, error:
         log.error(error)
     
     return (error)

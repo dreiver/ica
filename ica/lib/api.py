@@ -26,8 +26,8 @@ def api(func, *args, **kwargs):
 	format = args[1]
 
 	# Authentication
-	if session.get('logged_in'):
-		user = session['user']
+	if request.environ.get('repoze.who.identity'):
+		user = request.environ['repoze.who.identity']['repoze.who.userid']
 	else:
 		try:
 			# Credentials via header
@@ -109,7 +109,7 @@ def response_error(code, headers=None):
 	if headers:
 		response.headerlist += headers
 
-	response.status_code = html[code]
+	response.int = html[code]
 	result = { 'errors':
 				[
 					{
