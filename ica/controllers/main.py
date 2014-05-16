@@ -25,6 +25,10 @@ class MainController(BaseController):
 		if test_redis(g.redis_ica):
 			redirect('/offline')
 
+		#print request.environ['repoze.who.identity']['mail']
+		#metadata = request.environ['repoze.who.identity']['mail']
+		#print dict(metadata=metadata.items())
+
 		#c.session_name   = session['name']
 		#c.session_user   = session['user']
 		#c.session_role_i = session['role']
