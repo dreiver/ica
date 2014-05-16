@@ -17,7 +17,8 @@ setup(
     long_description='',
     install_requires=[
         "Pylons>=1.0.1rc1",
-        "WebOb",
+	"WebOb==1.2",
+	"setuptools",
         "Jinja2",
         "SimpleJson",
         "Dicttoxml",

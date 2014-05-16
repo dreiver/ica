@@ -119,8 +119,8 @@ class FriendlyFormPlugin(object):
         the ``environ``.
 
         """
-	#request = Request(environ)
-	request = Request(environ, charset=self.charset)
+        request = Request(environ)
+        #request = Request(environ, charset=self.charset)
 
         path_info = environ['PATH_INFO']
         script_name = environ.get('SCRIPT_NAME') or '/'
