@@ -25,8 +25,10 @@ class UsernamePasswordAuthenticator(object):
         if not ('type' in post[0]):
             return None
 
-        #if 'ldap_enabled' in environ:
-        #if 'repoze.who.userid' in identity:
+        # Check if ldap plugin is enabled and the user has valid credentials
+        if 'ldap_enabled' in environ and \
+            not 'repoze.who.userid' in identity:
+            return None
 
         login = identity['login']
         user = User.by_user_name(login)
