@@ -25,6 +25,7 @@ class UsernamePasswordAuthenticator(object):
         if not ('type' in post[0]):
             return None
 
+        #if 'ldap_enabled' in environ:
         #if 'repoze.who.userid' in identity:
 
         login = identity['login']

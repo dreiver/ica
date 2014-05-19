@@ -22,6 +22,7 @@ __all__ = ['LDAPBaseAuthenticatorPlugin', 'LDAPAuthenticatorPlugin',
 from zope.interface import implements
 import ldap
 
+from paste.deploy.converters import asbool
 from repoze.who.interfaces import IAuthenticator, IMetadataProvider
 
 from base64 import b64encode, b64decode
@@ -39,7 +40,7 @@ class LDAPBaseAuthenticatorPlugin(object):
     implements(IAuthenticator)
 
     def __init__(self, ldap_connection, base_dn, returned_id='dn',
-                 start_tls=False, bind_dn='', bind_pass='', **kwargs):
+                 start_tls=False, bind_dn='', bind_pass='', enabled=False, **kwargs):
         """Create an LDAP authentication plugin.
 
         By passing an existing LDAPObject, you're free to use the LDAP
@@ -92,6 +93,8 @@ class LDAPBaseAuthenticatorPlugin(object):
 
         self.base_dn = base_dn
 
+        self.enabled = enabled
+
         if returned_id.lower() == 'dn':
             self.ret_style = 'd'
         elif returned_id.lower() == 'login':
@@ -123,6 +126,11 @@ class LDAPBaseAuthenticatorPlugin(object):
 
         """
         logger = logging.getLogger('repoze.who')
+
+        if not asbool(self.enabled):
+            return None
+
+        environ['ldap_enabled'] = True
 
         try:
             dn = self._get_dn(environ, identity)
