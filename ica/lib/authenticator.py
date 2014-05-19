@@ -21,6 +21,12 @@ class UsernamePasswordAuthenticator(object):
         if not ('login' in identity and 'password' in identity):
             return None
 
+        post = environ.get('webob._parsed_post_vars')
+        if not ('type' in post[0]):
+            return None
+
+        #if 'repoze.who.userid' in identity:
+
         login = identity['login']
         user = User.by_user_name(login)
 
@@ -34,24 +40,3 @@ class UsernamePasswordAuthenticator(object):
             return user.name
 
         return None
-
-
-"""
-class ReconnectingAuthenticatorPlugin(LDAPSearchAuthenticatorPlugin):
-    implements(IAuthenticator)
-
-    def __init__(self, *args, **kw):
-        self.ldap = kw
-        super(ReconnectingAuthenticatorPlugin, self).__init__(*args, **kw)
-
-
-    def authenticate(self, environ, identity):
-        res = None
-        print self.ldap
-        if asbool(self.ldap['ldap_enabled']):
-            res = super(LDAPSearchAuthenticatorPlugin, self).authenticate(environ, identity)
-
-
-
-        return res
-"""
