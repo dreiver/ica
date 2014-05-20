@@ -1,7 +1,6 @@
 import logging
 
 from pylons import request, response, session, tmpl_context as c, url
-from pylons import app_globals as g
 from pylons.decorators.util import get_pylons
 from paste.httpexceptions import get_exception
 from decorator import decorator
@@ -21,61 +20,25 @@ log = logging.getLogger(__name__)
 @decorator
 def api(func, *args, **kwargs):
 	data   = None
-	user   = None
-	method = None
 	format = args[1]
 
-	# Authentication
-	if request.environ.get('repoze.who.identity'):
-		user = request.environ['repoze.who.identity']['repoze.who.userid']
-	else:
-		try:
-			# Credentials via header
-			if request.authorization:
-				method = request.authorization[0]
-				if (method != 'Basic' and method != 'token'):
-					data = response_error( 32 )
-				else:
-					token = request.authorization[1]
-					if not token:
-						data = response_error( 32 )
-			# Credentials via parameter
-			elif len(request.params) == 1:
-				method = 'parameter'
-				if not 'access_token' in request.params:
-					data = response_error( 32 )
-				else:
-					token = request.params.getall('access_token')[0]
-					if not token:
-						data = response_error( 32 )
-			# No Authentication
-			else:
-				data = response_error( 33 )
-		except:
-			data = response_error( 32 )
-
-		# Get user with given token
-		if (method == 'token' or method == 'parameter'):
-			user = g.redis_ica.hget('ica:users:token:oauth', token)
-		elif method == 'Basic':
-			user = g.redis_ica.hget('ica:users:token:basic', token)
-
-
+	user = request.environ.get('REMOTE_USER', '')
 	# If user not exist return forbidden
 	if not user:
 		data = response_error( 33 )
-	else:
-		# Create custom variables for current method
-		if request.method == 'POST':
-			response.status_code = 201 # The POST request if was successful must return '201 Created'
-			c.post = {}
-			for k, v in request.POST.iteritems():
-				c.post[k] = v
-		elif request.method == 'GET':
-			c.get = {}
-			for k, v in request.GET.iteritems():
-				c.get[k] = v
-
+	
+	"""
+	# Create custom variables for current method
+	if request.method == 'POST':
+		response.status_code = 201 # The POST request if was successful must return '201 Created'
+		c.post = {}
+		for k, v in request.POST.iteritems():
+			c.post[k] = v
+	elif request.method == 'GET':
+		c.get = {}
+		for k, v in request.GET.iteritems():
+			c.get[k] = v
+	"""
 
 	# If data has not been altered, then it is a right request
 	if data is None:
