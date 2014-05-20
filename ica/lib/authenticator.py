@@ -1,6 +1,6 @@
+import os
 import logging
 
-from paste.deploy.converters import asbool
 from zope.interface import implements
 from repoze.who.interfaces import IAuthenticator
 
@@ -26,7 +26,7 @@ class UsernamePasswordAuthenticator(object):
             return None
 
         # Check if ldap plugin is enabled and the user has valid credentials
-        if 'ldap_enabled' in environ and \
+        if 'LDAP_ENABLED' in os.environ and \
             not 'repoze.who.userid' in identity:
             return None
 

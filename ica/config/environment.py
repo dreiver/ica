@@ -4,6 +4,7 @@ import os
 from jinja2 import Environment, FileSystemLoader
 from pylons.configuration import PylonsConfig
 from sqlalchemy import engine_from_config
+from paste.deploy.converters import asbool
 
 import ica.lib.app_globals as app_globals
 import ica.lib.helpers
@@ -37,6 +38,9 @@ def load_environment(global_conf, app_conf):
     # Create the Jinja2 Environment
     jinja2_env = Environment(loader=FileSystemLoader(paths['templates']))
     config['pylons.app_globals'].jinja2_env = jinja2_env
+
+    if asbool(config['ldap_enabled']):
+        os.environ['LDAP_ENABLED'] = 'True'
 
     #config['pylons.strict_tmpl_context'] = True
 
