@@ -21,9 +21,11 @@ class UsernamePasswordAuthenticator(object):
         if not ('login' in identity and 'password' in identity):
             return None
 
+        """
         post = environ.get('webob._parsed_post_vars')
         if not ('type' in post[0]):
             return None
+        """
 
         # Check if ldap plugin is enabled and the user has valid credentials
         if 'LDAP_ENABLED' in os.environ and \
