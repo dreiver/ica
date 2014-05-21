@@ -59,7 +59,7 @@ def response_error(code, headers=None):
 
 	html = {
 		32:400,
-		33:401,
+		33:403,
 		34:404,
 		44:405,
 		64:403,
@@ -72,7 +72,7 @@ def response_error(code, headers=None):
 	if headers:
 		response.headerlist += headers
 
-	response.int = html[code]
+	response.status_code = html[code]
 	result = { 'errors':
 				[
 					{
