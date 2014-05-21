@@ -1,4 +1,3 @@
-import os
 import logging
 
 from pylons import request, response, session, tmpl_context as c, url
@@ -25,6 +24,8 @@ class MainController(BaseController):
 
 		if test_redis(g.redis_ica):
 			redirect('/offline')
+
+		#if 'ldap_auth' in request.environ['repoze.who.plugins']:
 
 		#print request.environ['repoze.who.identity']['mail']
 		#metadata = request.environ['repoze.who.identity']['mail']

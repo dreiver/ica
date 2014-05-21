@@ -39,9 +39,6 @@ def load_environment(global_conf, app_conf):
     jinja2_env = Environment(loader=FileSystemLoader(paths['templates']))
     config['pylons.app_globals'].jinja2_env = jinja2_env
 
-    if asbool(config['ldap_enabled']):
-        os.environ['LDAP_ENABLED'] = 'True'
-
     #config['pylons.strict_tmpl_context'] = True
 
     # Setup the SQLAlchemy database engine

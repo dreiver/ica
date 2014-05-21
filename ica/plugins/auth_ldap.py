@@ -18,8 +18,7 @@
 
 __all__ = ['LDAPBaseAuthenticatorPlugin', 'LDAPAuthenticatorPlugin',
            'LDAPSearchAuthenticatorPlugin', 'LDAPAttributesPlugin']
-
-import os
+           
 from zope.interface import implements
 import ldap
 
@@ -81,10 +80,6 @@ class LDAPBaseAuthenticatorPlugin(object):
 
         self.ldap_con_string = ldap_connection
         self.ldap_connection = make_ldap_connection(ldap_connection)
-        self.ldap_enabled = 'ok'
-
-        if not 'LDAP_ENABLED' in os.environ:
-            self.ldap_enabled = None
 
         if start_tls:
             try:
@@ -128,9 +123,6 @@ class LDAPBaseAuthenticatorPlugin(object):
 
         """
         logger = logging.getLogger('repoze.who')
-
-        if self.ldap_enabled is None:
-            return None
 
         try:
             dn = self._get_dn(environ, identity)

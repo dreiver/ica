@@ -1,4 +1,3 @@
-import os
 import logging
 
 from zope.interface import implements
@@ -26,9 +25,9 @@ class UsernamePasswordAuthenticator(object):
         if not ('type' in post[0]):
             return None
         """
-
+        
         # Check if ldap plugin is enabled and the user has valid credentials
-        if 'LDAP_ENABLED' in os.environ and \
+        if 'ldap_auth' in environ['repoze.who.plugins'] and \
             not 'repoze.who.userid' in identity:
             return None
 
