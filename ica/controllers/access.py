@@ -9,6 +9,8 @@ from ica.lib.base import BaseController, render
 from ica.lib.util import test_redis
 from ica.lib.helpers import flash
 
+from ica.model import User, Session
+
 from datetime import datetime, timedelta
 import hashlib
 import base64
@@ -37,9 +39,16 @@ class AccessController(BaseController):
 			login_counter = request.environ['repoze.who.logins'] + 1
 			redirect(url('/login', came_from=came_from, __logins=login_counter))
 		else:
-			metadata = request.environ['repoze.who.identity']
-			print request.environ['repoze.who.identity']['mail']
-			print dict(metadata=metadata.items())
+			user = User.by_user_name('eslovelle')
+			if 'mail' in request.environ['repoze.who.identity']:
+				user.email_address = request.environ['repoze.who.identity']['mail'][0]
+			if 'cn' in request.environ['repoze.who.identity']:
+				user.display_name = request.environ['repoze.who.identity']['cn'][0]
+			Session.commit()
+
+			#metadata = request.environ['repoze.who.identity']
+			#print request.environ['repoze.who.identity']['mail']
+			#print dict(metadata=metadata.items())
 
 		redirect(came_from)
 
