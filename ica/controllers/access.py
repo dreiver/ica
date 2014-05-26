@@ -36,6 +36,11 @@ class AccessController(BaseController):
 		if not identity:
 			login_counter = request.environ['repoze.who.logins'] + 1
 			redirect(url('/login', came_from=came_from, __logins=login_counter))
+		else:
+			metadata = request.environ['repoze.who.identity']
+			print request.environ['repoze.who.identity']['mail']
+			print dict(metadata=metadata.items())
+
 		redirect(came_from)
 
 	def logged_out(self):

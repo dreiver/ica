@@ -1,6 +1,7 @@
 import md5
 import sha
 from datetime import datetime
+from pylons import config
 
 from sqlalchemy import Table, ForeignKey, Column
 from sqlalchemy.types import String, Unicode, UnicodeText, Integer, DateTime, \
@@ -92,7 +93,8 @@ class User(Base):
         """encrypts password on the fly using the encryption
         algo defined in the configuration
         """
-        algorithm = config.get('authorize.hashmethod', None)
+        #algorithm = config.get('authorize.hashmethod', None)
+        algorithm = 'sha1'
         self._password = self.__encrypt_password(algorithm, password)
 
     def _get_password(self):

@@ -34,6 +34,14 @@ class UsernamePasswordAuthenticator(object):
         login = identity['login']
         user = User.by_user_name(login)
 
+        # If login was ok and user not exist, create it
+        if 'repoze.who.userid' in identity and \
+            user is None:
+            u = User(user_name=login, password=identity['password'])
+            Session.add(u)
+            Session.commit()
+
+        """
         if user is None:
             log.debug('Login failed - username \'%s\' not found', login)
         elif not user.is_active():
@@ -44,3 +52,5 @@ class UsernamePasswordAuthenticator(object):
             return user.name
 
         return None
+        """
+        
