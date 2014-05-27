@@ -68,7 +68,8 @@ class User(Base):
     theme = Column(Unicode(10))
 
     extern_uid = Column(Unicode(255))
-    
+
+    department = Column(Unicode(200, convert_unicode=False))
 
     #def __repr__(self):
     #    return '<User: email="%s", display name="%s">' % (
