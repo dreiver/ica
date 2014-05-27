@@ -40,15 +40,16 @@ class AccessController(BaseController):
 			redirect(url('/login', came_from=came_from, __logins=login_counter))
 		else:
 			user = User.by_user_name('eslovelle')
-			if 'mail' in request.environ['repoze.who.identity']:
-				user.email_address = request.environ['repoze.who.identity']['mail'][0]
-			if 'cn' in request.environ['repoze.who.identity']:
-				user.display_name = request.environ['repoze.who.identity']['cn'][0]
+			if 'mail' in identity:
+				user.email_address = identity['mail'][0]
+			if 'cn' in identity:
+				user.display_name = identity['cn'][0]
 			Session.commit()
 
-			#metadata = request.environ['repoze.who.identity']
-			#print request.environ['repoze.who.identity']['mail']
-			#print dict(metadata=metadata.items())
+			"""
+			metadata = request.environ['repoze.who.identity']
+			print dict(metadata=metadata.items())
+			"""
 
 		redirect(came_from)
 
