@@ -44,8 +44,6 @@ class AccessController(BaseController):
 				user.email_address = identity['mail'][0]
 			if 'cn' in identity:
 				user.display_name = identity['cn'][0]
-			if 'department' in identity:
-				user.department = identity['department'][0]
 			if 'repoze.who.userid' in identity:
 				user.extern_uid = identity['repoze.who.userid']
 			Session.commit()

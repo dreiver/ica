@@ -69,7 +69,7 @@ class User(Base):
 
     extern_uid = Column(Unicode(255))
 
-    department = Column(Unicode(200, convert_unicode=False))
+    #department = Column(Unicode(200, convert_unicode=False))
 
     #def __repr__(self):
     #    return '<User: email="%s", display name="%s">' % (
