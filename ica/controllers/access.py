@@ -6,10 +6,8 @@ from pylons.controllers.util import abort, redirect
 from pylons import app_globals as g
 
 from ica.lib.base import BaseController, render
-from ica.lib.util import test_redis
+from ica.lib.util import test_redis, update_user_identity
 from ica.lib.helpers import flash
-
-from ica.model import User, Session
 
 from datetime import datetime, timedelta
 import hashlib
@@ -39,19 +37,7 @@ class AccessController(BaseController):
 			login_counter = request.environ['repoze.who.logins'] + 1
 			redirect(url('/login', came_from=came_from, __logins=login_counter))
 		else:
-			user = User.by_user_name('eslovelle')
-			if 'mail' in identity:
-				user.email_address = identity['mail'][0]
-			if 'cn' in identity:
-				user.display_name = identity['cn'][0]
-			if 'repoze.who.userid' in identity:
-				user.extern_uid = identity['repoze.who.userid']
-			Session.commit()
-
-			"""
-			metadata = request.environ['repoze.who.identity']
-			print dict(metadata=metadata.items())
-			"""
+			update_user_identity(identity)
 
 		redirect(came_from)
 

@@ -27,11 +27,11 @@ class MainController(BaseController):
 
 		#if 'ldap_auth' in request.environ['repoze.who.plugins']:
 
-		#print request.environ['repoze.who.identity']['mail']
+		#print request.environ['repoze.who.identity'].items()
 		#metadata = request.environ['repoze.who.identity']['mail']
 		#print dict(metadata=metadata.items())
 
-		#c.session_name   = session['name']
+		c.session_name   = session['name']
 		#c.session_user   = session['user']
 		#c.session_role_i = session['role']
 		#c.session_role   = role_name(session['role'])

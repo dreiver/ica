@@ -3,6 +3,7 @@ import logging
 from pylons import request, response, session, tmpl_context as c, url
 from pylons import app_globals as g
 from ica.lib.base import render
+from ica.model import User, Session
 from datetime import datetime, timedelta
 import time
 
@@ -76,3 +77,46 @@ def role_name(role):
         return 'Moderador'
     else:
         return 'Usuario'
+
+
+def get_user_by_user_name(login):
+    return User.by_user_name(login)
+
+
+def add_new_user(login, password):
+    # TODO add token
+    u = User(user_name=login, password=password)
+    Session.add(u)
+    Session.commit()
+
+
+def set_session_vars(user):
+    session['mail'] = user.email_address
+    session['name'] = user.display_name
+    session['token'] = user.token
+    session['theme'] = user.theme
+    session['created'] = user.created
+    session['user_name'] = user.user_name
+    session['extern_uid'] = user.extern_uid
+    session.save()
+
+
+def update_user_identity(identity):
+    login = identity['userdata'].split('|')
+    user = get_user_by_user_name(login[0])
+
+    if user is None:
+        add_new_user(login[0], login[1])
+        user = get_user_by_user_name(login[0])
+
+    set_session_vars(user)
+
+    if 'mail' in identity:
+        user.email_address = identity['mail'][0]
+    if 'cn' in identity:
+        user.display_name = identity['cn'][0]
+    if 'repoze.who.userid' in identity:
+        user.extern_uid = identity['repoze.who.userid']
+
+    Session.commit()
+    
