@@ -63,6 +63,13 @@ class User(Base):
 
     created = Column(DateTime, default=datetime.now)
 
+    token = Column(Unicode(20), unique=True)
+
+    theme = Column(Unicode(10))
+
+    extern_uid = Column(Unicode(255))
+    
+
     #def __repr__(self):
     #    return '<User: email="%s", display name="%s">' % (
     #            self.email_address, self.display_name)
