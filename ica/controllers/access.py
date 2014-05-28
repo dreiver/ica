@@ -42,4 +42,6 @@ class AccessController(BaseController):
 		redirect(came_from)
 
 	def logged_out(self):
+		session.clear()
+		session.save()
 		redirect('/')
