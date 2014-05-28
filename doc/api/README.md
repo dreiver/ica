@@ -15,14 +15,20 @@ The API uses JSON or XML to serialize data. By default all api requests will be 
 
 ## Authentication
 
-If future we have plans to add OAUTH tokens.
+Both methods allowd are basic and token.
 
 ### Basic Authentication (sent in header)
 
 	$ curl -u "username" https://example.com/api/v1/conf/index
-	# or calculating token by your ownn
-	$ curl -H "Authorization: Basic BASIC-TOKEN" https://example.com/api/v1/conf/index
 
-### Basic Authentication (sent a parameter)
+### Basic Authentication (sent as parameter)
 
 	$ curl https://example.com/api/v1/conf/index?access_token=BASIC-TOKEN
+
+### Token Authentication (sent in header)
+
+	$ curl -H "Authorization: token TOKEN" https://example.com/api/v1/conf/index
+
+### Token Authentication (sent as parameter)
+
+	$ curl https://example.com/api/v1/conf/index?access_token=TOKEN
