@@ -109,14 +109,14 @@ def update_user_identity(identity):
         add_new_user(login[0], login[1])
         user = get_user_by_user_name(login[0])
 
-    set_session_vars(user)
-
     if 'mail' in identity:
         user.email_address = identity['mail'][0]
     if 'cn' in identity:
         user.display_name = identity['cn'][0]
     if 'repoze.who.userid' in identity:
         user.extern_uid = identity['repoze.who.userid']
+
+    set_session_vars(user)
 
     Session.commit()
     
