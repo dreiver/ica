@@ -27,8 +27,8 @@ Both methods allowd are basic and token.
 
 ### Token Authentication (sent in header)
 
-	$ curl -H "Authorization: token TOKEN" https://example.com/api/v1/conf/index
+	$ curl -H "Authorization: token PRIVATE-TOKEN" https://example.com/api/v1/conf/index
 
 ### Token Authentication (sent as parameter)
 
-	$ curl https://example.com/api/v1/conf/index?access_token=TOKEN
+	$ curl https://example.com/api/v1/conf/index?access_token=PRIVATE-TOKEN
