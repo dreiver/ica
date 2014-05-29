@@ -37,7 +37,8 @@ class UsernamePasswordAuthenticator(object):
 
         #TODO:
         if 'HTTP_AUTHORIZATION' in environ or \
-            not 'ldap_auth' in environ['repoze.who.plugins']:
+            not 'ldap_auth' in environ['repoze.who.plugins']:#or \
+            #'custom_login' in form:
             user = get_user_by_user_name(identity['login'])
             
             # If login was ok and user not exist, create it

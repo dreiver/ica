@@ -6,6 +6,7 @@ from ica.lib.base import render
 from ica.model import User, Session
 from datetime import datetime, timedelta
 import time
+import uuid
 
 try:
     import json
@@ -20,7 +21,7 @@ log = logging.getLogger(__name__)
 
 def pjax(template):
     """Determine whether the request was made by PJAX."""
-    if "X-PJAX" in request.headers:
+    if 'X-PJAX' in request.headers:
         return render('metis/'+template)
 
     c.template = 'metis/'+template
@@ -56,7 +57,7 @@ def get_day_values(redis):
         else: value = day_hours.get(str(i))
         values.append(str(value))
 
-    return ",".join(values)
+    return ','.join(values)
 
 
 def get_week(redis):
@@ -83,10 +84,15 @@ def get_user_by_user_name(login):
     return User.by_user_name(login)
 
 
+def create_private_token():
+    u = uuid.uuid4()
+    return u.bytes.encode('base64')[:20]
+
+
 def add_new_user(login, password):
-    # TODO add token
-    u = User(user_name=login, password=password)
-    Session.add(u)
+    token = create_private_token()
+    user = User(user_name=login, password=password, token=token)
+    Session.add(user)
     Session.commit()
 
 

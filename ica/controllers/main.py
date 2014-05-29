@@ -32,6 +32,7 @@ class MainController(BaseController):
 		#print dict(metadata=metadata.items())
 
 		c.session_name   = session['name']
+		c.session_mail   = session['mail']
 		#c.session_user   = session['user']
 		#c.session_role_i = session['role']
 		#c.session_role   = role_name(session['role'])
