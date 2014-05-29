@@ -1,10 +1,12 @@
 import logging
 
 from pylons import request, response, session, tmpl_context as c, url
+from pylons import config
 from pylons.decorators.util import get_pylons
 from paste.httpexceptions import get_exception
 from decorator import decorator
 from dicttoxml import dicttoxml as xml
+from ica.lib.util import get_user_by_token
 
 try:
 	import json
@@ -20,9 +22,39 @@ log = logging.getLogger(__name__)
 @decorator
 def api(func, *args, **kwargs):
 	data   = None
+	user   = None
+	token  = None
 	format = args[1]
 
-	user = request.environ.get('REMOTE_USER', '')
+	token_header_name = config.get('api.token_header_name', 'Authorization')
+	api_token = request.headers.get(token_header_name, '').split(' ')
+
+	# Credentials via header
+	if len(api_token) == 2:
+		if (api_token[0] == 'token' and len(api_token[1]) == 20):
+			token = api_token[1]
+		elif (api_token[0] != 'Basic'):
+			data = response_error( 32 )
+	
+	# Credentials via parameter
+	elif len(request.params) == 1:
+		if 'access_token' in request.params:
+			token = request.params.getall('access_token')[0]
+			if len(token) != 20:
+				data = response_error( 32 )
+		else:
+			data = response_error( 32 )
+
+	# No Authentication
+	#else:
+	#	data = response_error( 33 )
+
+
+	if token:
+		user = get_user_by_token(token)
+	else:
+		user = request.environ.get('REMOTE_USER', '')
+
 	# If user not exist return forbidden
 	if not user:
 		data = response_error( 33 )

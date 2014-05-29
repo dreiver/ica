@@ -84,6 +84,10 @@ def get_user_by_user_name(login):
     return User.by_user_name(login)
 
 
+def get_user_by_token(token):
+    return User.by_token(token)
+
+
 def create_private_token():
     u = uuid.uuid4()
     return u.bytes.encode('base64')[:20]

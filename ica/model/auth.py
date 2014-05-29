@@ -96,6 +96,13 @@ class User(Base):
         """
         return Session.query(cls).filter(cls.user_name==username).first()
 
+    @classmethod
+    def by_token(cls, token):
+        """A class method that permits to search users
+        based on their token authentication since it is unique.
+        """
+        return Session.query(cls).filter(cls.token==token).first()
+
 
     def _set_password(self, password):
         """encrypts password on the fly using the encryption
