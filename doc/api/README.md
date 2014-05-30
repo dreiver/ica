@@ -21,10 +21,6 @@ Both methods allowd are basic and token.
 
 	$ curl -u "username" https://example.com/api/v1/conf/index
 
-### Basic Authentication (sent as parameter)
-
-	$ curl https://example.com/api/v1/conf/index?access_token=BASIC-TOKEN
-
 ### Token Authentication (sent in header)
 
 	$ curl -H "Authorization: token PRIVATE-TOKEN" https://example.com/api/v1/conf/index
