@@ -31,24 +31,17 @@ def api(func, *args, **kwargs):
 
 	# Credentials via header
 	if len(api_token) == 2:
-		if (api_token[0] == 'token' and len(api_token[1]) == 20):
-			token = api_token[1]
-		elif (api_token[0] != 'Basic'):
-			data = response_error( 32 )
+		if 'token' in api_token:
+			head = api_token[1]
+			if (len(head) == 20):
+				token = head
 	
 	# Credentials via parameter
 	elif len(request.params) == 1:
 		if 'access_token' in request.params:
-			token = request.params.getall('access_token')[0]
-			if len(token) != 20:
-				data = response_error( 32 )
-		else:
-			data = response_error( 32 )
-
-	# No Authentication
-	#else:
-	#	data = response_error( 33 )
-
+			param = request.params.getall('access_token')[0]
+			if (len(param) == 20):
+				token = param
 
 	if token:
 		user = get_user_by_token(token)
