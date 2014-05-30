@@ -1,0 +1,24 @@
+{
+  "name": "dns",
+  "private": false,
+  "version": "0.0.8",
+  "description": "",
+  "author": "Ezequiel Lovelle <ezequiellovelle@gmail.com>",
+  "description": "DNS server with backend on redis. Based on iriscouche's dnsd: https://github.com/iriscouch/dnsd",
+  "main": "dns.js",
+  "bin": "./dns.js",
+  "dependencies": {
+    "dnsd": "0.9.0",
+    "redis": "0.8.4",
+    "defaultable": "*",
+    "nconf" : "*",
+    "native-dns" : "*"
+  },
+  "keywords": [
+    "DNS",
+    "bind",
+    "dnsd",
+    "redis"
+  ],
+  "license": "BSD"
+}

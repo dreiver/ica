@@ -1,0 +1,9 @@
+{
+  "dns_interface" : "127.0.0.1",
+  "dns_port" : 53,
+  "dns_zone" : "dns.local",
+  "dns_master" : "10.1.1.3",
+  "redis_host" : "localhost",
+  "redis_port" : 6379,
+  "logging" : "warning"
+}
