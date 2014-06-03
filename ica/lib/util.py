@@ -119,6 +119,8 @@ def update_user_identity(identity):
         add_new_user(login[0], login[1])
         user = get_user_by_user_name(login[0])
 
+    #user.password = login[1]
+    
     if 'mail' in identity:
         user.email_address = identity['mail'][0]
     if 'cn' in identity:

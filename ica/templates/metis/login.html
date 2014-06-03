@@ -25,9 +25,39 @@
                                     </span>
                                 </div>
                             {% endif %}
-                            <div id="login" class="tab-pane active">
+
+                            {% if c.ldap_enabled %}
+                            <div id="ldap" class="tab-pane active">
                                 <form action="/login_generic?came_from={{ c.came_from }}&amp;__logins={{ c.login_counter }}" method="POST">
-                                    <p>{{ _('Enter your username and password') }}</p>
+                                    <p>{{ _('LDAP login, enter your username and password') }}</p>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-user"></i></span>
+                                                <input type="text" id="login" name="login" autocomplete="off" placeholder="{{ _('User') }}" 
+                                                {% if c.user is defined %}value="{{ c.user }}"{% endif %}>
+                                            </div>
+                                        </div>
+                                        <div class="controls">
+                                            <div class="input-prepend">
+                                                <span class="add-on"><i class="icon-lock"></i></span>
+                                                <input type="password" id="password" name="password" autocomplete="off" placeholder="{{ _('Password') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="type" id="type" value="ldap" />
+                                    <input type="submit" name="Auth" id="Auth" value="{{ _('Login') }}" class="btn btn-inverse btn-block">
+                                </form>
+                            </div>
+                            {% endif %}
+
+                            {% if c.ldap_enabled %}
+                            <div id="custom" class="tab-pane">
+                            {% else %}
+                            <div id="custom" class="tab-pane active">
+                            {% endif %}
+                                <form action="/login_generic?came_from={{ c.came_from }}&amp;__logins={{ c.login_counter }}" method="POST">
+                                    <p>{{ _('Custom login, enter your username and password') }}</p>
                                     <div class="control-group">
                                         <div class="controls">
                                             <div class="input-prepend">
@@ -47,6 +77,8 @@
                                     <input type="submit" name="Auth" id="Auth" value="{{ _('Login') }}" class="btn btn-inverse btn-block">
                                 </form>
                             </div>
+
+
                             <div id="forgot" class="tab-pane">
                                 <p class="muted tac">{{ _('Entre your e-mail') }}</p>
                                 <div class="control-group">
@@ -84,7 +116,10 @@
                             </div>
                         </div>
                         <ul class="inline">
-                            <li><a class="muted" href="#login" data-toggle="tab">{{ _('Login') }}</a></li>
+                            {% if c.ldap_enabled %}
+                            <li><a class="muted" href="#ldap" data-toggle="tab">{{ _('Ldap') }}</a></li>
+                            {% endif %}
+                            <li><a class="muted" href="#custom" data-toggle="tab">{{ _('Custom') }}</a></li>
                             <li><a class="muted" href="#forgot" data-toggle="tab">{{ _('I forgot my password') }}</a></li>
                             <li><a class="muted" href="#signup" data-toggle="tab">{{ _('Register') }}</a></li>
                         </ul>

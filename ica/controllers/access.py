@@ -20,6 +20,9 @@ class AccessController(BaseController):
 
 	def login(self):
 		login_counter = request.environ['repoze.who.logins']
+		
+		if 'ldap_auth' in request.environ['repoze.who.plugins']:
+			c.ldap_enabled = True
 
 		if login_counter > 0:
 			c.login_error = True
