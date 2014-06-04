@@ -20,12 +20,6 @@ class UsernamePasswordAuthenticator(object):
         if not ('login' in identity and 'password' in identity):
             return None
 
-        """
-        post = environ.get('webob._parsed_post_vars')
-        if not ('type' in post[0]):
-            return None
-        """
-
         # Check if ldap plugin is enabled and the user has valid credentials
         if 'ldap_auth' in environ['repoze.who.plugins'] and \
             not 'repoze.who.userid' in identity:
@@ -34,11 +28,13 @@ class UsernamePasswordAuthenticator(object):
         # Store user|password
         userpw = identity['login']+'|'+identity['password']
         identity.update({'userdata': str(userpw)})
+        auth = environ.get('ica.login.auth', 'custom')
 
         #TODO:
         if 'HTTP_AUTHORIZATION' in environ or \
-            not 'ldap_auth' in environ['repoze.who.plugins']:#or \
-            #'custom_login' in form:
+            not 'ldap_auth' in environ['repoze.who.plugins'] or \
+            'custom' in auth:
+            
             user = get_user_by_user_name(identity['login'])
             
             # If login was ok and user not exist, create it
