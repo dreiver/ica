@@ -168,6 +168,11 @@ class FriendlyFormPlugin(object):
                                                            query['came_from'])
             failed_logins = self._get_logins(environ, True)
             new_dest = self._set_logins_in_url(destination, failed_logins)
+            
+            if '__auth' in query:
+                new_dest = new_dest+'&__auth='+query['__auth']
+            
+            environ['ica.login.auth'] = query.get('__auth', 'custom')
             environ['repoze.who.application'] = HTTPFound(location=new_dest)
             return credentials
 
@@ -188,6 +193,7 @@ class FriendlyFormPlugin(object):
             # So let's load the counter into the environ and then hide it from
             # the query string (it will cause problems in frameworks like TG2,
             # where this unexpected variable would be passed to the controller)
+            environ['ica.login.auth'] = query.get('__auth', 'custom')
             environ['repoze.who.logins'] = self._get_logins(environ, True)
             # Hiding the GET variable in the environ:
             if self.login_counter_name in query:

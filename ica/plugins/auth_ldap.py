@@ -123,6 +123,10 @@ class LDAPBaseAuthenticatorPlugin(object):
 
         """
         logger = logging.getLogger('repoze.who')
+        auth = environ.get('ica.login.auth', 'custom')
+
+        if 'custom' in auth:
+            return None
 
         try:
             dn = self._get_dn(environ, identity)
