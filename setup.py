@@ -25,6 +25,7 @@ setup(
         "Redis",
         #"python-ldap",
         #"who_ldap",
+	#"python3_ldap",
         "MySQL-python",
         #"repoze.what-pylons",
         #"repoze.who",

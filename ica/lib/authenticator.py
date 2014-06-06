@@ -5,13 +5,7 @@ from repoze.who.interfaces import IAuthenticator
 
 from ica.lib.util import get_user_by_user_name, add_new_user
 
-from ica.plugins.auth_ldap import (
-    LDAPAttributesPlugin, LDAPAuthenticatorPlugin, LDAPSearchAuthenticatorPlugin
-)
-import ldap
-
 log = logging.getLogger(__name__)
-
 
 class UsernamePasswordAuthenticator(object):
     implements(IAuthenticator)
