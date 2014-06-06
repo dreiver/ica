@@ -26,8 +26,8 @@ class UsernamePasswordAuthenticator(object):
             return None
 
         # Store user|password
-        userpw = identity['login']+'|'+identity['password']
-        identity.update({'userdata': str(userpw)})
+        #userpw = identity['login']+'|'+identity['password']
+        #identity.update({'userdata': str(userpw)})
         auth = environ.get('ica.login.auth', 'custom')
 
         #TODO:

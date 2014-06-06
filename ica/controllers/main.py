@@ -4,9 +4,6 @@ from pylons import request, response, session, tmpl_context as c, url
 from pylons import app_globals as g
 from pylons.controllers.util import abort, redirect
 
-from repoze.what.predicates import not_anonymous, has_permission, is_user, in_group
-from repoze.what.plugins.pylonshq import ControllerProtector
-
 from ica.lib.base import BaseController
 from ica.lib.util import *
 from datetime import datetime, timedelta
@@ -31,8 +28,8 @@ class MainController(BaseController):
 		#metadata = request.environ['repoze.who.identity']['mail']
 		#print dict(metadata=metadata.items())
 
-		c.session_name   = session['name']
-		c.session_mail   = session['mail']
+		#c.session_name   = session['name']
+		#c.session_mail   = session['mail']
 		#c.session_user   = session['user']
 		#c.session_role_i = session['role']
 		#c.session_role   = role_name(session['role'])

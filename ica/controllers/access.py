@@ -40,8 +40,9 @@ class AccessController(BaseController):
 			login_counter = request.environ['repoze.who.logins'] + 1
 			redirect(url('/login', came_from=came_from, __logins=login_counter))
 		else:
+			print identity.items()
 			#request.environ.get('ica.login.auth')
-			update_user_identity(identity)
+			#update_user_identity(identity)
 
 		redirect(came_from)
 
