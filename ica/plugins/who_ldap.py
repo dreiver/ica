@@ -190,8 +190,8 @@ class LDAPSearchAuthenticatorPlugin(object):
         logger = logging.getLogger('repoze.who')
         auth = environ.get('ica.login.auth', 'custom')
 
-        if 'custom' in auth:
-            return None
+        #if 'custom' in auth:
+        #    return None
 
         if 'login' not in identity:
             return None
