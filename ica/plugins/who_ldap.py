@@ -278,11 +278,14 @@ class LDAPAttributesPlugin(object):
 
     # IMetadataProvider
     def add_metadata(self, environ, identity):
+        logger = logging.getLogger('repoze.who')
+
         with make_connection(self.url, self.bind_dn, self.bind_pass) as conn:
             if self.start_tls:
                 conn.start_tls()
             if not conn.bind():
-                raise ValueError('Cannot establish connection')
+                logger.error('Cannot establish connection')
+                return None
 
             dn = extract_userdata(identity)
 
@@ -294,8 +297,9 @@ class LDAPAttributesPlugin(object):
                                              else self.attributes))
 
             if not status:
-                raise Exception('Cannot add metadata for %s: %s'
+                logger.error('Cannot add metadata for %s: %s'
                                 % (dn, conn.result))
+                return None
 
             result = {}
 
@@ -370,11 +374,14 @@ class LDAPGroupsPlugin(object):
 
     # IMetadataProvider
     def add_metadata(self, environ, identity):
+        logger = logging.getLogger('repoze.who')
+
         with make_connection(self.url, self.bind_dn, self.bind_pass) as conn:
             if self.start_tls:
                 conn.start_tls()
             if not conn.bind():
-                raise ValueError('Cannot establish connection')
+                logger.error('Cannot establish connection')
+                return None
 
             dn = extract_userdata(identity)
 
@@ -384,8 +391,9 @@ class LDAPGroupsPlugin(object):
                                  attributes=[self.returned_id])
 
             if not status:
-                raise Exception('Cannot add metadata for %s: %s'
+                logger.error('Cannot add metadata for %s: %s'
                                 % (dn, conn.result))
+                return None
 
             groups = tuple(r['attributes'][self.returned_id][0]
                            for r in conn.response)
