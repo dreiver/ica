@@ -15,9 +15,11 @@ class UsernamePasswordAuthenticator(object):
             return None
 
         # Check if ldap plugin is enabled and the user has valid credentials
+	"""
         if 'ldap_auth' in environ['repoze.who.plugins'] and \
             not 'repoze.who.userid' in identity:
             return None
+	"""
 
         # Store user|password
         #userpw = identity['login']+'|'+identity['password']
