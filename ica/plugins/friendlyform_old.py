@@ -15,16 +15,8 @@
 
 """Collection of :mod:`repoze.who` friendly forms"""
 
-try:
-    from urlparse import urlparse, urlunparse
-except ImportError:
-    from urllib.parse import urlparse, urlunparse
-
-try:
-    from urllib import urlencode
-except ImportError:
-    from urllib.parse import urlencode
-
+from urlparse import urlparse, urlunparse
+from urllib import urlencode
 try:
     from urlparse import parse_qs
 except ImportError:#pragma: no cover
@@ -33,13 +25,14 @@ except ImportError:#pragma: no cover
 from webob import Request
 # TODO: Stop using Paste; we already started using WebOb
 from webob.exc import HTTPFound, HTTPUnauthorized
-from zope.interface import implementer
+from paste.request import construct_url, parse_dict_querystring, parse_formvars
+from zope.interface import implements
 
 from repoze.who.interfaces import IChallenger, IIdentifier
 
 __all__ = ['FriendlyFormPlugin']
 
-@implementer(IChallenger, IIdentifier)
+
 class FriendlyFormPlugin(object):
     """
     :class:`RedirectingFormPlugin
@@ -65,6 +58,8 @@ class FriendlyFormPlugin(object):
     supported) and ISO-8859-1 (aka "Latin-1") is the default one.
 
     """
+    implements(IChallenger, IIdentifier)
+
     classifications = {
         IIdentifier: ["browser"],
         IChallenger: ["browser"],
@@ -125,11 +120,7 @@ class FriendlyFormPlugin(object):
 
         """
         request = Request(environ)
-        if 'charset' not in request.content_type:
-            charset = self.charset
-        else:
-            charset = request.charset
-        request = request.decode(charset)
+        #request = Request(environ, charset=self.charset)
 
         path_info = environ['PATH_INFO']
         script_name = environ.get('SCRIPT_NAME') or '/'
@@ -175,19 +166,19 @@ class FriendlyFormPlugin(object):
                     destination = self._insert_qs_variable(destination,
                                                            'came_from',
                                                            query['came_from'])
-            failed_logins = self._get_logins(request, True)
+            failed_logins = self._get_logins(environ, True)
             new_dest = self._set_logins_in_url(destination, failed_logins)
-
+            
             if '__auth' in query:
                 new_dest = new_dest+'&__auth='+query['__auth']
-
+            
             environ['ica.login.auth'] = query.get('__auth', 'custom')
             environ['repoze.who.application'] = HTTPFound(location=new_dest)
             return credentials
 
         elif path_info == self.logout_handler_path:
             ##    We are on the URL where repoze.who logs the user out.    ##
-            form = dict(request.POST)
+            form = parse_formvars(environ)
             form.update(query)
             referer = environ.get('HTTP_REFERER', script_name)
             came_from = form.get('came_from', referer)
@@ -196,14 +187,14 @@ class FriendlyFormPlugin(object):
             environ['repoze.who.application'] = HTTPUnauthorized()
             return None
 
-        elif path_info == self.login_form_url or self._get_logins(request):
+        elif path_info == self.login_form_url or self._get_logins(environ):
             ##  We are on the URL that displays the from OR any other page  ##
             ##   where the login counter is included in the query string.   ##
             # So let's load the counter into the environ and then hide it from
             # the query string (it will cause problems in frameworks like TG2,
             # where this unexpected variable would be passed to the controller)
             environ['ica.login.auth'] = query.get('__auth', 'custom')
-            environ['repoze.who.logins'] = self._get_logins(request, True)
+            environ['repoze.who.logins'] = self._get_logins(environ, True)
             # Hiding the GET variable in the environ:
             if self.login_counter_name in query:
                 del query[self.login_counter_name]
@@ -220,9 +211,7 @@ class FriendlyFormPlugin(object):
         url_parts = list(urlparse(self.login_form_url))
         query = url_parts[4]
         query_elements = parse_qs(query)
-        came_from = environ.get('came_from', None)
-        if came_from is None:
-            came_from = Request(environ).url
+        came_from = environ.get('came_from', construct_url(environ))
         query_elements['came_from'] = came_from
         url_parts[4] = urlencode(query_elements, doseq=True)
         login_form_url = urlunparse(url_parts)
@@ -282,7 +271,7 @@ class FriendlyFormPlugin(object):
             path = environ.get('SCRIPT_NAME', '') + path
         return path
 
-    def _get_logins(self, request, force_typecast=False):
+    def _get_logins(self, environ, force_typecast=False):
         """
         Return the login counter from the query string in the ``environ``.
 
@@ -291,7 +280,7 @@ class FriendlyFormPlugin(object):
         Otherwise, it will be ``None`` or an string.
 
         """
-        variables = dict(request.GET)
+        variables = parse_dict_querystring(environ)
         failed_logins = variables.get(self.login_counter_name)
         if force_typecast:
             try:
