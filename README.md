@@ -33,8 +33,8 @@ Run:
 
 Run gunicorn:
 
-    $ gunicorn --paste development.ini -c ica/config/gunicorn.conf.py
+    $ gunicorn --paste production.ini -c ica/config/gunicorn.conf.py
 
 Run gunicorn with external event lib
 
-    $ gunicorn --paste development.ini -k gevent -c ica/config/gunicorn.conf.py
+    $ gunicorn --paste production.ini -k gevent -c ica/config/gunicorn.conf.py
