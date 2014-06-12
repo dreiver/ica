@@ -1,0 +1,8 @@
+# If you want use MySQL
+MySQL-python==1.2.5
+
+# If you want use PostgreSQL
+psycopg2==2.5.3
+
+# If you want use SQLite and Python 2.4 (not needed for Python 2.5)
+pysqlite==2.6.3
