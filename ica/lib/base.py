@@ -28,4 +28,4 @@ class BaseController(WSGIController):
     def __after__(self, environ):
     	end_timer = time.time() - c.timer
     	url = environ['PATH_INFO']
-    	log.debug("'%s' render time %.3f seconds" % (url, end_timer))
+    	log.info("'%s' render time %.3f seconds" % (url, end_timer))
