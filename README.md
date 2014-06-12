@@ -20,7 +20,8 @@ Then you are ready to go.
 
 Installation:
 
-    $ aptitude install python-pip python-virtualenv # In Debian/Ubuntu
+    # Dependences for python debian/ubuntu support
+    $ aptitude install python-pip python-virtualenv python-dev
     $ cd /home
     $ virtualenv env
     $ source env/bin/activate
