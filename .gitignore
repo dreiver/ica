@@ -8,16 +8,16 @@ Paste*
 nohup.out
 
 # ica/pylons
-data/*
 *.db
-*.log
-sstore/*
-pylons_data/*
-ica.egg-info
+log/*
 tmp/*
+data/*
+sstore/*
+setuptools-*
+pylons_data/*
 build
 dist
-setuptools-*
+ica.egg-info
 
 # node.js
 node_modules/
