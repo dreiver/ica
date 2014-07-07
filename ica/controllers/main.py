@@ -108,6 +108,7 @@ class MainController(BaseController):
 		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0, 4)
 		c.ica_logs_serv_jpos = g.redis_ica.lrange('ica:logs:cabal:jpos', 0, 4)#CABAL
 
+		"""
 		users   = g.redis_ica.smembers('ica:users')
 		c.users = []
 
@@ -120,6 +121,7 @@ class MainController(BaseController):
 			user['role_n'] = role_name(user['role'])
 			user['user']   = i
 			c.users.append(user)
+		"""
 
 		return pjax('system-panel.html')
 
