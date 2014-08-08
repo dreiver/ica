@@ -27,3 +27,4 @@ class Globals(object):
         self.redis = redis
         self.redis_voip = redis.Redis( host=config['redis.voip_host'], port=int(config['redis.voip_port']), socket_timeout=int(config['redis.voip_timeout']) )
         self.redis_ica  = redis.Redis( host=config['redis.ica_host'], port=int(config['redis.ica_port']), socket_timeout=int(config['redis.ica_timeout']) )
+        self.template = config['ica.template']

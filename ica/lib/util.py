@@ -22,10 +22,10 @@ log = logging.getLogger(__name__)
 def pjax(template):
     """Determine whether the request was made by PJAX."""
     if 'X-PJAX' in request.headers:
-        return render('metis/'+template)
+        return render(g.template+'/'+template)
 
-    c.template = 'metis/'+template
-    return render('metis/base.html')
+    c.template = g.template+'/'+template
+    return render(g.template+'/base.html')
 
 
 def test_redis(redis):
