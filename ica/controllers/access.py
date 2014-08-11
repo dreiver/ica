@@ -30,7 +30,7 @@ class AccessController(BaseController):
 		c.login_counter = login_counter
 		c.came_from = request.params.get('came_from') or url('/')
 		
-		return render('metis/login.html')
+		return render(g.template+'/login.html')
 		
 	def logged_in(self):
 		identity = request.environ.get('repoze.who.identity')

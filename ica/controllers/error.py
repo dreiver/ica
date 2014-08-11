@@ -3,6 +3,7 @@ import cgi
 from paste.urlparser import PkgResourcesParser
 from pylons.middleware import error_document_template
 from webhelpers.html.builder import literal
+from pylons import app_globals as g
 
 from ica.lib.base import BaseController, render
 
@@ -29,10 +30,10 @@ class ErrorController(BaseController):
         """
 
         if code == "404":
-            return render('metis/404.html')
+            return render(g.template+'/404.html')
 
         #return page
-        return render('metis/500.html')
+        return render(g.template+'/500.html')
 
     def img(self, id):
         """Serve Pylons' stock images"""
