@@ -26,6 +26,10 @@ Installation:
     $ virtualenv env
     $ source env/bin/activate
     $ cd ica/
+    $ pip install -r requirements.txt
+    $ pip install -r rdbms.txt
+    # Adjust custom configuration
+    $ editor development.ini
     $ python setup.py develop
 
 Run:
