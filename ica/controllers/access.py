@@ -19,7 +19,11 @@ log = logging.getLogger(__name__)
 class AccessController(BaseController):
 
 	def login(self):
+		identity = request.environ.get('repoze.who.identity')
 		login_counter = request.environ['repoze.who.logins']
+
+		if identity:
+			redirect('/')
 		
 		if 'ldap_auth' in request.environ['repoze.who.plugins']:
 			c.ldap_enabled = True
