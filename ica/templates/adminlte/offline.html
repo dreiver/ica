@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>AdminLTE | 404 Page not found</title>
+        <title>AdminLTE | Offline</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="/adminlte/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -32,22 +32,25 @@
                 <!-- Main content -->
                 <section class="content">
                     <div class="error-page">
-                        <h2 class="headline text-info">404</h2>
+                        <h2 class="headline"><i class="fa fa-chain-broken text-red"></i></h2>
                         <div class="error-content">
-                            <h3><i class="fa fa-info text-blue"></i> Oops! Page not found.</h3>
-                            <p>
-                                We could not find the page you were looking for.
-                                Meanwhile, you may <a href='/index'>return to dashboard</a> or try using the search form.
-                            </p>
-                            <form class='search-form'>
-                                <div class='input-group'>
-                                    <input type="text" name="search" class='form-control' placeholder="Search"/>
-                                    <div class="input-group-btn">
-                                        <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
-                                    </div>
-                                </div><!-- /.input-group -->
-                            </form>
-                        </div><!-- /.error-content -->
+                            <div class="callout callout-danger">
+                                <h4><i class="fa fa-warning text-red"></i> Ouch! We are offline.</h4>
+                                <p>
+                                    There is some internal service offline.
+                                    We will back shortly.
+                                    Meanwhile, you may <a href='/index'>return to dashboard</a> or try using the search form.
+                                </p>
+                                <form class='search-form'>
+                                    <div class='input-group'>
+                                        <input type="text" name="search" class='form-control' placeholder="Search"/>
+                                        <div class="input-group-btn">
+                                            <button type="submit" name="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div><!-- /.input-group -->
+                                </form>
+                            </div>
+                        </div>
                     </div><!-- /.error-page -->
                 </section><!-- /.content -->
             </aside><!-- /.right-side -->
