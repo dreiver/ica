@@ -2,7 +2,8 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>ICA</title>
+        <title>{{ config['ica.product_l_name'] }}</title>
+        <meta name="description" content="{{ config['ica.product_s_name'] }}:{{ config['ica.product_l_name'] }}">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- bootstrap 3.0.2 -->
         <link href="/adminlte/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -232,15 +233,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>Ezequiel Lovelle <i class="caret"></i></span>
+                                <span>{{ c.session_name }} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        Ezequiel Lovelle - Developer
-                                        <small>Member since Nov. 2012</small>
+                                        {{ c.session_name }} - {{ c.session_departament }}
+                                        <small>Member since {{ c.first_session_access }}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -281,9 +282,13 @@
                             <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, Ezequiel</p>
-
-                            <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            <p>Hello, {{ c.session_name }}</p>
+                            <h6 href="#"><i class="fa fa-circle text-success"></i> Online</h6>
+                            <ul class="list-unstyled user-info">
+                                <li class="text-muted">Administrador</li>
+                                <li>Ultimo acceso:</li>
+                                <small><i class="fa fa-calendar"></i> 13 Aug 16:33</small>
+                            </ul>
                         </div>
                     </div>
                     <!-- search form -->

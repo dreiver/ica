@@ -28,12 +28,14 @@ class MainController(BaseController):
 		#metadata = request.environ['repoze.who.identity']['mail']
 		#print dict(metadata=metadata.items())
 
-		#c.session_name   = session['name']
-		#c.session_mail   = session['mail']
-		#c.session_user   = session['user']
-		#c.session_role_i = session['role']
-		#c.session_role   = role_name(session['role'])
-		#c.session_access = datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
+		c.session_name			= 'Ezequiel Lovelle' #c.session_name = session['name']
+		c.session_mail			= 'ezequiellovelle@gmail.com' #c.session_mail = session['mail']
+		c.session_user			= 0 #c.session_user = session['user']
+		#c.session_role_i		= session['role']
+		#c.session_role 		= role_name(session['role'])
+		#c.session_access 		= datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
+		c.first_session_access 	= 'Nov. 2013'
+		c.session_departament	= 'Gcia Tecnologia' #c.session_mail = session['mail']
 
 		conf_menu = [
 			{ 'title': 'Home', 'icon': 'icon-home', 'href': '/index' },
