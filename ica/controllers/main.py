@@ -13,10 +13,11 @@ log = logging.getLogger(__name__)
 
 class MainController(BaseController):
 
-
 	def __before__(self):
 
-		if not request.environ.get('repoze.who.identity'):
+		identity = request.environ.get('repoze.who.identity')
+
+		if not identity:
 			redirect('/login')
 
 		if test_redis(g.redis_ica):
@@ -24,18 +25,18 @@ class MainController(BaseController):
 
 		#if 'ldap_auth' in request.environ['repoze.who.plugins']:
 
-		#print request.environ['repoze.who.identity'].items()
 		#metadata = request.environ['repoze.who.identity']['mail']
 		#print dict(metadata=metadata.items())
 
-		c.session_name			= 'Ezequiel Lovelle' #c.session_name = session['name']
-		c.session_mail			= 'ezequiellovelle@gmail.com' #c.session_mail = session['mail']
-		c.session_user			= 0 #c.session_user = session['user']
-		#c.session_role_i		= session['role']
-		#c.session_role 		= role_name(session['role'])
-		#c.session_access 		= datetime.strptime(session['access'], '%Y-%m-%d %H:%M:%S.%f').strftime('%e %b %H:%M')
-		c.first_session_access 	= 'Nov. 2013'
-		c.session_departament	= 'Gcia Tecnologia' #c.session_mail = session['mail']
+		c.session_name = session.get('user_name')
+		c.session_mail = session.get('mail')
+		c.session_name = session.get('name')
+		c.session_created = session.get('created').strftime('%e %b %Y')
+		c.session_token = session.get('token')
+		c.session_theme = session.get('theme')
+		c.session_provider = session.get('provider')
+		c.session_departament = identity.get('department')[0].decode('utf-8')
+		c.session_last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
 
 		conf_menu = [
 			{ 'title': 'Home', 'icon': 'icon-home', 'href': '/index' },

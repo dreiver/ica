@@ -67,7 +67,9 @@ class User(Base):
 
     theme = Column(Unicode(10))
 
-    extern_uid = Column(Unicode(255))
+    extern_uid = Column(Unicode(255), unique=True)
+
+    provider = Column(Unicode(10))
 
     #department = Column(Unicode(200, convert_unicode=False))
 
@@ -91,18 +93,15 @@ class User(Base):
 
     @classmethod
     def by_user_name(cls, username):
-        """A class method that permits to search users
-        based on their user_name attribute.
-        """
         return Session.query(cls).filter(cls.user_name==username).first()
 
     @classmethod
     def by_token(cls, token):
-        """A class method that permits to search users
-        based on their token authentication since it is unique.
-        """
         return Session.query(cls).filter(cls.token==token).first()
 
+    @classmethod
+    def by_extern_uid(cls, extern_uid):
+        return Session.query(cls).filter(cls.extern_uid==extern_uid).first()
 
     def _set_password(self, password):
         """encrypts password on the fly using the encryption

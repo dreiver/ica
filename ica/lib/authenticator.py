@@ -15,17 +15,27 @@ class UsernamePasswordAuthenticator(object):
             return None
 
         # Check if ldap plugin is enabled and the user has valid credentials
-	"""
+        """
         if 'ldap_auth' in environ['repoze.who.plugins'] and \
             not 'repoze.who.userid' in identity:
             return None
-	"""
+        """
 
         # Store user|password
-        #userpw = identity['login']+'|'+identity['password']
-        #identity.update({'userdata': str(userpw)})
         auth = environ.get('ica.login.auth', 'custom')
 
+        if ('ldap' in auth and not 'repoze.who.userid' in identity):
+            return None
+
+        user = get_user_by_user_name(identity['login'])
+
+        if user is None:
+            if 'repoze.who.userid' in identity:
+                add_new_user(identity['login'], identity['password'], auth, identity['repoze.who.userid'])
+            else:
+                return None
+
+        """
         #TODO:
         if 'HTTP_AUTHORIZATION' in environ or \
             not 'ldap_auth' in environ['repoze.who.plugins'] or \
@@ -42,6 +52,8 @@ class UsernamePasswordAuthenticator(object):
             #    if user:
             #        print identity
             #        return str(identity['login'])
+
+        """
         
         """
         if user is None:

@@ -88,30 +88,43 @@ def get_user_by_token(token):
     return User.by_token(token)
 
 
+def get_user_by_user_extern_uid(extern_uid):
+    return User.by_extern_uid(extern_uid)
+
+
 def create_private_token():
     u = uuid.uuid4()
     return u.bytes.encode('base64')[:20]
 
 
-def add_new_user(login, password):
+def add_new_user(login, password, provider, extern_uid=None):
     token = create_private_token()
-    user = User(user_name=login, password=password, token=token)
+    user = User(user_name=login, password=password, token=token, provider=provider, extern_uid=extern_uid)
     Session.add(user)
     Session.commit()
 
 
 def set_session_vars(user):
+    session['user_name'] = user.user_name
     session['mail'] = user.email_address
     session['name'] = user.display_name
+    session['created'] = user.created
     session['token'] = user.token
     session['theme'] = user.theme
-    session['created'] = user.created
-    session['user_name'] = user.user_name
-    session['extern_uid'] = user.extern_uid
+    session['provider'] = user.provider
     session.save()
 
 
-def update_user_identity(identity):
+def update_user_identity(identity, provider):
+
+    if provider == 'ldap':
+        user = get_user_by_user_extern_uid( identity['repoze.who.userid'] )
+
+        if user is None:
+            log.error('User must be added in previous stept')
+            return None
+
+    """
     login = identity['userdata'].split('|')
     user = get_user_by_user_name(login[0])
 
@@ -120,6 +133,8 @@ def update_user_identity(identity):
         user = get_user_by_user_name(login[0])
 
     #user.password = login[1]
+
+    """
     
     if 'mail' in identity:
         user.email_address = identity['mail'][0]
@@ -127,8 +142,9 @@ def update_user_identity(identity):
         user.display_name = identity['cn'][0]
     if 'repoze.who.userid' in identity:
         user.extern_uid = identity['repoze.who.userid']
+    if user.theme is None:
+        user.theme = g.template
 
     set_session_vars(user)
 
     Session.commit()
-    

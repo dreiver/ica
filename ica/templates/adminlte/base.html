@@ -240,8 +240,8 @@
                                 <li class="user-header bg-light-blue">
                                     <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{ c.session_name }} - {{ c.session_departament }}
-                                        <small>Member since {{ c.first_session_access }}</small>
+                                        {{ c.session_name }} {% if c.session_departament %} - {{ c.session_departament }} {% endif %}
+                                        <small>Member since {{ c.session_created }}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -287,7 +287,7 @@
                             <ul class="list-unstyled user-info">
                                 <li class="text-muted">Administrador</li>
                                 <li>Ultimo acceso:</li>
-                                <small><i class="fa fa-calendar"></i> 13 Aug 16:33</small>
+                                <small><i class="fa fa-calendar"></i> {{ c.session_last_login }}</small>
                             </ul>
                         </div>
                     </div>
@@ -304,7 +304,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="/adminlte/index">
+                            <a href="/index">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
