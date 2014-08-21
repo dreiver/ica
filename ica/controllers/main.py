@@ -31,12 +31,14 @@ class MainController(BaseController):
 		c.session_name = session.get('user_name')
 		c.session_mail = session.get('mail')
 		c.session_name = session.get('name')
-		c.session_created = session.get('created').strftime('%e %b %Y')
 		c.session_token = session.get('token')
 		c.session_theme = session.get('theme')
+		c.session_created = session.get('created').strftime('%e %b %Y')
 		c.session_provider = session.get('provider')
-		c.session_departament = identity.get('department')[0].decode('utf-8')
 		c.session_last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
+		if identity.get('department'):
+			c.session_departament = identity.get('department')[0].decode('utf-8')
+
 
 		conf_menu = [
 			{ 'title': 'Home', 'icon': 'icon-home', 'href': '/index' },

@@ -1,0 +1,9 @@
+backports.ssl-match-hostname==3.4.0.2
+certifi==14.05.14
+distribute==0.6.24
+eventlet==0.15.1
+gevent==1.0.1
+greenlet==0.4.3
+gunicorn==19.1.1
+tornado==4.0.1
+uWSGI==2.0.6

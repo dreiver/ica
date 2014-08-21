@@ -29,7 +29,7 @@ class ErrorController(BaseController):
                  message=content)
         """
 
-        if code == "404":
+        if code == '404':
             return render(g.template+'/404.html')
 
         #return page
