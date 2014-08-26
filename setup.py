@@ -41,6 +41,10 @@ setup(
     zip_safe=False,
     paster_plugins=['PasteScript', 'Pylons'],
     entry_points="""
+    [paste.paster_command]
+    db = ica.lib.cli:RedisDB
+    user = ica.lib.cli:UserManage
+
     [paste.app_factory]
     main = ica.config.middleware:make_app
 
