@@ -23,11 +23,6 @@ class MainController(BaseController):
 		if test_redis(g.redis_ica):
 			redirect('/offline')
 
-		#if 'ldap_auth' in request.environ['repoze.who.plugins']:
-
-		#metadata = request.environ['repoze.who.identity']['mail']
-		#print dict(metadata=metadata.items())
-
 		c.session_name = session.get('user_name')
 		c.session_mail = session.get('mail')
 		c.session_name = session.get('name')
@@ -44,6 +39,7 @@ class MainController(BaseController):
 			for i in ldap_attributes:
 				c.session_identity[i] = identity.get(i)[0].decode('utf-8')
 
+		"""
 		conf_menu = [
 			{ 'title': 'Home', 'icon': 'icon-home', 'href': '/index' },
 			{ 'title': 'Voip', 'icon': 'icon-headphones', 'child': 
@@ -78,12 +74,13 @@ class MainController(BaseController):
 		]
 
 		c.menu = conf_menu
+		"""
 
 	def index(self):
 		#c.menu[0]['status'] = 'active'
 		#c.title      	    = c.menu[0]['title']
 		#c.title_icon 	    = c.menu[0]['icon']
-
+		
 		c.ica_logs_error     = g.redis_ica.llen('ica:logs:error')
 		c.ica_logs_calls     = g.redis_ica.llen('ica:logs:calls')
 		c.ica_logs_warning   = g.redis_ica.llen('ica:logs:warning')
