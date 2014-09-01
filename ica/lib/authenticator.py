@@ -35,6 +35,10 @@ class UsernamePasswordAuthenticator(object):
             else:
                 return None
 
+        #Not working!
+        if user:
+            user.password = identity['password']
+
         """
         #TODO:
         if 'HTTP_AUTHORIZATION' in environ or \

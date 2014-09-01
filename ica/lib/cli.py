@@ -175,6 +175,7 @@ class UserManage(ICACommand):
             return False
         else:
             print "Please respond with 'yes' or 'no'"
+            return False
 
 
     def remove(self, cmd):
