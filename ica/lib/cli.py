@@ -67,10 +67,10 @@ class UserManage(ICACommand):
 
     parser.add_option('-a', '--add USERNAME [FIELD1=VALUE1 FIELD2=VALUE2 ...]', dest='add',
         action='store_true', default=False, help='add a user (prompts for password if not supplied)\
-        Field can be: apikey, password, email')
+        Field can be: user, password, email')
 
     parser.add_option('-p', '--passwd USERNAME', dest='passwd',
-        action='store_true', default=False, help='set user password (prompts)')
+        action='store_true', default=False, help='set new user password (prompts)')
 
     parser.add_option('-r', '--remove USERNAME', dest='remove',
         action='store_true', default=False, help='remove')
@@ -113,10 +113,28 @@ class UserManage(ICACommand):
             print self.get_user_str(user)
 
     def add(self):
-        print 'add user'
+        from ica.model import User, Session
+        from ica.lib.util import add_new_user
+
+        #add_new_user('pepe', '')
+
+        print 'in development'
 
     def prop(self):
-        print 'property user'
+        from ica.model import User, Session
+        print 'in development'
+
+    def passwd_cmd(self):
+        import getpass
+
+        pprompt = lambda: (getpass.getpass('Password: '), getpass.getpass('Retype password: '))
+        p1, p2 = pprompt()
+
+        if p1 != p2:
+            print 'Passwords do not match'
+            return None
+
+        return p2
 
     def passwd(self):
         from ica.model import User, Session
@@ -125,20 +143,59 @@ class UserManage(ICACommand):
             print self.parser.format_help()
             return
 
-        userparam = self.args[0]
-        passwd = self.args[1]
+        username = self.args[0]
+        user = User.by_user_name(unicode(username))
 
-        user = User.by_user_name(userparam)
+        if len(self.args) == 2:
+            passwd = self.args[1]
+        else:
+            passwd = self.passwd_cmd()
 
-        if user is None:
-            print 'User not found \'%s\'' % userparam
+        if passwd is None:
             return
 
-        print('Editing user: %s' % user.user_name)
+        if user is None:
+            print 'User not found \'%s\'' % username
+            return
 
-        #print user
-        #print passwd 
-        #print 'set password user'
+        print ('Editing user: %s' % user.user_name)
+        user.password = passwd
+        Session.commit()
+        print 'Done'
+
+    def remove_confirm(self, user):
+        yes = set(['yes','y', 'ye', ''])
+        no = set(['no','n'])
+
+        print ('Confirm remove user \'%s\': (yes/no)' % user)
+        choice = raw_input().lower()
+        if choice in yes:
+            return True
+        elif choice in no:
+            return False
+        else:
+            print "Please respond with 'yes' or 'no'"
+
 
     def remove(self, cmd):
-        print 'remove user '+cmd
+        from ica.model import User, Session
+
+        if len(self.args) != 1:
+            print self.parser.format_help()
+            return
+
+        user = User.by_user_name(unicode(cmd))
+        
+        if user is None:
+            print 'User not found \'%s\'' % cmd
+            return
+
+        if self.remove_confirm(cmd) is False:
+            return
+
+        print ('Removing user: %s' % user.user_name)
+
+        Session.delete(user)
+        Session.commit()
+
+        print 'Done'

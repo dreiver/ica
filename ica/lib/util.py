@@ -81,15 +81,15 @@ def role_name(role):
 
 
 def get_user_by_user_name(login):
-    return User.by_user_name(login)
+    return User.by_user_name(unicode(login))
 
 
 def get_user_by_token(token):
-    return User.by_token(token)
+    return User.by_token(unicode(token))
 
 
 def get_user_by_user_extern_uid(extern_uid):
-    return User.by_extern_uid(extern_uid)
+    return User.by_extern_uid(unicode(extern_uid))
 
 
 def create_private_token():
