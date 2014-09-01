@@ -301,6 +301,7 @@ class LDAPAttributesPlugin(object):
                                 % (dn, conn.result))
                 return None
 
+            environ['ica.ldap_attributes'] = self.attributes
             result = {}
 
             for k, v in conn.response[0]['attributes'].items():

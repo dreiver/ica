@@ -36,9 +36,13 @@ class MainController(BaseController):
 		c.session_created = session.get('created').strftime('%e %b %Y')
 		c.session_provider = session.get('provider')
 		c.session_last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
-		if identity.get('department'):
-			c.session_departament = identity.get('department')[0].decode('utf-8')
 
+		if 'ldap_attributes' in request.environ['repoze.who.plugins']:
+			ldap_attributes = request.environ.get('ica.ldap_attributes')
+			c.session_identity = {}
+
+			for i in ldap_attributes:
+				c.session_identity[i] = identity.get(i)[0].decode('utf-8')
 
 		conf_menu = [
 			{ 'title': 'Home', 'icon': 'icon-home', 'href': '/index' },

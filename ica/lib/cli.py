@@ -28,7 +28,7 @@ class RedisDB(ICACommand):
         opt = vars(self.options)
         
         if opt['list'] is True:
-            print 'list redis databases'
+            print 'in development'
             return
 
         if len(cmd) != 2:

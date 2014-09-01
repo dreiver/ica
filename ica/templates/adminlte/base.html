@@ -240,7 +240,7 @@
                                 <li class="user-header bg-light-blue">
                                     <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{ c.session_name }} {% if c.session_departament %} - {{ c.session_departament }} {% endif %}
+                                        {{ c.session_name }} - {{ c.session_identity.department }}
                                         <small>Member since {{ c.session_created }}</small>
                                     </p>
                                 </li>
