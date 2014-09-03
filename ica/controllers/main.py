@@ -37,7 +37,8 @@ class MainController(BaseController):
 			c.session_identity = {}
 
 			for i in ldap_attributes:
-				c.session_identity[i] = identity.get(i)[0].decode('utf-8')
+				if i in identity:
+					c.session_identity[i] = identity.get(i)[0].decode('utf-8')
 
 		"""
 		conf_menu = [
