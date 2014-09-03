@@ -14,7 +14,7 @@ except ImportError:
     try:
         import simplejson as json
     except ImportError:
-        raise Exception("App requires the 'simplejson' library")
+        raise Exception("App requires the 'json' or 'simplejson' library")
 
 log = logging.getLogger(__name__)
 
@@ -119,11 +119,13 @@ def update_user_identity(identity, provider):
 
     if provider == 'ldap':
         user = get_user_by_user_extern_uid( identity['repoze.who.userid'] )
+    else:
+        user = get_user_by_user_name( identity['repoze.who.userid'] )
 
-        if user is None:
-            log.error('User must be added in previous stept')
-            return None
-
+    if user is None:
+        log.error('User must be added in previous stept')
+        return None
+        
     """
     login = identity['userdata'].split('|')
     user = get_user_by_user_name(login[0])

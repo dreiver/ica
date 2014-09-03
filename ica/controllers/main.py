@@ -170,9 +170,9 @@ class MainController(BaseController):
 		#c.title_icon        = c.menu[2]['icon']
 
 		return pjax('cabal-bines.html')
+		
 
 	def precargada(self):
-
 		c.prod    = []
 		c.preprod = []
 		c.voice   = g.redis_voip.lrange('ivr:cabal:precargada:voice', 0, -1)
