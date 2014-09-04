@@ -78,20 +78,17 @@ class MainController(BaseController):
 		"""
 
 	def index(self):
-		#c.menu[0]['status'] = 'active'
-		#c.title      	    = c.menu[0]['title']
-		#c.title_icon 	    = c.menu[0]['icon']
-		
-		c.ica_logs_error     = g.redis_ica.llen('ica:logs:error')
-		c.ica_logs_calls     = g.redis_ica.llen('ica:logs:calls')
-		c.ica_logs_warning   = g.redis_ica.llen('ica:logs:warning')
+
+		c.ica_logs_error = g.redis_ica.llen('ica:logs:error')
+		c.ica_logs_calls = g.redis_ica.llen('ica:logs:calls')
+		c.ica_logs_warning = g.redis_ica.llen('ica:logs:warning')
 		c.ica_logs_serv_jpos = g.redis_ica.llen('ica:logs:serv:jpos')#CABAL
 
 		c.day_values = get_day_values(g.redis_ica)
-		c.day_calls  = get_day_calls(g.redis_ica)
+		c.day_calls = get_day_calls(g.redis_ica)
 
-		c.week        = get_week(g.redis_ica)
-		c.week_calls  = 0
+		c.week = get_week(g.redis_ica)
+		c.week_calls = 0
 		c.week_values = []
 		
 		for i in c.week:
@@ -101,18 +98,15 @@ class MainController(BaseController):
 		c.week_values = ','.join(c.week_values)
 
 		c.month_values = '0,0,0,0,0,0,0,0,0,0,0,0'
-		c.month_calls  = '0'
+		c.month_calls = '0'
 		
 		return pjax('index.html')
 
 
 	def panel(self):
-		#c.menu[4]['status'] = 'active'
-		#c.title             = c.menu[4]['title']+" / "+c.menu[4]['child'][0]['title']
-		#c.title_icon        = c.menu[4]['icon']
 
-		c.ica_logs_error     = g.redis_ica.lrange('ica:logs:error', 0, 4)
-		c.ica_logs_warning   = g.redis_ica.lrange('ica:logs:warning', 0, 4)
+		c.ica_logs_error = g.redis_ica.lrange('ica:logs:error', 0, 4)
+		c.ica_logs_warning = g.redis_ica.lrange('ica:logs:warning', 0, 4)
 		c.ica_logs_serv_jpos = g.redis_ica.lrange('ica:logs:cabal:jpos', 0, 4)#CABAL
 
 		"""
@@ -135,30 +129,26 @@ class MainController(BaseController):
 	def alert(self, alert):
 
 		if alert == 'error':
-			key 	 = 'ica:logs:error'
-			c.type   = 'important'
+			key = 'ica:logs:error'
+			c.type = 'important'
 			c.action = 'error'
 
 		elif alert == 'warning':
-			key 	 = 'ica:logs:warning'
-			c.type   = 'warning'
+			key = 'ica:logs:warning'
+			c.type = 'warning'
 			c.action = 'warning'
 
 		elif alert == 'jpos':#CABAL
-			key 	 = 'ica:logs:jpos'
-			c.type   = 'important'
+			key = 'ica:logs:jpos'
+			c.type = 'important'
 			c.action = 'error'
 
-		c.alert  = g.redis_ica.lrange(key, 0, -1)
+		c.alert = g.redis_ica.lrange(key, 0, -1)
 
 		return pjax('system-panel-alert.html')
 
 
 	def currentcalls(self):
-		#c.menu[3]['status'] = 'active'
-		#c.title             = c.menu[3]['title']+" / "+c.menu[3]['child'][0]['title']
-		#c.title_icon        = c.menu[3]['icon']
-
 		return pjax('currentcalls.html')
 
 
@@ -166,20 +156,16 @@ class MainController(BaseController):
 	# CUSTOM CLIENT CABAL #
 	#######################
 	def bines(self):
-		#c.menu[2]['status'] = 'active'
-		#c.title             = c.menu[2]['title']+" / "+c.menu[2]['child'][0]['title']
-		#c.title_icon        = c.menu[2]['icon']
-
 		return pjax('cabal-bines.html')
-		
+
 
 	def precargada(self):
-		c.prod    = []
+		c.prod = []
 		c.preprod = []
-		c.voice   = g.redis_voip.lrange('ivr:cabal:precargada:voice', 0, -1)
-		c.bines   = g.redis_voip.lrange('ivr:cabal:precargada:bines', 0, -1)
+		c.voice = g.redis_voip.lrange('ivr:cabal:precargada:voice', 0, -1)
+		c.bines = g.redis_voip.lrange('ivr:cabal:precargada:bines', 0, -1)
 
-		prod    = g.redis_voip.lrange('ivr:cabal:prod:precargada:extension', 0, -1)
+		prod = g.redis_voip.lrange('ivr:cabal:prod:precargada:extension', 0, -1)
 		preprod = g.redis_voip.lrange('ivr:cabal:preprod:precargada:extension', 0, -1)
 
 		for i in prod:
@@ -193,3 +179,4 @@ class MainController(BaseController):
 			c.preprod.append(this)
 		
 		return pjax('cabal-precargada.html')
+		
