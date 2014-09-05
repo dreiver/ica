@@ -28,18 +28,20 @@ Installation:
     $ cd ica/
     $ pip install -r requirements.txt
     $ pip install -r rdbms.txt
+    # Next stept isn't necessary, only for deploy with gunicorn, uwsgi, etc.
+    $ pip install -r extra_deploy.txt
     # Adjust custom configuration
     $ editor development.ini
     $ python setup.py develop
 
-Run:
+Deploy:
 
     $ paster serve --reload development.ini
 
-Run gunicorn:
+Deploy with gunicorn:
 
     $ gunicorn --paste production.ini -c ica/config/gunicorn.conf.py
 
-Run gunicorn with external event lib
+Deploy with uwsgi:
 
-    $ gunicorn --paste production.ini -k gevent -c ica/config/gunicorn.conf.py
+    $ uwsgi --paste config:/home/ica/production.ini --ini ica/config/uwsgi.ini
