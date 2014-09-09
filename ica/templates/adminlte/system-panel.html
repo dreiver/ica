@@ -14,4 +14,7 @@
 <section class="content">
     <h1>system-panel!</h1>
     <p>this is panel</p>
+    {% for i in c.users %}
+        <p>{{ i.display_name }}</p>
+    {% endfor %}
 </section><!-- /.content -->

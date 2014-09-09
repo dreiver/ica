@@ -92,6 +92,10 @@ def get_user_by_user_extern_uid(extern_uid):
     return User.by_extern_uid(unicode(extern_uid))
 
 
+def get_users_paginate(min=0, max=10):
+    return Session.query(User.user_name, User.display_name).order_by(User.user_id).limit(max).offset(min).all()
+
+
 def create_private_token():
     u = uuid.uuid4()
     return u.bytes.encode('base64')[:20]
