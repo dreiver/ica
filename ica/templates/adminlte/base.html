@@ -313,7 +313,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="/profile" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -362,6 +362,22 @@
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="/profile">
+                                <i class="fa fa-user"></i> <span>My profile</span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-bar-chart-o"></i> <span>Reports</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> General</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Current Calls</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Detailed Calls</a></li>
+                            </ul>
+                        </li>
                         <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-phone"></i> <span>Voip</span>
@@ -377,23 +393,13 @@
                         </li>
                         <li class="treeview">
                             <a href="#">
-                                <i class="fa fa-bar-chart-o"></i> <span>Reports</span>
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Current Calls</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Detailed Calls</a></li>
-                            </ul>
-                        </li>
-                        <li class="treeview">
-                            <a href="#">
                                 <i class="fa fa-cogs"></i>
-                                <span>System</span>
+                                <span>Admin</span>
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-angle-double-right"></i> Application Settings</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-right"></i> System</a></li>
                                 <li><a href="/system/panel" data-pjax="#main-content"><i class="fa fa-angle-double-right"></i> Panel</a></li>
                             </ul>
                         </li>
