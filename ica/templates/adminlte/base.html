@@ -78,7 +78,7 @@
         </div>
         <!-- header logo: style can be found in header.less -->
         <header id="main-ica-header" class="header" style="display: none;">
-            <a href="/index" class="logo">
+            <a href="/index" data-pjax="#main-content" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 <span class="icon logo">
                     <img src="/adminlte/img/logocredicoop.png" style="height:50px; width:140px;" alt="Credicoop"></img>
@@ -358,7 +358,7 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="/index">
+                            <a href="/index" data-pjax="#main-content">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
@@ -426,8 +426,8 @@
         <script type="text/javascript">
 
             $( document ).ready(function() {
-                $(document).pjax('a', '#main-content')
-                //$('a[data-pjax]').pjax()
+                //$(document).pjax('a', '#main-content')
+                $('a[data-pjax]').pjax()
             });
 
             window.onload = function(){
