@@ -153,6 +153,9 @@ class MainController(BaseController):
 	def currentcalls(self):
 		return pjax('currentcalls.html')
 
+	def profile(self):
+		return pjax('profile.html')
+
 
 	#######################
 	# CUSTOM CLIENT CABAL #

@@ -58,6 +58,7 @@ def make_map(config):
     # Index
     map.connect('index', '/', controller='main', action='index', conditions=GET)
     map.connect('index', '/index', controller='main', action='index', conditions=GET)
+    map.connect('profile', '/profile', controller='main', action='profile', conditions=GET)
     
     # Voip
     with map.submapper(path_prefix='/voip', controller='main', conditions=GET) as m:
