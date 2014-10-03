@@ -71,6 +71,8 @@ class User(Base):
 
     provider = Column(Unicode(10))
 
+    client_type = Column(Unicode(10))
+
     #department = Column(Unicode(200, convert_unicode=False))
 
     #def __repr__(self):

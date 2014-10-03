@@ -101,9 +101,9 @@ def create_private_token():
     return u.bytes.encode('base64')[:20]
 
 
-def add_new_user(login, password, provider, extern_uid=None):
+def add_new_user(login, password, provider, extern_uid=None, client_type=None):
     token = create_private_token()
-    user = User(user_name=login, password=password, token=token, provider=provider, extern_uid=extern_uid)
+    user = User(user_name=login, password=password, token=token, provider=provider, extern_uid=extern_uid, client_type=client_type)
     Session.add(user)
     Session.commit()
 
@@ -116,6 +116,7 @@ def set_session_vars(user):
     session['token'] = user.token
     session['theme'] = user.theme
     session['provider'] = user.provider
+    session['client_type'] = user.client_type
     session.save()
 
 

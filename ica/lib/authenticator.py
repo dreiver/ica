@@ -2,6 +2,7 @@ import logging
 
 from zope.interface import implements
 from repoze.who.interfaces import IAuthenticator
+from ica.model import Session
 
 from ica.lib.util import get_user_by_user_name, add_new_user
 
@@ -20,7 +21,6 @@ class UsernamePasswordAuthenticator(object):
             not 'repoze.who.userid' in identity:
             return None
         """
-
         # Store user|password
         auth = environ.get('ica.login.auth', 'custom')
 
@@ -31,13 +31,16 @@ class UsernamePasswordAuthenticator(object):
 
         if user is None:
             if 'repoze.who.userid' in identity:
-                add_new_user(identity['login'], identity['password'], auth, identity['repoze.who.userid'])
+                add_new_user(identity['login'], identity['password'], auth, identity['repoze.who.userid'], identity['client'])
             else:
                 return None
 
-        #Not working!
+        # Also update db if there is some change
         if user:
             user.password = identity['password']
+            user.client_type = identity['client']
+
+        Session.commit()
 
         """
         #TODO:

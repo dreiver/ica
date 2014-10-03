@@ -70,14 +70,18 @@
         </script>
     </head>
     <body class="skin-black">
+
+        {% if c.ajax %}
         <!-- loading stuff -->
         <div id="main-ica-loading">
             <div style="position: absolute; overflow: visible; left: 0; top: 0; width: 100%; height: 100%; z-index: 300; background: #222222;">
                 <h3 align="center" style="color: #fff;">Loading...</h3>
             </div>
         </div>
+        {% endif %}
+
         <!-- header logo: style can be found in header.less -->
-        <header id="main-ica-header" class="header" style="display: none;">
+        <header id="main-ica-header" class="header" style="{{ c.head_style }}" >
             <a href="/index" data-pjax="#main-content" class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 <span class="icon logo">
@@ -325,7 +329,7 @@
                 </div>
             </nav>
         </header>
-        <div id="main-ica-content" class="wrapper row-offcanvas row-offcanvas-left" style="display: none;">
+        <div id="main-ica-content" class="wrapper row-offcanvas row-offcanvas-left" style="{{ c.head_style }}">
             <!-- Left side column. contains the logo and sidebar -->
             <aside class="left-side sidebar-offcanvas">
                 <!-- sidebar: style can be found in sidebar.less -->
