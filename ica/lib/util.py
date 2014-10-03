@@ -131,7 +131,7 @@ def update_user_identity(identity, provider):
         user = get_user_by_user_name( identity['repoze.who.userid'] )
 
     if user is None:
-        log.error('User must be added in previous stept')
+        log.error('Unexpected, user must be added in previous stept')
         return None
         
     """

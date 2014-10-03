@@ -35,7 +35,6 @@ class MainController(BaseController):
 		
 		# Aplication settings
 		client = session.get('client_type')
-		c.ajax = False
 
 		if 'ldap_attributes' in request.environ['repoze.who.plugins']:
 			ldap_attributes = request.environ.get('ica.ldap_attributes')
@@ -45,10 +44,9 @@ class MainController(BaseController):
 				if i in identity:
 					c.session_identity[i] = identity.get(i)[0].decode('utf-8')
 
+		#if c.ajax is True:
 		if ('preferred' in client or 'advanced' in client):
 			c.ajax = True
-
-		if c.ajax is True:
 			c.head_style = "display: none;"
 
 		"""
