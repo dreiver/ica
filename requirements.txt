@@ -19,8 +19,8 @@ argparse==1.2.1
 beautifulsoup4==4.3.2
 decorator==3.4.0
 dicttoxml==1.5.5
-#distribute==0.6.24
-#nose==1.3.3
+distribute==0.7.3
+nose==1.3.4
 pyasn1==0.1.7
 python3-ldap==0.9.5.1
 redis==2.10.1
