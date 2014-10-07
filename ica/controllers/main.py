@@ -86,6 +86,10 @@ class MainController(BaseController):
 		c.menu = conf_menu
 		"""
 
+	#####################
+	# Index / Dashboard #
+	#####################
+
 	def index(self):
 
 		c.ica_logs_error = g.redis_ica.llen('ica:logs:error')
@@ -162,9 +166,25 @@ class MainController(BaseController):
 	def currentcalls(self):
 		return pjax('currentcalls.html')
 
+
+	###########
+	# Profile #
+	###########
+
 	def profile(self):
 		return pjax('profile.html')
 
+	def account(self):
+		return "account in development"
+
+	def notifications(self):
+		return "notifications in development"
+
+	def design(self):
+		return "design in development"
+
+	def design(self):
+		return "support in development"
 
 	#######################
 	# CUSTOM CLIENT CABAL #
