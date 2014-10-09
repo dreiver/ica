@@ -1,0 +1,97 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        User Account 
+        <small>Account settings</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+        <li class="active">Account</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Default box -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">My account</h3>
+                </div>
+                <div class="box-body">
+                    <!-- Navigation - folders-->
+                    <div style="margin-top: 15px;">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="/profile" data-pjax="#main-content"><i class="fa fa-home"></i> Profile</a></li>
+                            <li class="active"><a href="/profile/account" data-pjax="#main-content"><i class="fa fa-user"></i> Account</a></li>
+                            <li><a href="/profile/notifications" data-pjax="#main-content"><i class="fa fa-envelope"></i> Notifications</a></li>
+                            <li><a href="/profile/support" data-pjax="#main-content"><i class="fa fa-rocket"></i> Support</a></li>
+                        </ul>
+                    </div>
+                    <!--<div class="chart" id="line-chart" style="height: 250px;"></div>-->
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+        <!--<h4 class="page-header">
+            Account settings
+            <small>You can change your password, username and private token here. Some options are unavailable for LDAP accounts.</small>
+        </h4>-->
+        <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="box-tools pull-right">
+                        <small class="label label-danger"><i class="fa fa-info-circle"></i> Keep the token secret!</small>
+                    </div>
+                    <h4 class="page-header">Private token</h4>
+                    <p class="text-muted">Your private token is used to access application resources without authentication. 
+                    It can be used for atom feeds or the API.</p>
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="box-body">
+                            
+                            <div class="form-group">
+                                <!--<label for="exampleInputPassword1">Password</label>-->
+                                <input type="text" class="form-control" id="" placeholder="" value="{{ c.session_token }}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Reset</button>
+                        </div><!-- /.box-body -->
+                    </form>
+                </div><!-- /.box-header -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+        <div class="col-md-3"></div><!-- /.col -->
+        <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h4 class="page-header">Password</h4>
+                    <p class="text-muted">After a successful password update you will be redirected to login page where you should login with your new password</p>
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password confirm</label>
+                                <input type="password" class="form-control" id="" placeholder="">
+                            </div>
+                            <!--<div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>-->
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Save password</button>
+                        </div>
+                    </form>
+                </div><!-- /.box-header -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->

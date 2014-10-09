@@ -175,7 +175,7 @@ class MainController(BaseController):
 		return pjax('profile.html')
 
 	def account(self):
-		return "account in development"
+		return pjax('profile-account.html')
 
 	def notifications(self):
 		return "notifications in development"
@@ -183,7 +183,7 @@ class MainController(BaseController):
 	def design(self):
 		return "design in development"
 
-	def design(self):
+	def support(self):
 		return "support in development"
 
 	#######################

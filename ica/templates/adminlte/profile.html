@@ -5,12 +5,115 @@
         <small>Profile settings</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
+        <li><a href="#"><i class="fa fa-home"></i> Profile</a></li>
     </ol>
 </section>
 
 <!-- Main content -->
 <section class="content">
-    <h1>profile!</h1>
-    <p>this is profile</p>
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Default box -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">My account</h3>
+                </div>
+                <div class="box-body">
+                    <!-- Navigation - folders-->
+                    <div style="margin-top: 15px;">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li class="active"><a href="/profile" data-pjax="#main-content"><i class="fa fa-home"></i> Profile</a></li>
+                            <li><a href="/profile/account" data-pjax="#main-content"><i class="fa fa-user"></i> Account</a></li>
+                            <li><a href="/profile/notifications" data-pjax="#main-content"><i class="fa fa-envelope"></i> Notifications</a></li>
+                            <li><a href="/profile/support" data-pjax="#main-content"><i class="fa fa-rocket"></i> Support</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+        <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">Profile settings</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                    <p class="text-muted">Change your account information, avatar, login credentials, etc.</p>
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <!--<label for="exampleInputFile">Avatar input</label>-->
+                                <div class="user-panel">
+                                    <div class="pull-left image">
+                                        <img src="/adminlte/img/avatar.png" class="img-circle" alt="User Image" />
+                                    </div>
+                                    <div class="pull-left info">
+                                        <p class="text-light-blue">Set up your avatar picture</p>
+                                        <div class="input-group col-xs-5">
+                                            <div class="custom-file-upload input-group-btn">
+                                                <button type="button" class="btn btn-default">
+                                                    <span><i class="fa fa-paperclip"></i> Chooose File ...</span>
+                                                    <input id="gravatar_file_upload_img" name="avatar" type="file" class="upload-custom-file" />
+                                                </button>
+                                            </div>
+                                            <input id="gravatar_file_upload_text" class="form-control" placeholder="File name..." disabled="disabled" />
+                                        </div>
+                                        <small class="text-muted">The maximum file size allowed is 100KB</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="text" class="form-control" id="" placeholder="John Smith" value="{{ c.session_name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Email</label>
+                                <input type="email" class="form-control" id="" placeholder="john@gmail.com" value="{{ c.session_mail }}">
+                            </div>
+                            <!--<div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Check me out
+                                </label>
+                            </div>-->
+                            <div class="form-group">
+                                <label>Timezone</label>
+                                <select class="form-control">
+                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
+                                    <option value="Alaska">(GMT-09:00) Alaska</option>
+                                    <option value="Pacific Time (US &amp; Canada)">
+                                        (GMT-08:00) Pacific Time (US &amp; Canada)
+                                    </option>
+                                    <option value="Arizona">(GMT-07:00) Arizona</option>
+                                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
+                                    <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
+                                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
+                                    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
+                                    <option value="" disabled="disabled">-------------</option>
+                                    <option value="American Samoa">(GMT-11:00) American Samoa</option>
+                                    <option value="International Date Line West">(GMT-11:00) International Date Line West</option>
+                                    <option value="Midway Island">(GMT-11:00) Midway Island</option>
+                                    <option value="Tijuana">(GMT-08:00) Tijuana</option>
+                                    <option value="Chihuahua">(GMT-07:00) Chihuahua</option>
+                                    <option value="Mazatlan">(GMT-07:00) Mazatlan</option>
+                                    <option value="Central America">(GMT-06:00) Central America</option>
+                                    <option value="Guadalajara">(GMT-06:00) Guadalajara</option>
+                                    <option value="Mexico City">(GMT-06:00) Mexico City</option>
+                                    <option value="Monterrey">(GMT-06:00) Monterrey</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Skype</label>
+                                <input type="text" class="form-control" id="" placeholder="">
+                            </div>
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div><!-- /.box-header -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+    </div><!-- /.row -->
 </section><!-- /.content -->

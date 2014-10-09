@@ -35,6 +35,7 @@
                 '/adminlte/css/iCheck/all.css', //<!-- iCheck for checkboxes and radio inputs -->
                 '/adminlte/css/timepicker/bootstrap-timepicker.min.css', //<!-- Bootstrap time Picker -->
                 '/adminlte/css/AdminLTE.css', //<!-- Theme style -->
+                '/adminlte/css/custom.css', //<!-- Custom style -->
             ]
             
             function downloadMainAtOnload() {
@@ -317,7 +318,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="/profile" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="/profile" data-pjax="#main-content" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -430,8 +431,8 @@
         <script type="text/javascript">
 
             $( document ).ready(function() {
-                //$(document).pjax('a', '#main-content')
-                $('a[data-pjax]').pjax()
+                $(document).pjax('a[data-pjax]', '#main-content')
+                //$('a[data-pjax]').pjax()
             });
 
             window.onload = function(){
