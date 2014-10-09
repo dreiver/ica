@@ -1,0 +1,109 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        Notifications 
+        <small>settings</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-envelope"></i> Profile</a></li>
+        <li class="active">Notifications</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- row -->
+    <div class="row">
+        <div class="col-md-3">
+            <!-- Default box -->
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3 class="box-title">My account</h3>
+                </div>
+                <div class="box-body">
+                    <!-- Navigation - folders-->
+                    <div style="margin-top: 15px;">
+                        <ul class="nav nav-pills nav-stacked">
+                            <li><a href="/profile" data-pjax="#main-content"><i class="fa fa-home"></i> Profile</a></li>
+                            <li><a href="/profile/account" data-pjax="#main-content"><i class="fa fa-user"></i> Account</a></li>
+                            <li class="active"><a href="/profile/notifications" data-pjax="#main-content"><i class="fa fa-envelope"></i> Notifications</a></li>
+                            <li><a href="/profile/support" data-pjax="#main-content"><i class="fa fa-rocket"></i> Support</a></li>
+                        </ul>
+                    </div>
+                    <!--<div class="chart" id="line-chart" style="height: 250px;"></div>-->
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+        <div class="col-md-9">
+            <!-- general form elements -->
+            <div class="box box-primary">
+                <div class="box-body">
+                    <h4 class="page-header">Notification Settings</h4>
+                    <!--<p class="text-muted">We uses the email specified in your profile for notifications</p>-->
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="control-label" for="">Notifications</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                                Disabled<br />
+                                                <small>You will not get any notifications via email</small>
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+                                                Watching<br />
+                                                <small>You will receive all notifications</small>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="text-muted">Actions</h4>
+                            <small>You can also specify notification level per group or per project. By default all actions uses notification level set above</small>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    Missed calls
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="trigger-submit" id="notification_level" name="">
+                                        <option value="0">disabled</option>
+                                        <option value="1">watching</option>
+                                        <option selected="selected" value="2">global</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    New message
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="trigger-submit" id="notification_level" name="">
+                                        <option value="0">disabled</option>
+                                        <option value="1">watching</option>
+                                        <option selected="selected" value="2">global</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <hr />
+                        </div><!-- /.box-body -->
+                        <div class="box-footer">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div><!-- /.box-header -->
+            </div><!-- /.box -->
+        </div><!-- /.col -->
+        <div class="col-md-3"></div><!-- /.col -->
+    </div><!-- /.row -->
+</section><!-- /.content -->
