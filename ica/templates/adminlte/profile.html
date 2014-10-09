@@ -35,8 +35,8 @@
         <div class="col-md-9">
             <!-- general form elements -->
             <div class="box box-primary">
-                <div class="box-header">
-                    <h3 class="box-title">Profile settings</h3>
+                <div class="box-body">
+                    <h4 class="page-header">Profile settings</h4>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <p class="text-muted">Change your account information, avatar, login credentials, etc.</p>
@@ -72,36 +72,9 @@
                                 <label for="exampleInputPassword1">Email</label>
                                 <input type="email" class="form-control" id="" placeholder="john@gmail.com" value="{{ c.mail }}">
                             </div>
-                            <!--<div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Check me out
-                                </label>
-                            </div>-->
                             <div class="form-group">
-                                <label>Timezone</label>
-                                <select class="form-control">
-                                    <option value="Hawaii">(GMT-10:00) Hawaii</option>
-                                    <option value="Alaska">(GMT-09:00) Alaska</option>
-                                    <option value="Pacific Time (US &amp; Canada)">
-                                        (GMT-08:00) Pacific Time (US &amp; Canada)
-                                    </option>
-                                    <option value="Arizona">(GMT-07:00) Arizona</option>
-                                    <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp; Canada)</option>
-                                    <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central Time (US &amp; Canada)</option>
-                                    <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp; Canada)</option>
-                                    <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>
-                                    <option value="" disabled="disabled">-------------</option>
-                                    <option value="American Samoa">(GMT-11:00) American Samoa</option>
-                                    <option value="International Date Line West">(GMT-11:00) International Date Line West</option>
-                                    <option value="Midway Island">(GMT-11:00) Midway Island</option>
-                                    <option value="Tijuana">(GMT-08:00) Tijuana</option>
-                                    <option value="Chihuahua">(GMT-07:00) Chihuahua</option>
-                                    <option value="Mazatlan">(GMT-07:00) Mazatlan</option>
-                                    <option value="Central America">(GMT-06:00) Central America</option>
-                                    <option value="Guadalajara">(GMT-06:00) Guadalajara</option>
-                                    <option value="Mexico City">(GMT-06:00) Mexico City</option>
-                                    <option value="Monterrey">(GMT-06:00) Monterrey</option>
-                                </select>
+                                <label>Location</label>
+                                <input type="text" class="form-control" id="" placeholder="" value="{{ c.loaction }}">
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputPassword1">Skype</label>
