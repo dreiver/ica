@@ -293,15 +293,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span>{{ c.session_name }} <i class="caret"></i></span>
+                                <span>{{ c.name }} <i class="caret"></i></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header bg-light-blue">
                                     <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{ c.session_name }} - {{ c.session_identity.department }}
-                                        <small>Member since {{ c.session_created }}</small>
+                                        {{ c.name }} - {{ c.identity.department }}
+                                        <small>Member since {{ c.created }}</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
@@ -342,12 +342,12 @@
                             <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                         </div>
                         <div class="pull-left info">
-                            <p>Hello, {{ c.session_name }}</p>
+                            <p>Hello, {{ c.name }}</p>
                             <h6 href="#"><i class="fa fa-circle text-success"></i> Online</h6>
                             <ul class="list-unstyled user-info">
                                 <li class="text-muted">Administrador</li>
                                 <li>Ultimo acceso:</li>
-                                <small><i class="fa fa-calendar"></i> {{ c.session_last_login }}</small>
+                                <small><i class="fa fa-calendar"></i> {{ c.last_login }}</small>
                             </ul>
                         </div>
                     </div>

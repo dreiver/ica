@@ -77,11 +77,11 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                           <i class="icon-user"></i> 
-                                          {{ c.session_name }}
+                                          {{ c.name }}
                                           <b class="caret"></b>
                                         </a>
                                         <ul class="dropdown-menu">
-                                          <li><a href="/changepasswd/user/{{ c.session_user }}"> {{ _('Change password') }} </a></li>
+                                          <li><a href="/changepasswd/user/{{ c.user }}"> {{ _('Change password') }} </a></li>
                                           <li><a href="{{ config['ica.issues_url'] }}" target="{{ config['ica.issues_target'] }}" data-toggle="modal"> {{ _('Report a bug') }} </a></li>
                                           <li><a href="#AboutSite" data-toggle="modal">{{ _('About the site') }}</a></li>
                                           <li class="divider"></li>
@@ -146,11 +146,11 @@
                 <!-- .user-media -->
                 <div class="media user-media hidden-phone">
                     <div class="media-body hidden-tablet">
-                        <h5 class="media-heading">{{ c.session_name }}</h5>
+                        <h5 class="media-heading">{{ c.name }}</h5>
                         <ul class="unstyled user-info">
-                            <li><a href="">{{ c.session_role }}</a></li>
+                            <li><a href="">{{ c.role }}</a></li>
                             <li> {{ _('Last access') }} : <br/>
-                                <small><i class="icon-calendar"></i> {{ c.session_access }}</small>
+                                <small><i class="icon-calendar"></i> {{ c.access }}</small>
                             </li>
                         </ul>
                     </div>
@@ -267,7 +267,7 @@
                                 <label class="control-label">{{ _('Name') }}</label>
 
                                 <div class="controls">
-                                    <input class='span3' type='text' value='{{ c.session_name }}' readonly>
+                                    <input class='span3' type='text' value='{{ c.name }}' readonly>
                                 </div>
                             </div>
                             <div class="control-group">

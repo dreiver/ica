@@ -24,25 +24,25 @@ class MainController(BaseController):
 			redirect('/offline')
 
 		# User session settings
-		c.session_name = session.get('user_name')
-		c.session_mail = session.get('mail')
-		c.session_name = session.get('name')
-		c.session_token = session.get('token')
-		c.session_theme = session.get('theme')
-		c.session_created = session.get('created').strftime('%e %b %Y')
-		c.session_provider = session.get('provider')
-		c.session_last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
+		c.name = session.get('user_name')
+		c.mail = session.get('mail')
+		c.name = session.get('name')
+		c.token = session.get('token')
+		c.theme = session.get('theme')
+		c.created = session.get('created').strftime('%e %b %Y')
+		c.provider = session.get('provider')
+		c.last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
 		
 		# Aplication settings
 		client = session.get('client_type')
 
 		if 'ldap_attributes' in request.environ['repoze.who.plugins']:
 			ldap_attributes = request.environ.get('ica.ldap_attributes')
-			c.session_identity = {}
+			c.identity = {}
 
 			for i in ldap_attributes:
 				if i in identity:
-					c.session_identity[i] = identity.get(i)[0].decode('utf-8')
+					c.identity[i] = identity.get(i)[0].decode('utf-8')
 
 		#if c.ajax is True:
 		if ('preferred' in client or 'advanced' in client):
