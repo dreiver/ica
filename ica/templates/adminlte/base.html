@@ -20,6 +20,7 @@
                 '/adminlte/js/plugins/daterangepicker/daterangepicker.js', //<!-- InputMask -->
                 '/adminlte/js/plugins/timepicker/bootstrap-timepicker.min.js', //<!-- bootstrap time picker -->
                 '/adminlte/js/AdminLTE/demo.js', //<!-- AdminLTE for demo purposes -->
+                '/adminlte/js/AdminLTE/custom.js', //<!-- AdminLTE for demo purposes -->
                 '/adminlte/js/plugins/ionslider/ion.rangeSlider.min.js', //<!-- Ion Slider -->
                 '/adminlte/js/plugins/bootstrap-slider/bootstrap-slider.js', //<!-- Bootstrap slider -->
                 'https://malsup.github.io/jquery.form.js', //<!-- ajaxForm plugin -->
@@ -417,7 +418,6 @@
                 {% include c.template with context %}
             </aside><!-- /.right-side -->
         </div><!-- ./wrapper -->
-
         <!-- jQuery 2.0.2 -->
         <script src="/adminlte/js/jquery-2.0.2.min.js"></script>
         <!-- Bootstrap -->
@@ -426,18 +426,5 @@
         <script src="/adminlte/js/plugins/pjax/jquery.pjax.js"></script>
         <!-- AdminLTE App -->
         <script src="/adminlte/js/AdminLTE/app.js" type="text/javascript"></script>
-
-        <!-- Page tmp script -->
-        <script type="text/javascript">
-
-            $( document ).ready(function() {
-                $(document).pjax('a[data-pjax]', '#main-content')
-                //$('a[data-pjax]').pjax()
-            });
-
-            window.onload = function(){
-                //alert('caca0')
-            }
-        </script>
     </body>
 </html>
