@@ -163,10 +163,11 @@ class User(Base):
     def validate_password(self, password):
         """Check the password against existing credentials.
         """
-        identity = config.get('identity', None)
-        if identity is None:
-            return password
-        algorithm = identity.get('password_encryption_method', None)
+        #identity = config.get('identity', None)
+        #if identity is None:
+        #    return password
+        #algorithm = identity.get('password_encryption_method', None)
+        algorithm = 'sha1'
         return self.password == self.__encrypt_password(algorithm, password)
 
 

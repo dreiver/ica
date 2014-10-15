@@ -150,8 +150,8 @@ def update_user_identity(identity, provider):
         user.email_address = identity['mail'][0]
     if 'cn' in identity:
         user.display_name = identity['cn'][0]
-    if 'repoze.who.userid' in identity:
-        user.extern_uid = identity['repoze.who.userid']
+    #if 'repoze.who.userid' in identity:
+    #    user.extern_uid = identity['repoze.who.userid']
     if user.theme is None:
         user.theme = g.template
 

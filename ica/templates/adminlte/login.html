@@ -23,7 +23,7 @@
                 <img src="" alt="">
             </div>-->
             <div class="header">Sign In</div>
-            <form action="/login_generic?came_from={{ c.came_from }}&amp;__logins={{ c.login_counter }}&amp;__auth=ldap" method="post">
+            <form action="/login_generic?came_from={{ c.came_from }}&amp;__logins={{ c.login_counter }}&amp;__auth={{ c.auth }}" method="post">
                 <div class="body bg-gray"><br />
                     {% if c.login_error %}
                         <div class="alert alert-danger alert-dismissable">

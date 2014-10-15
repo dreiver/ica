@@ -301,7 +301,9 @@
                                 <li class="user-header bg-light-blue">
                                     <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
                                     <p>
-                                        {{ c.name }} - {{ c.identity.department }}
+                                        {{ c.name }} {% if c.identity %}
+                                                        - {{ c.identity.department }}
+                                                     {% endif %}
                                         <small>Member since {{ c.created }}</small>
                                     </p>
                                 </li>

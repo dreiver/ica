@@ -1,16 +1,17 @@
 import logging
 
-from zope.interface import implements
 from repoze.who.interfaces import IAuthenticator
+from zope.interface import implementer
 from ica.model import Session
 
 from ica.lib.util import get_user_by_user_name, add_new_user
 
 log = logging.getLogger(__name__)
 
-class UsernamePasswordAuthenticator(object):
-    implements(IAuthenticator)
 
+@implementer(IAuthenticator)
+class UsernamePasswordAuthenticator(object):
+    # IAuthenticator
     def authenticate(self, environ, identity):
         if not ('login' in identity and 'password' in identity):
             return None
@@ -21,26 +22,33 @@ class UsernamePasswordAuthenticator(object):
             not 'repoze.who.userid' in identity:
             return None
         """
-        # Store user|password
+        login = identity['login']
         auth = environ.get('ica.login.auth', 'custom')
 
         if ('ldap' in auth and not 'repoze.who.userid' in identity):
             return None
 
-        user = get_user_by_user_name(identity['login'])
+        user = get_user_by_user_name(login)
 
         if user is None:
             if 'repoze.who.userid' in identity:
-                add_new_user(identity['login'], identity['password'], auth, identity['repoze.who.userid'], identity['client'])
+                add_new_user(login, identity['password'], auth, identity['repoze.who.userid'], identity['client'])
             else:
+                log.debug('Login failed - username \'%s\' not found', login)
                 return None
+        elif not user.validate_password(identity['password']):
+            log.debug('Login as \'%s\' failed - password not valid', login)
+            return None
 
         # Also update db if there is some change
         if user:
             user.password = identity['password']
             user.client_type = identity['client']
 
-        Session.commit()
+            Session.commit()
+
+        if not 'ldap_auth' in environ['repoze.who.plugins']:
+            return login
 
         """
         #TODO:
