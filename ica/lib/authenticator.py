@@ -47,8 +47,8 @@ class UsernamePasswordAuthenticator(object):
 
             Session.commit()
 
-        if not 'ldap_auth' in environ['repoze.who.plugins']:
-            return login
+            if not 'ldap_auth' in environ['repoze.who.plugins']:
+                return login
 
         """
         #TODO:
