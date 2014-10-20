@@ -91,7 +91,7 @@ def get_user_by_token(token):
     return User.by_token(unicode(token))
 
 
-def get_user_by_user_extern_uid(extern_uid):
+def get_user_by_extern_uid(extern_uid):
     return User.by_extern_uid(unicode(extern_uid))
 
 
@@ -126,7 +126,7 @@ def set_session_vars(user):
 def update_user_identity(identity, provider):
 
     if provider == 'ldap':
-        user = get_user_by_user_extern_uid( identity['repoze.who.userid'] )
+        user = get_user_by_extern_uid( identity['repoze.who.userid'] )
     else:
         user = get_user_by_user_name( identity['repoze.who.userid'] )
 
