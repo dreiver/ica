@@ -23,6 +23,8 @@ class MainController(BaseController):
 		if test_redis(g.redis_ica):
 			redirect('/offline')
 
+		c.pjax = "data-pjax='#main-content'"
+
 		# User session settings
 		c.name = session.get('user_name')
 		c.mail = session.get('mail')
@@ -186,9 +188,48 @@ class MainController(BaseController):
 	def support(self):
 		return "support in development"
 
+
+	###########
+	# Reports #
+	###########
+
+	def general(self):
+		return "general in development"
+
+	def currentcalls(self):
+		return "currentcalls in development"
+
+	def detailed(self):
+		return "detailed in development"
+
+
+	########
+	# Voip #
+	########
+
+	def sip(self):
+		return "sip in development"
+
+	def iax(self):
+		return "iax in development"
+
+	def sms(self):
+		return "sms in development"
+
+	def pstn(self):
+		return "pstn in development"
+
+	def media(self):
+		return "media in development"
+
+	def dialer(self):
+		return "dialer in development"
+
+
 	#######################
 	# CUSTOM CLIENT CABAL #
 	#######################
+
 	def bines(self):
 		return pjax('cabal-bines.html')
 

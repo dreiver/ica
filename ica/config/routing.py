@@ -71,13 +71,18 @@ def make_map(config):
     with map.submapper(path_prefix='/voip', controller='main', conditions=GET) as m:
         m.connect('voip', '/sip', action='sip')
         m.connect('voip', '/iax', action='iax')
+        m.connect('voip', '/sms', action='sms')
+        m.connect('voip', '/pstn', action='pstn')
+        m.connect('voip', '/media', action='media')
+        m.connect('voip', '/dialer', action='dialer')
+        
     
     # Reports
     with map.submapper(path_prefix='/reports', controller='main', conditions=GET) as m:
         m.connect('reports', '/currentcalls', action='currentcalls')
         m.connect('reports', '/general', action='general')
-        m.connect('reports', '/graphs', action='graphs')
-        m.connect('reports', '/calls', action='calls')
+        m.connect('reports', '/detailed', action='detailed')
+        
     
     # System
     with map.submapper(path_prefix='/system', controller='main', conditions=GET) as m:

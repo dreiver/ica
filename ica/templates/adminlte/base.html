@@ -84,7 +84,7 @@
 
         <!-- header logo: style can be found in header.less -->
         <header id="main-ica-header" class="header" style="{{ c.head_style }}" >
-            <a href="/index" data-pjax="#main-content" class="logo">
+            <a href="/index" {{ c.pjax }} class="logo">
                 <!-- Add the class icon to your logo image or logo icon to add the margining -->
                 ICA
                 <!--<span class="icon logo">
@@ -322,7 +322,7 @@
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="/profile" data-pjax="#main-content" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="/profile" {{ c.pjax }} class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -367,12 +367,12 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
                         <li class="active">
-                            <a href="/index" data-pjax="#main-content">
+                            <a href="/index" {{ c.pjax }}>
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a href="/profile" data-pjax="#main-content">
+                            <a href="/profile" {{ c.pjax }}>
                                 <i class="fa fa-user"></i> <span>My profile</span>
                             </a>
                         </li>
@@ -382,9 +382,9 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> General</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Current Calls</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Detailed Calls</a></li>
+                                <li><a href="/reports/general" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> General</a></li>
+                                <li><a href="/reports/currentcalls" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> Current Calls</a></li>
+                                <li><a href="/reports/detailed" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> Detailed Calls</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -393,11 +393,12 @@
                                 <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> SIP Definitions</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Media</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> PSTN</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> IAX</a></li>
-                                <li><a href="#"><i class="fa fa-angle-double-right"></i> Dialer</a></li>
+                                <li><a href="/voip/sip" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> SIP Definitions</a></li>
+                                <li><a href="/voip/media" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> Media</a></li>
+                                <li><a href="/voip/pstn" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> PSTN</a></li>
+                                <li><a href="/voip/iax" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> IAX</a></li>
+                                <li><a href="/voip/dialer" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> Dialer</a></li>
+                                <li><a href="/voip/sms" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> SMS</a></li>
                             </ul>
                         </li>
                         <li class="treeview">
@@ -409,7 +410,7 @@
                             <ul class="treeview-menu">
                                 <li><a href="#"><i class="fa fa-angle-double-right"></i> Application Settings</a></li>
                                 <li><a href="#"><i class="fa fa-angle-double-right"></i> System</a></li>
-                                <li><a href="/system/panel" data-pjax="#main-content"><i class="fa fa-angle-double-right"></i> Panel</a></li>
+                                <li><a href="/system/panel" {{ c.pjax }}><i class="fa fa-angle-double-right"></i> Panel</a></li>
                             </ul>
                         </li>
                     </ul>
