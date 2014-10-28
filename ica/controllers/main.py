@@ -188,6 +188,11 @@ class MainController(BaseController):
 	def support(self):
 		return "support in development"
 
+	def reset_private_token(self):
+		session['token'] = update_private_token(session['user_name'])
+		session.save()
+		return session['token']
+
 
 	###########
 	# Reports #

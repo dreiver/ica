@@ -62,10 +62,11 @@ def make_map(config):
 
     # Profile
     with map.submapper(path_prefix='/profile', controller='main', conditions=GET) as m:
-        m.connect('system', '/account', action='account')
-        m.connect('system', '/notifications', action='notifications')
-        m.connect('system', '/design', action='design')
-        m.connect('system', '/support', action='support')
+        m.connect('profile', '/account', action='account')
+        m.connect('profile', '/notifications', action='notifications')
+        m.connect('profile', '/design', action='design')
+        m.connect('profile', '/support', action='support')
+        m.connect('profile', '/reset_private_token', action='reset_private_token', conditions=POST)
     
     # Voip
     with map.submapper(path_prefix='/voip', controller='main', conditions=GET) as m:
