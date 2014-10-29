@@ -6,7 +6,7 @@ $(function() {
 
 	$(document).on('submit','#profile_reset_private_token',function(e){
 		// prevent native form submission here
-        e.preventDefault();
+		e.preventDefault();
 
 		if ( ask() ) {
 
@@ -23,21 +23,29 @@ $(function() {
 				success: function(data)
 				{
 					setTimeout(function(){
-						form.find(".form-group").addClass('has-success');
-						form.find(".box-footer > img").remove();
 						form.find("#private_token").val( data );
-						//form.find(".form-group").append("<label class='control-label' for='inputSuccess'><i class='fa fa-check'></i> Token updated</label>");
+						form.find(".form-group").addClass('has-success');
+						//form.find(".form-group").append("<label class='control-label'><i class='fa fa-check-circle'></i> Token updated</label>");
 					}, 500);
-					/*$.pjax({
-						timeout: 2000,
-						url: data.url,
-						container: '#main-content'
-					});*/
+				},
+				error: function(data)
+				{
+					setTimeout(function(){
+						form.find(".form-group").addClass('has-error');
+						//form.find(".form-group").append("<label class='control-label'><i class='fa fa-times-circle'></i> There was an error</label>");
+					}, 500);
+				},
+				complete: function(data)
+				{
+					setTimeout(function(){
+						form.find(".box-footer > img").remove();
+					}, 500);
 				}
 			});
 		}
 		return false;
 	});
+
 });
 
 

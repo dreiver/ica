@@ -193,6 +193,9 @@ class MainController(BaseController):
 		session.save()
 		return session['token']
 
+	def update_settings(self):
+		return "update_settings in development"
+
 
 	###########
 	# Reports #

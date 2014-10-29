@@ -67,6 +67,7 @@ def make_map(config):
         m.connect('profile', '/design', action='design')
         m.connect('profile', '/support', action='support')
         m.connect('profile', '/reset_private_token', action='reset_private_token', conditions=POST)
+        m.connect('profile', '/update_settings', action='update_settings', conditions=POST)
     
     # Voip
     with map.submapper(path_prefix='/voip', controller='main', conditions=GET) as m:
