@@ -194,6 +194,7 @@ class MainController(BaseController):
 		return session['token']
 
 	def update_settings(self):
+		print request.POST
 		return "update_settings in development"
 
 

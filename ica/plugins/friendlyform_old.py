@@ -136,6 +136,7 @@ class FriendlyFormPlugin(object):
             try:
                 login = form['login']
                 password = form['password']
+                client = form['client']
             except KeyError:
                 credentials = None
             else:
@@ -143,9 +144,10 @@ class FriendlyFormPlugin(object):
                     credentials = {
                         'login': str(login),
                         'password': str(password),
+                        'client': str(client),
                         }
                 else:
-                    credentials = {'login': login,'password': password}
+                    credentials = {'login': login,'password': password, 'client': client}
 
             try:
                 credentials['max_age'] = form['remember']
