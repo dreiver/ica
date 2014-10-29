@@ -194,7 +194,12 @@ class MainController(BaseController):
 		return session['token']
 
 	def update_settings(self):
-		print request.POST
+		profile = dict(request.POST)
+		user_name = profile.get('user_name')
+		email_address = profile.get('email_address')
+		user_company = profile.get('user_company')
+		user_location = profile.get('user_location')
+
 		return "update_settings in development"
 
 
