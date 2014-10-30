@@ -99,6 +99,16 @@ def get_users_paginate(min=0, max=10):
     return Session.query(User.user_name, User.display_name).order_by(User.user_id).limit(max).offset(min).all()
 
 
+def update_settings(username, profile):
+    user = User.by_user_name(unicode(username))
+    user.display_name = profile.get('user_name')
+    user.email_address = profile.get('email_address')
+    #user.company = profile.get('user_company')
+    #user.location = profile.get('user_location')
+    set_session_vars(user)
+    Session.commit()
+
+
 def update_private_token(user_name):
     token = create_private_token()
     Session.query(User).filter(User.user_name==user_name).update({'token': unicode(token)})

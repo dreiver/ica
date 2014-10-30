@@ -195,12 +195,8 @@ class MainController(BaseController):
 
 	def update_settings(self):
 		profile = dict(request.POST)
-		user_name = profile.get('user_name')
-		email_address = profile.get('email_address')
-		user_company = profile.get('user_company')
-		user_location = profile.get('user_location')
-
-		return "update_settings in development"
+		update_settings(session['user_name'], profile)
+		return profile.get('user_name')
 
 
 	###########
