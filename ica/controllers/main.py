@@ -198,6 +198,9 @@ class MainController(BaseController):
 		update_settings(session['user_name'], profile)
 		return profile.get('user_name')
 
+	def notofications_global(self):
+		return "notofications_global in development"
+
 
 	###########
 	# Reports #

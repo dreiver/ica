@@ -57,7 +57,6 @@ $(function() {
 			url: $(this).attr('action'),
 			data: $(this).serialize(),
 			beforeSend: function(){
-
 				form.find(".box-footer").append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
 			},
 			success: function(data)
@@ -94,6 +93,29 @@ $(function() {
 		});
 		return false;
 	});
+
+	$(document).on('ifChecked','input[name=notifications]:radio',function(e){
+		var id = $(this).attr('id');
+		var type = $(this).val();
+		var form = $('#notofications_global');
+		dataString = form.serialize();
+		
+		$.ajax({
+			type: $(this).attr('method'),
+			url: $(this).attr('action'),
+			data: $(this).serialize(),
+			beforeSend: function(){
+				form.find("#loading_"+id).append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
+			},
+			complete: function(data)
+			{
+				setTimeout(function(){
+					form.find("#loading_"+id).empty();
+				}, 300);
+			}
+		});
+	});
+	
 
 });
 
