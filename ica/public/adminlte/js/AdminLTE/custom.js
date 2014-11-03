@@ -70,6 +70,7 @@ $(function() {
 							Profile updated successfully\
 						</div>");
 					$(document).find('.cname').text(data);
+					$(document).scrollTop(0);
 				}, 500);
 			},
 			error: function(data)
