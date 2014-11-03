@@ -1,6 +1,16 @@
 $(function() {
 	$( document ).ready(function() {
 		$(document).pjax('a[data-pjax]', '#main-content')
+
+		$(document).on('pjax:complete', function() {
+			if ( $(location).attr('pathname') == "/profile/notifications" ){
+				// Load plugin for specific page
+				$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
+					checkboxClass: 'icheckbox_minimal',
+					radioClass: 'iradio_minimal'
+				});
+			}
+		})
 	});
 
 	$(document).on('submit','#profile_reset_private_token',function(e){
