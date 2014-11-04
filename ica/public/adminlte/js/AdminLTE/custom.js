@@ -1,5 +1,5 @@
 $(function() {
-	$( document ).ready(function() {
+	$(document).ready(function() {
 		$(document).pjax('a[data-pjax]', '#main-content')
 
 		$(document).on('pjax:complete', function() {
@@ -35,7 +35,7 @@ $(function() {
 						form.find(".form-group").addClass('has-success');
 						form.find("#label_msg").remove();
 						form.find(".form-group").append("<label id='label_msg' class='control-label'><i class='fa fa-check-circle'></i> Token updated</label>");
-					}, 500);
+					}, 300);
 				},
 				error: function(data)
 				{
@@ -43,13 +43,13 @@ $(function() {
 						form.find(".form-group").addClass('has-error');
 						form.find("#label_msg").remove();
 						form.find(".form-group").append("<label id='label_msg' class='control-label'><i class='fa fa-times-circle'></i> There was an error</label>");
-					}, 500);
+					}, 300);
 				},
 				complete: function(data)
 				{
 					setTimeout(function(){
 						form.find(".box-footer > img").remove();
-					}, 500);
+					}, 300);
 				}
 			});
 		}
@@ -81,7 +81,7 @@ $(function() {
 						</div>");
 					$(document).find('.cname').text(data);
 					$(document).scrollTop(0);
-				}, 500);
+				}, 300);
 			},
 			error: function(data)
 			{
@@ -93,13 +93,13 @@ $(function() {
 						<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>\
 						There was an error, the profile was not updated\
 					</div>");
-				}, 500);
+				}, 300);
 			},
 			complete: function(data)
 			{
 				setTimeout(function(){
 					form.find(".box-footer > img").remove();
-				}, 500);
+				}, 300);
 			}
 		});
 		return false;
@@ -118,6 +118,19 @@ $(function() {
 			beforeSend: function(){
 				form.find("#loading_"+id).append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
 			},
+			success: function(data)
+			{
+				setTimeout(function(){
+					form.find("#status_"+id).empty();
+				}, 300);
+			},
+			error: function(data)
+			{
+				setTimeout(function(){
+					form.find("#status_"+id).empty();
+					form.find("#status_"+id).append('<i class="fa fa-times-circle text-warning"></i>');
+				}, 300);
+			},
 			complete: function(data)
 			{
 				setTimeout(function(){
@@ -126,7 +139,6 @@ $(function() {
 			}
 		});
 	});
-	
 
 });
 
