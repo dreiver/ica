@@ -112,9 +112,9 @@ $(function() {
 		dataString = form.serialize();
 		
 		$.ajax({
-			type: $(this).attr('method'),
-			url: $(this).attr('action'),
-			data: $(this).serialize(),
+			type: form.attr('method'),
+			url: form.attr('action'),
+			data: form.serialize(),
 			beforeSend: function(){
 				form.find("#loading_"+id).append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
 			},
