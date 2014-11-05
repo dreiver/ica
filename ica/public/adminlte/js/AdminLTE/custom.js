@@ -117,7 +117,7 @@ $(function() {
 	$(document).on('ifChecked','input[name=notifications]:radio',function(e){
 		var id = $(this).attr('id');
 		var type = $(this).val();
-		var form = $('#notofications_global');
+		var form = $('#notifications_global');
 		dataString = form.serialize();
 		
 		$.ajax({
@@ -146,6 +146,26 @@ $(function() {
 					form.find("#loading_"+id).empty();
 				}, 300);
 			}
+		});
+	});
+
+	$(document).on('change','.notifications-level',function(e){
+		var action = $(this).attr('name');
+		var value = $(this).val();
+		var main = $("#notifications_level")
+
+		var jqxhr = $.post("/profile/notifications_level", function() {
+			alert( "success" );
+			//$(this).append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
+		})
+		.done(function() {
+			alert( "second success" );
+		})
+		.fail(function() {
+			alert( "error" );
+		})
+		.always(function() {
+			alert( "finished" );
 		});
 	});
 

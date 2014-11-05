@@ -202,8 +202,11 @@ class MainController(BaseController):
 		update_settings(session['user_name'], profile)
 		return profile.get('user_name')
 
-	def notofications_global(self):
-		return "notofications_global in development"
+	def notifications_global(self):
+		return "notifications_global in development"
+
+	def notifications_level(self):
+		return "notifications_level in development"
 
 
 	###########

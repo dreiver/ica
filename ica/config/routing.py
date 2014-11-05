@@ -69,7 +69,8 @@ def make_map(config):
         m.connect('profile', '/reset_private_token', action='reset_private_token', conditions=POST)
         m.connect('profile', '/reset_password', action='reset_password', conditions=POST)
         m.connect('profile', '/update_settings', action='update_settings', conditions=POST)
-        m.connect('profile', '/notofications_global', action='notofications_global', conditions=POST)
+        m.connect('profile', '/notifications_global', action='notifications_global', conditions=POST)
+        m.connect('profile', '/notifications_level', action='notifications_level', conditions=POST)
     
     # Voip
     with map.submapper(path_prefix='/voip', controller='main', conditions=GET) as m:
