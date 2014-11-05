@@ -11,7 +11,16 @@ $(function() {
 				});
 			}
 		})
+
+		$(document).on('pjax:beforeSend', function() {
+			NProgress.start();
+		})
+
+		$(document).on('pjax:complete', function() {
+			NProgress.done();
+		})
 	});
+
 
 	$(document).on('submit','#profile_reset_private_token',function(e){
 		e.preventDefault();
