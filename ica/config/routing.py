@@ -67,6 +67,7 @@ def make_map(config):
         m.connect('profile', '/design', action='design')
         m.connect('profile', '/support', action='support')
         m.connect('profile', '/reset_private_token', action='reset_private_token', conditions=POST)
+        m.connect('profile', '/reset_password', action='reset_password', conditions=POST)
         m.connect('profile', '/update_settings', action='update_settings', conditions=POST)
         m.connect('profile', '/notofications_global', action='notofications_global', conditions=POST)
     

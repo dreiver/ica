@@ -193,6 +193,10 @@ class MainController(BaseController):
 		session.save()
 		return session['token']
 
+	def reset_password(self):
+		#return "reset_password in development"
+		redirect('/logout')
+
 	def update_settings(self):
 		profile = dict(request.POST)
 		update_settings(session['user_name'], profile)
