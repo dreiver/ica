@@ -157,7 +157,7 @@ $(function() {
 		$('#notifications_level_custom_fail').remove();
 		main.parent().append('<img id="loading_notifications_level_custom" src="/adminlte/img/ajax-loader-custom.gif" />');
 
-		var jqxhr = $.post("/profile/notifications_level", function() {})
+		$.post("/profile/notifications_level", { "action": action, "value": value })
 		.fail(function() {
 			setTimeout(function(){
 				main.parent().append('<i id="notifications_level_custom_fail" class="fa fa-times-circle text-warning"></i>');

@@ -217,6 +217,14 @@ class MainController(BaseController):
 		return profile['notifications_global']
 
 	def notifications_level(self):
+		notifications_level = dict(request.POST)
+		k = 'ica:users:%s:settings' %(session['user_name'])
+
+		if not ('action' in notifications_level and 'value' in notifications_level):
+			return 'error'
+
+		g.redis_ica.hset(k, 'notifications_'+notifications_level['action'], notifications_level['value'])
+
 		return "notifications_level in development"
 
 
