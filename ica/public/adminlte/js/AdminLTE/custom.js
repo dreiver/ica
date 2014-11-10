@@ -114,7 +114,7 @@ $(function() {
 		return false;
 	});
 
-	$(document).on('ifChecked','input[name=notifications]:radio',function(e){
+	$(document).on('ifChecked','input[name=notifications_global]:radio',function(e){
 		var id = $(this).attr('id');
 		var type = $(this).val();
 		var form = $('#notifications_global');
@@ -152,20 +152,21 @@ $(function() {
 	$(document).on('change','.notifications-level',function(e){
 		var action = $(this).attr('name');
 		var value = $(this).val();
-		var main = $("#notifications_level")
+		var main = $(this);
 
-		var jqxhr = $.post("/profile/notifications_level", function() {
-			alert( "success" );
-			//$(this).append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
-		})
-		.done(function() {
-			alert( "second success" );
-		})
+		$('#notifications_level_custom_fail').remove();
+		main.parent().append('<img id="loading_notifications_level_custom" src="/adminlte/img/ajax-loader-custom.gif" />');
+
+		var jqxhr = $.post("/profile/notifications_level", function() {})
 		.fail(function() {
-			alert( "error" );
+			setTimeout(function(){
+				main.parent().append('<i id="notifications_level_custom_fail" class="fa fa-times-circle text-warning"></i>');
+			}, 300);
 		})
 		.always(function() {
-			alert( "finished" );
+			setTimeout(function(){
+				$('#loading_notifications_level_custom').remove();
+			}, 300);
 		});
 	});
 

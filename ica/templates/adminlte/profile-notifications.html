@@ -51,14 +51,22 @@
                                     <div class="form-group">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="notifications" id="r1" value="disabled" />
+                                                <input type="radio" name="notifications_global" id="r1" value="disabled"
+                                                {% if c.notifications_global == 'disabled' %}
+                                                    checked
+                                                {% endif %}
+                                                />
                                                 Disabled <span id="loading_r1"></span><span id="status_r1"></span>
                                                 <div><small>You will not get any notifications via email</small></div>
                                             </label>
                                         </div>
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" name="notifications" id="r2" value="watching" />
+                                                <input type="radio" name="notifications_global" id="r2" value="watching"
+                                                {% if c.notifications_global == 'watching' %}
+                                                    checked
+                                                {% endif %}
+                                                />
                                                 Watching  <span id="loading_r2"></span><span id="status_r2"></span>
                                                 <div><small>You will receive all notifications</small></div>
                                             </label>

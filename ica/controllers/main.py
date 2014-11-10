@@ -180,6 +180,9 @@ class MainController(BaseController):
 		return pjax('profile-account.html')
 
 	def notifications(self):
+		k = 'ica:users:%s:settings' %(session['user_name'])
+		c.notifications_global = g.redis_ica.hget(k, 'notifications_global')
+
 		return pjax('profile-notifications.html')
 
 	def design(self):
@@ -203,7 +206,15 @@ class MainController(BaseController):
 		return profile.get('user_name')
 
 	def notifications_global(self):
-		return "notifications_global in development"
+		profile = dict(request.POST)
+		k = 'ica:users:%s:settings' %(session['user_name'])
+
+		if not 'notifications_global' in profile:
+			return 'error'
+
+		g.redis_ica.hset(k, 'notifications_global', profile['notifications_global'])
+
+		return profile['notifications_global']
 
 	def notifications_level(self):
 		return "notifications_level in development"
