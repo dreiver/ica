@@ -37,6 +37,8 @@ class MainController(BaseController):
 		
 		# Aplication settings
 		client = session.get('client_type')
+		c.keys = {}
+		c.keys['settings'] = 'ica:users:%s:settings' %(session['user_name'])
 
 		if 'ldap_attributes' in request.environ['repoze.who.plugins']:
 			ldap_attributes = request.environ.get('ica.ldap_attributes')
@@ -180,9 +182,9 @@ class MainController(BaseController):
 		return pjax('profile-account.html')
 
 	def notifications(self):
-		k = 'ica:users:%s:settings' %(session['user_name'])
-		c.notifications_global = g.redis_ica.hget(k, 'notifications_global')
-
+		c.notifications_global = g.redis_ica.hget(c.keys['settings'], 'notifications_global')
+		c.notifications_messages = g.redis_ica.hget(c.keys['settings'], 'notifications_messages')
+		c.notifications_missed_calls = g.redis_ica.hget(c.keys['settings'], 'notifications_missed_calls')
 		return pjax('profile-notifications.html')
 
 	def design(self):
@@ -207,25 +209,23 @@ class MainController(BaseController):
 
 	def notifications_global(self):
 		profile = dict(request.POST)
-		k = 'ica:users:%s:settings' %(session['user_name'])
 
 		if not 'notifications_global' in profile:
 			return 'error'
 
-		g.redis_ica.hset(k, 'notifications_global', profile['notifications_global'])
+		g.redis_ica.hset(c.keys['settings'], 'notifications_global', profile['notifications_global'])
 
 		return profile['notifications_global']
 
 	def notifications_level(self):
 		notifications_level = dict(request.POST)
-		k = 'ica:users:%s:settings' %(session['user_name'])
 
 		if not ('action' in notifications_level and 'value' in notifications_level):
 			return 'error'
 
-		g.redis_ica.hset(k, 'notifications_'+notifications_level['action'], notifications_level['value'])
+		g.redis_ica.hset(c.keys['settings'], notifications_level['action'], notifications_level['value'])
 
-		return "notifications_level in development"
+		return notifications_level['action']
 
 
 	###########

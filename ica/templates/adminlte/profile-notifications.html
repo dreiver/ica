@@ -84,10 +84,10 @@
                                 Missed calls
                             </div>
                             <div class="col-sm-4">
-                                <select class="trigger-submit notifications-level" id="missed_calls" name="missed_calls">
-                                    <option value="0">disabled</option>
-                                    <option value="1">watching</option>
-                                    <option selected="selected" value="2">global</option>
+                                <select class="trigger-submit notifications-level" name="notifications_missed_calls">
+                                    <option value="0" {% if c.notifications_missed_calls == '0' %}selected="selected"{% endif %}>disabled</option>
+                                    <option value="1" {% if c.notifications_missed_calls == '1' %}selected="selected"{% endif %}>watching</option>
+                                    <option value="2" {% if c.notifications_missed_calls == '2' %}selected="selected"{% endif %}>global</option>
                                 </select>
                             </div>
                         </div>
@@ -97,10 +97,10 @@
                                 New message
                             </div>
                             <div class="col-sm-4">
-                                <select class="trigger-submit notifications-level" id="messages" name="messages">
-                                    <option value="0">disabled</option>
-                                    <option value="1">watching</option>
-                                    <option selected="selected" value="2">global</option>
+                                <select class="trigger-submit notifications-level" name="notifications_messages">
+                                    <option value="0" {% if c.notifications_messages == '0' %}selected="selected"{% endif %}>disabled</option>
+                                    <option value="1" {% if c.notifications_messages == '1' %}selected="selected"{% endif %}>watching</option>
+                                    <option value="2" {% if c.notifications_messages == '2' %}selected="selected"{% endif %}>global</option>
                                 </select>
                             </div>
                         </div>
