@@ -47,10 +47,6 @@ def make_map(config):
         m.connect('api', '/calls/currentcalls{.format:json|xml}', action='currentcalls')
     #map.resource('voip', 'voip/sip', controller='api/comments', path_prefix='/api/v1', name_prefix='CACA_')
 
-    ############
-    # /END API #
-    ############
-
     ########
     # Main #
     ########
@@ -111,10 +107,6 @@ def make_map(config):
         m.connect('static', '/offline', action='offline')
         m.connect('static', '/constructing', action='constructing')
 
-    #############
-    # /END MAIN #
-    #############
-
     #######################
     # CUSTOM CLIENT CABAL #
     #######################
@@ -124,9 +116,5 @@ def make_map(config):
         m.connect('cabal', '/cabal/consultas', action='consultas')
         m.connect('cabal', '/cabal/precargada', action='precargada')
         m.connect('cabal', '/cabal/autorizaciones', action='autorizaciones')
-
-    ############################
-    # /END CUSTOM CLIENT CABAL #
-    ############################
 
     return map

@@ -7,6 +7,7 @@ from pylons.controllers.util import abort, redirect
 from ica.lib.base import BaseController
 from ica.lib.util import *
 from datetime import datetime, timedelta
+from pylons.i18n import get_lang, set_lang
 
 log = logging.getLogger(__name__)
 
@@ -23,8 +24,6 @@ class MainController(BaseController):
 		if test_redis(g.redis_ica):
 			redirect('/offline')
 
-		c.pjax = "data-pjax='#main-content'"
-
 		# User session settings
 		c.name = session.get('user_name')
 		c.mail = session.get('mail')
@@ -36,6 +35,7 @@ class MainController(BaseController):
 		c.last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
 		
 		# Aplication settings
+		c.pjax = "data-pjax='#main-content'"
 		client = session.get('client_type')
 		c.keys = {}
 		c.keys['settings'] = 'ica:users:%s:settings' %(session['user_name'])
