@@ -30,7 +30,6 @@
                             <li><a href="/profile/support" {{ c.pjax }}><i class="fa fa-rocket"></i> Support</a></li>
                         </ul>
                     </div>
-                    <!--<div class="chart" id="line-chart" style="height: 250px;"></div>-->
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
         </div><!-- /.col -->
@@ -52,7 +51,7 @@
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" name="notifications_global" id="r1" value="disabled"
-                                                {% if c.notifications_global == 'disabled' %}
+                                                {% if c.notifications_global == 'disabled' or c.notifications_global == None %}
                                                     checked
                                                 {% endif %}
                                                 />
@@ -78,7 +77,6 @@
                         <h4 class="text-muted">Actions</h4>
                         <small>You can also specify notification level per group or per project. By default all actions uses notification level set above</small>
                         <hr>
-
                         <div class="row">
                             <div class="col-sm-8">
                                 Missed calls
