@@ -24,34 +24,7 @@ class MainController(BaseController):
 		if test_redis(g.redis_ica):
 			redirect('/offline')
 
-		# User session settings
-		c.name = session.get('user_name')
-		c.mail = session.get('mail')
-		c.name = session.get('name')
-		c.token = session.get('token')
-		c.theme = session.get('theme')
-		c.created = session.get('created').strftime('%e %b %Y')
-		c.provider = session.get('provider')
-		c.last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
-		
-		# Aplication settings
-		c.pjax = "data-pjax='#main-content'"
-		client = session.get('client_type')
-		c.keys = {}
-		c.keys['settings'] = 'ica:users:%s:settings' %(session['user_name'])
-
-		if 'ldap_attributes' in request.environ['repoze.who.plugins']:
-			ldap_attributes = request.environ.get('ica.ldap_attributes')
-			c.identity = {}
-
-			for i in ldap_attributes:
-				if i in identity:
-					c.identity[i] = identity.get(i)[0].decode('utf-8')
-
-		#if c.ajax is True:
-		if ('preferred' in client or 'advanced' in client):
-			c.ajax = True
-			c.head_style = "display: none;"
+		ica_app_settings(request, session)
 
 		"""
 		conf_menu = [

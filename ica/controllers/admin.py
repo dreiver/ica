@@ -14,8 +14,20 @@ log = logging.getLogger(__name__)
 
 class AdminController(BaseController):
 
+	def __before__(self):
+		
+		identity = request.environ.get('repoze.who.identity')
+
+		if not identity:
+			redirect('/login')
+
+		if test_redis(g.redis_ica):
+			redirect('/offline')
+
+		ica_app_settings(request, session)
+
 	def index(self):
 		return 'index in development'
 
 	def users(self):
-		return 'users in development'
+		return pjax('admin/users.html')
