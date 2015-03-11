@@ -72,7 +72,7 @@ def api(func, *args, **kwargs):
 
 	if format == 'xml':
 		response.headers['Content-Type'] = 'application/xml; charset=utf-8'
-		resp = xml(data, root=False)
+		resp = xml(data, root=True)
 	else:
 		response.headers['Content-Type'] = 'application/json; charset=utf-8'
 		resp = json.dumps(data)
