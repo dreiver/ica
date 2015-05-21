@@ -3,15 +3,12 @@ $(function() {
 	var img_loader = "/adminlte/dist/img/ajax-loader-custom.gif";
 
 	$(document).ready(function() {
+		notifications_global_iCheck();
 		$(document).pjax('a[data-pjax]', '#main-content')
-
 		$(document).on('pjax:complete', function() {
 			if ( $(location).attr('pathname') == "/profile/notifications" ){
 				// Load plugin for specific page
-				$("input[type='checkbox']:not(.simple), input[type='radio']:not(.simple)").iCheck({
-					checkboxClass: 'icheckbox_minimal',
-					radioClass: 'iradio_minimal'
-				});
+				notifications_global_iCheck();
 			}
 		})
 
@@ -182,4 +179,14 @@ function ask() {
 		return true;
 	else
 		return false; 
+}
+
+function notifications_global_iCheck (argument) {
+	if (typeof $.fn.iCheck != 'undefined') {
+		$("#r1, #r2").iCheck({
+			checkboxClass: 'icheckbox_square-blue',
+			radioClass: 'iradio_square-blue',
+			increaseArea: '10%'
+		});
+	}
 }
