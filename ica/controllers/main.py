@@ -9,6 +9,8 @@ from ica.lib.util import *
 from datetime import datetime, timedelta
 from pylons.i18n import get_lang, set_lang
 
+from ica.model import User, Session
+
 log = logging.getLogger(__name__)
 
 
@@ -142,6 +144,30 @@ class MainController(BaseController):
 
 	def currentcalls(self):
 		return pjax('currentcalls.html')
+
+
+	########
+	# User #
+	########
+
+	def __get_username(self, user):
+		if (len(user) < 4 or len(user) > 16):
+			abort(404)
+
+		u = User.by_user_name(unicode(user))
+
+		if u is None:
+			abort(404)
+
+		return u
+
+	def user(self, user):
+		username = self.__get_username(user)
+		return username.display_name+" in development"
+
+	def stars(self, user):
+		username = self.__get_username(username)
+		return username.display_name+" starts in development"
 
 
 	###########

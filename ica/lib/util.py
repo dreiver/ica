@@ -143,7 +143,7 @@ def ica_app_settings(request, session):
     identity = request.environ.get('repoze.who.identity')
 
     # User session settings
-    c.name = session.get('user_name')
+    c.uname = session.get('user_name')
     c.mail = session.get('mail')
     c.name = session.get('name')
     c.token = session.get('token')

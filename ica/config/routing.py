@@ -55,6 +55,12 @@ def make_map(config):
     map.connect('index', '/', controller='main', action='index', conditions=GET)
     map.connect('index', '/index', controller='main', action='index', conditions=GET)
     map.connect('profile', '/profile', controller='main', action='profile', conditions=GET)
+    map.connect('access', '/login', controller='access', action='login', conditions=GET)
+    map.connect('user', '/{user}', controller='main', action='user', conditions=GET)
+    
+    # User
+    with map.submapper(path_prefix='/{user}', controller='main', conditions=GET) as m:
+        m.connect('user', '/stars', action='stars')
 
     # Profile
     with map.submapper(path_prefix='/profile', controller='main', conditions=GET) as m:
@@ -96,11 +102,9 @@ def make_map(config):
         m.connect('admin', '/users', action='users')
 
     # Login / Logout
-    #with map.submapper(controller='access', conditions=GET) as m:
-    with map.submapper(controller='access') as m:
-        m.connect('access', '/login', action='login')
-        m.connect('access', '/user/logged_in', action='logged_in')
-        m.connect('access', '/user/logged_out', action='logged_out')
+    with map.submapper(path_prefix='/user', controller='access') as m:
+        m.connect('access', '/logged_in', action='logged_in')
+        m.connect('access', '/logged_out', action='logged_out')
     
     # Static
     with map.submapper(controller='static', conditions=GET) as m:
