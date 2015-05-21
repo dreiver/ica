@@ -15,8 +15,8 @@ data/*
 sstore/*
 setuptools-*
 pylons_data/*
-build
-dist
+build/*
+dist/*
 ica.egg-info
 
 # node.js
