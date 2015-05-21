@@ -1,4 +1,7 @@
 $(function() {
+
+	var img_loader = "/adminlte/dist/img/ajax-loader-custom.gif";
+
 	$(document).ready(function() {
 		$(document).pjax('a[data-pjax]', '#main-content')
 
@@ -35,7 +38,7 @@ $(function() {
 				url: $(this).attr('action'),
 				data: $(this).serialize(),
 				beforeSend: function(){
-					form.find(".box-footer").append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
+					form.find(".box-footer").append('<img src="'+img_loader+'" />');
 				},
 				success: function(data)
 				{
@@ -76,7 +79,7 @@ $(function() {
 			url: $(this).attr('action'),
 			data: $(this).serialize(),
 			beforeSend: function(){
-				form.find(".box-footer").append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
+				form.find(".box-footer").append('<img src="'+img_loader+'" />');
 			},
 			success: function(data)
 			{
@@ -125,7 +128,7 @@ $(function() {
 			url: form.attr('action'),
 			data: form.serialize(),
 			beforeSend: function(){
-				form.find("#loading_"+id).append('<img src="/adminlte/img/ajax-loader-custom.gif" />');
+				form.find("#loading_"+id).append('<img src="'+img_loader+'" />');
 			},
 			success: function(data)
 			{
@@ -155,7 +158,7 @@ $(function() {
 		var main = $(this);
 
 		$('#notifications_level_custom_fail').remove();
-		main.parent().append('<img id="loading_notifications_level_custom" src="/adminlte/img/ajax-loader-custom.gif" />');
+		main.parent().append('<img id="loading_notifications_level_custom" src="'+img_loader+'" />');
 
 		$.post("/profile/notifications_level", { "action": action, "value": value })
 		.fail(function() {
