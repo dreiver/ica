@@ -108,8 +108,7 @@
             else window.onload = downloadMainAtOnload;
         </script>
     </head>
-    <body class="skin-blue sidebar-mini">
-
+    <body class="skin-black-light sidebar-mini">
         {% if c.ajax %}
         <!-- loading stuff -->
         <div id="main-ica-loading">
@@ -118,13 +117,14 @@
             </div>
         </div>
         {% endif %}
-
         <div class="wrapper">
             <!-- header logo: style can be found in header.less -->
             <header id="main-ica-header" class="main-header" style="{{ c.head_style }}" >
                 <a href="/index" {{ c.pjax }} class="logo">
-                    <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>I</b>CA</span>
+                  <!-- mini logo for sidebar mini 50x50 pixels -->
+                  <span class="logo-mini"><b>I</b>CA</span>
+                  <!-- logo for regular state and mobile devices -->
+                  <span class="logo-lg"><b>I</b>CA</span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top" role="navigation">
@@ -299,6 +299,7 @@
                         <!-- /.search form -->
                         <!-- sidebar menu: : style can be found in sidebar.less -->
                         <ul class="sidebar-menu">
+                            <li class="header">MAIN NAVIGATION</li>
                             <li class="active">
                                 <a href="/index" {{ c.pjax }}>
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
