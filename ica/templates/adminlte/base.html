@@ -222,7 +222,7 @@
                           <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                               <img src="/adminlte/dist/img/user3-128x128.jpg" class="user-image" alt="User Image"/>
-                              <span class="hidden-xs">{{ c.name }}</span>
+                              <span class="hidden-xs cname">{{ c.name }}</span>
                             </a>
                             <ul class="dropdown-menu">
                               <!-- User image -->
@@ -269,7 +269,7 @@
             </header>
             <div id="main-ica-content" class="wrapper row-offcanvas row-offcanvas-left" style="{{ c.head_style }}">
                 <!-- Left side column. contains the logo and sidebar -->
-                <aside class="left-side sidebar-offcanvas">
+                <aside class="main-sidebar">
                     <!-- sidebar: style can be found in sidebar.less -->
                     <section class="sidebar">
                         <!-- Sidebar user panel -->
@@ -355,7 +355,7 @@
                 <!-- Content Wrapper. Contains page content -->
                 <div id="main-content" class="content-wrapper">
                     {% include c.template with context %}
-                </div><!-- /.right-side -->
+                </div>
             </div>
             {% include 'adminlte/footer.html' %}
         </div><!-- ./wrapper -->
