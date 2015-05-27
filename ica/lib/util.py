@@ -103,8 +103,10 @@ def update_settings(username, profile):
     user = User.by_user_name(unicode(username))
     user.display_name = profile.get('user_name')
     user.email_address = profile.get('email_address')
-    #user.company = profile.get('user_company')
-    #user.location = profile.get('user_location')
+    if profile.get('user_company'):
+        user.company = profile.get('user_company')
+    if profile.get('user_location'):
+        user.location = profile.get('user_location')
     set_session_vars(user)
     Session.commit()
 
@@ -121,7 +123,7 @@ def create_private_token():
     return u.bytes.encode('base64')[:20]
 
 
-def add_new_user(login, password, provider, extern_uid=None, client_type=None):
+def add_new_user(login, password, provider='custom', extern_uid=None, client_type=None):
     token = create_private_token()
     user = User(user_name=login, password=password, token=token, provider=provider, extern_uid=extern_uid, client_type=client_type)
     Session.add(user)
@@ -137,7 +139,12 @@ def set_session_vars(user):
     session['theme'] = user.theme
     session['provider'] = user.provider
     session['client_type'] = user.client_type
+    if user.company is not None:
+        session['company'] = user.company
+    if user.location is not None:
+        session['location'] = user.location
     session.save()
+
 
 def ica_app_settings(request, session):
     identity = request.environ.get('repoze.who.identity')
@@ -149,7 +156,9 @@ def ica_app_settings(request, session):
     c.token = session.get('token')
     c.theme = session.get('theme')
     c.created = session.get('created').strftime('%e %b %Y')
+    c.company = session.get('company', '')
     c.provider = session.get('provider')
+    c.location = session.get('location', '')
     c.last_login = datetime.fromtimestamp(session.get('_accessed_time')).strftime('%e %b %H:%M')
 
     # Aplication settings
@@ -175,12 +184,12 @@ def ica_app_settings(request, session):
 def update_user_identity(identity, provider):
 
     if provider == 'ldap':
-        user = get_user_by_extern_uid( identity['repoze.who.userid'] )
+        user = get_user_by_extern_uid(identity['repoze.who.userid'])
     else:
-        user = get_user_by_user_name( identity['repoze.who.userid'] )
+        user = get_user_by_user_name(identity['repoze.who.userid'])
 
     if user is None:
-        log.error('Unexpected, user must be added in previous stept')
+        log.error('Unexpected, credentials passed but user not exist into database')
         return None
         
     """

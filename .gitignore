@@ -17,6 +17,7 @@ setuptools-*
 pylons_data/*
 build/*
 dist/*
+venv/*
 ica.egg-info
 
 # node.js

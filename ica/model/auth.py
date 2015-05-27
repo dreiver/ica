@@ -73,6 +73,10 @@ class User(Base):
 
     client_type = Column(Unicode(10))
 
+    location = Column(Unicode(128))
+
+    company = Column(Unicode(128))
+
     #department = Column(Unicode(200, convert_unicode=False))
 
     #def __repr__(self):

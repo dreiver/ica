@@ -152,7 +152,7 @@
                                   <li>
                                     <a href="#">
                                       <div class="pull-left">
-                                        <img src="/adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="user image"/>
+                                        <img src="/adminlte/dist/img/avatar04.png" class="img-circle" alt="user image"/>
                                       </div>
                                       <h4>
                                         AdminLTE Design Team
@@ -221,13 +221,13 @@
                           <!-- User Account: style can be found in dropdown.less -->
                           <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <img src="/adminlte/dist/img/user3-128x128.jpg" class="user-image" alt="User Image"/>
-                              <span class="hidden-xs cname">{{ c.name }}</span>
+                              <img src="/adminlte/dist/img/avatar04.png" class="user-image" alt="User Image"/>
+                              <span class="hidden-xs cname">{{ c.uname }}</span>
                             </a>
                             <ul class="dropdown-menu">
                               <!-- User image -->
                               <li class="user-header">
-                                <img src="/adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" />
+                                <img src="/adminlte/dist/img/avatar04.png" class="img-circle" alt="User Image" />
                                 <p>
                                   <span class="cname">{{ c.name }}</span>
                                    {% if c.identity %}
@@ -253,8 +253,9 @@
                                 <div class="pull-left">
                                   <a href="/{{ c.uname }}" {{ c.pjax }} class="btn btn-default btn-flat">Profile</a>
                                 </div>
+
                                 <div class="pull-right">
-                                  <a href="/logout" class="btn btn-default btn-flat">Sign out</a>
+                                  <a href="/profile" {{ c.pjax }} class="btn btn-default btn-flat">Settings</a>
                                 </div>
                               </li>
                             </ul>
@@ -262,6 +263,11 @@
                           <!-- Control Sidebar Toggle Button -->
                           <li>
                             <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                          </li>
+                          <li>
+                            <a href="/logout" data-toggle="tooltip" title="Sign out">
+                              <i class="fa fa-sign-out"></i>
+                            </a>
                           </li>
                         </ul>
                     </div>
@@ -275,7 +281,7 @@
                         <!-- Sidebar user panel -->
                         <div class="user-panel">
                             <div class="pull-left image">
-                                <img src="/adminlte/dist/img/user3-128x128.jpg" class="img-circle" alt="User Image" />
+                                <img src="/adminlte/dist/img/avatar04.png" class="img-circle" alt="User Image" />
                             </div>
                             <div class="pull-left info">
                                 <p>Hello, <span class="cname">{{ c.name }}</span></p>
@@ -303,11 +309,6 @@
                             <li class="active">
                                 <a href="/index" {{ c.pjax }}>
                                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="/profile" {{ c.pjax }}>
-                                    <i class="fa fa-user"></i> <span>My profile</span>
                                 </a>
                             </li>
                             <li class="treeview">

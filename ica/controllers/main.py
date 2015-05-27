@@ -146,6 +146,12 @@ class MainController(BaseController):
 		return pjax('currentcalls.html')
 
 
+	##########
+	# Search #
+	##########
+	def search(self):
+		return "search in development"
+
 	########
 	# User #
 	########

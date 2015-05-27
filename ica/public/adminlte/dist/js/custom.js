@@ -5,19 +5,16 @@ $(function() {
 	$(document).ready(function() {
 		notifications_global_iCheck();
 		$(document).pjax('a[data-pjax]', '#main-content')
+
 		$(document).on('pjax:complete', function() {
+			NProgress.done();
 			if ( $(location).attr('pathname') == "/profile/notifications" ){
-				// Load plugin for specific page
-				notifications_global_iCheck();
+				notifications_global_iCheck(); // Load plugin for specific page
 			}
 		})
 
 		$(document).on('pjax:beforeSend', function() {
 			NProgress.start();
-		})
-
-		$(document).on('pjax:complete', function() {
-			NProgress.done();
 		})
 	});
 

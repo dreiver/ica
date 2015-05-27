@@ -56,6 +56,7 @@ def make_map(config):
     map.connect('index', '/index', controller='main', action='index', conditions=GET)
     map.connect('profile', '/profile', controller='main', action='profile', conditions=GET)
     map.connect('access', '/login', controller='access', action='login', conditions=GET)
+    map.connect('search', '/search', controller='main', action='search', conditions=GET)
     map.connect('user', '/{user}', controller='main', action='user', conditions=GET)
     
     # User

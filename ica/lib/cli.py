@@ -39,20 +39,6 @@ class RedisDB(ICACommand):
         redis_instance = cmd[0]
         redis_command = cmd[1]
 
-        """
-        import pprint
-        print "Hello, app script world!"
-        print
-        print "My options are:"
-        print "    ", pprint.pformat(vars(self.options))
-        print "My args are:"
-        print "    ", pprint.pformat(self.args)
-        print
-        print "My parser help is:"
-        print
-        print self.parser.format_help()
-        """
-
 
 class UserManage(ICACommand):
     usage = ''
@@ -112,13 +98,32 @@ class UserManage(ICACommand):
         for user in users:
             print self.get_user_str(user)
 
+        print 'OK - Done'
+
     def add(self):
         from ica.model import User, Session
         from ica.lib.util import add_new_user
 
-        #add_new_user('pepe', '')
+        if len(self.args) != 1:
+            print self.parser.format_help()
+            return
 
-        print 'in development'
+        username = self.args[0]
+        password = self.passwd_cmd()
+
+        if len(username) < 4:
+            print 'ERR - User must have a min length of 5 characters'
+            return
+
+        if password is None:
+            return
+
+        user = User.by_user_name(unicode(username))
+        if user is not None:
+            print 'ERR - User allready exist into database'
+            return
+
+        add_new_user(username, password)
 
     def prop(self):
         from ica.model import User, Session
@@ -131,7 +136,11 @@ class UserManage(ICACommand):
         p1, p2 = pprompt()
 
         if p1 != p2:
-            print 'Passwords do not match'
+            print 'ERR - Passwords do not match'
+            return None
+
+        if (len(p1) < 4 or len(p2) < 4):
+            print 'ERR - Password must have a min length of 5 characters'
             return None
 
         return p2
@@ -155,13 +164,13 @@ class UserManage(ICACommand):
             return
 
         if user is None:
-            print 'User not found \'%s\'' % username
+            print 'ERR - User not found \'%s\'' % username
             return
 
         print ('Editing user: %s' % user.user_name)
         user.password = passwd
         Session.commit()
-        print 'Done'
+        print 'OK - Done'
 
     def remove_confirm(self, user):
         yes = set(['yes','y', 'ye', ''])
@@ -188,7 +197,7 @@ class UserManage(ICACommand):
         user = User.by_user_name(unicode(cmd))
         
         if user is None:
-            print 'User not found \'%s\'' % cmd
+            print 'ERR - User not found \'%s\'' % cmd
             return
 
         if self.remove_confirm(cmd) is False:
@@ -199,4 +208,4 @@ class UserManage(ICACommand):
         Session.delete(user)
         Session.commit()
 
-        print 'Done'
+        print 'OK - Done'

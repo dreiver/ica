@@ -45,19 +45,16 @@
                     <form id="profile_update_settings" action="/profile/update_settings" method="post" role="form">
                         <div class="box-body">
                             <div class="form-group">
-                                <!--<label for="exampleInputFile">Avatar input</label>-->
+                                <label>Profile picture</label>
                                 <div class="user-panel">
                                     <div class="pull-left image">
-                                        <img src="/adminlte/img/avatar5.png" class="img-circle" alt="User Image" />
+                                        <img src="/adminlte/dist/img/avatar04.png" class="" alt="User Image" />
                                     </div>
                                     <div class="pull-left info">
-                                        <p class="text-light-blue">Set up your avatar picture</p>
-                                        <div class="input-group col-xs-5">
-                                            <div class="btn btn-default btn-file">
-                                                <i class="fa fa-paperclip"></i> Chooose File...
-                                                <input type="file" name="attachment">
-                                            </div>
-                                        </div>
+                                        <div class="btn btn-default btn-file btn-sm">
+                                            <i class="fa fa-paperclip"></i> Upload new avatar
+                                            <input type="file" name="attachment" />
+                                        </div><br>
                                         <small class="text-muted">The maximum file size allowed is 100KB</small>
                                     </div>
                                 </div>
@@ -76,7 +73,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="user_location">Location</label>
-                                <input type="text" class="form-control" id="user_location" name="user_location" value="{{ c.loaction }}">
+                                <input type="text" class="form-control" id="user_location" name="user_location" value="{{ c.location }}">
                             </div>
                         </div><!-- /.box-body -->
                         <div class="box-footer">
