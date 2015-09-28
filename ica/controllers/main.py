@@ -150,7 +150,7 @@ class MainController(BaseController):
 	# Search #
 	##########
 	def search(self):
-		return "search in development"
+		return pjax('search.html')
 
 	########
 	# User #
@@ -173,7 +173,7 @@ class MainController(BaseController):
 
 	def stars(self, user):
 		username = self.__get_username(username)
-		return username.display_name+" starts in development"
+		return username.display_name+" stars in development"
 
 
 	###########
